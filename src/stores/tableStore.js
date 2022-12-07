@@ -5,6 +5,7 @@ export const useTableStore = (storeId) =>
     state: () => {
       return {
         data: [],
+        count: 0,
       };
     },
     actions: {
