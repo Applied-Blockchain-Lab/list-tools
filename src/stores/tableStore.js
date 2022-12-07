@@ -4,7 +4,7 @@ export const useTableStore = (storeId) =>
   defineStore(`${storeId}`, {
     state: () => {
       return {
-        data: []
+        data: [],
       };
     },
     actions: {
