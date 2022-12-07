@@ -1,20 +1,20 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import {useTableStore} from "./stores/tableStore"
+import { RouterLink, RouterView } from "vue-router";
+import HelloWorld from "./components/HelloWorld.vue";
+import { useTableStore } from "./stores/tableStore";
 
 const tableStore = useTableStore(1);
-const tableStoreSecond =  useTableStore(2);
+const tableStoreSecond = useTableStore(2);
 
-let incrementFirstStore = () => {
-  tableStore.increment()
-  console.log(tableStore.count)
-}
+const incrementFirstStore = () => {
+  tableStore.increment();
+  console.log(tableStore.count);
+};
 
-let incrementSecondStore = () => {
-  tableStoreSecond.increment()
-  console.log(tableStoreSecond.count)
-}
+const incrementSecondStore = () => {
+  tableStoreSecond.increment();
+  console.log(tableStoreSecond.count);
+};
 </script>
 
 <template>
@@ -27,11 +27,9 @@ let incrementSecondStore = () => {
       <button @click="incrementFirstStore">IncrementFirst</button>
       <button @click="incrementSecondStore">IncrementSecond</button>
 
-
-
-      <p>STORE1{{tableStore.count}}</p><br>
-      <p>STORE2{{tableStoreSecond.count}}</p>
-      
+      <p>STORE1{{ tableStore.count }}</p>
+      <br />
+      <p>STORE2{{ tableStoreSecond.count }}</p>
 
       <nav>
         <RouterLink to="/">Home</RouterLink>

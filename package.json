@@ -1,29 +1,57 @@
 {
   "name": "table-tools-vuejs",
-  "version": "0.0.0",
-  "private": true,
+  "description": "Vue.js table component with pagination, sorting and filtering options",
+  "version": "0.1.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest --environment jsdom --root src/",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+    "coverage": "vitest run --coverage",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "lint:ci": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --ignore-path .gitignore",
+    "prettier": "prettier . --write",
+    "prettier:ci": "prettier .",
+    "buddy": "buddy -e src/",
+    "prepare": "husky install"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Applied-Blockchain-Lab/table-tools-Vuejs.git"
+  },
+  "keywords": [],
+  "author": "Quanterall",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Applied-Blockchain-Lab/table-tools-Vuejs/issues"
+  },
+  "homepage": "https://github.com/Applied-Blockchain-Lab/table-tools-Vuejs#readme",
   "dependencies": {
+    "buddy.js": "^0.9.3",
     "pinia": "^2.0.26",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.1.4",
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "@rushstack/eslint-patch": "^1.2.0",
     "@vitejs/plugin-vue": "^3.2.0",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/test-utils": "^2.2.4",
     "eslint": "^8.22.0",
     "eslint-plugin-vue": "^9.3.0",
+    "husky": "^8.0.2",
     "jsdom": "^20.0.3",
+    "lint-staged": "^13.1.0",
     "prettier": "^2.7.1",
     "vite": "^3.2.4",
     "vitest": "^0.25.3"
+  },
+  "lint-staged": {
+    "{src,test,tasks}/**/*.{js,vue}": [
+      "npm run prettier",
+      "npm run lint"
+    ]
   }
 }
