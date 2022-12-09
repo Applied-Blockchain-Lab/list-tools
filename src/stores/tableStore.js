@@ -31,6 +31,18 @@ export const useTableStore = (storeId) =>
         const lastIndex = this.pageItems.startIndex + this.itemsPerPage - 1;
         this.pageItems.endIndex = lastIndex >= this.allItems.length ? this.allItems.length - 1 : lastIndex;
       },
+      /********* PAGINATION FUNCTIONS *********/
+      setPage(targetPage, lastPage, firstPage) {
+        if (targetPage <= lastPage && targetPage >= firstPage) {
+          this.setCurrentPage(targetPage);
+        }
+      },
+      nextPage(lastPage, firstPage) {
+        this.setPage(this.currentPage + 1, lastPage, firstPage);
+      },
+      prevPage(lastPage, firstPage) {
+        this.setPage(this.currentPage - 1, lastPage, firstPage);
+      },
       // Sort by values
       // Filter by values
     },
