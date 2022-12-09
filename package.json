@@ -1,5 +1,5 @@
 {
-  "name": "table-tools-vuejs",
+  "name": "list-tools",
   "description": "Vue.js table component with pagination, sorting and filtering options",
   "version": "0.1.0",
   "scripts": {
@@ -17,15 +17,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Applied-Blockchain-Lab/table-tools-Vuejs.git"
+    "url": "git+https://github.com/Applied-Blockchain-Lab/list-tools-Vuejs.git"
   },
   "keywords": [],
   "author": "Quanterall",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Applied-Blockchain-Lab/table-tools-Vuejs/issues"
+    "url": "https://github.com/Applied-Blockchain-Lab/list-tools-Vuejs/issues"
   },
-  "homepage": "https://github.com/Applied-Blockchain-Lab/table-tools-Vuejs#readme",
+  "homepage": "https://github.com/Applied-Blockchain-Lab/list-tools-Vuejs#readme",
   "dependencies": {
     "buddy.js": "^0.9.3",
     "pinia": "^2.0.26",
