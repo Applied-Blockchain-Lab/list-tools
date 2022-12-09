@@ -120,6 +120,7 @@ const paginators = computed(() => {
 
   list-style-type: none;
   display: flex;
+  margin-top: 50px;
 
   li {
     padding: 10px;

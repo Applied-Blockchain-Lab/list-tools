@@ -1,6 +1,6 @@
-const fs = require("fs");
-const faker = require("@faker-js/faker").faker;
-const _ = require("lodash");
+import fs from "fs";
+import { faker } from "@faker-js/faker";
+import _ from "lodash";
 
 for (let i = 0; i < 3; ++i) {
   const randomData = [];
