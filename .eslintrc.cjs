@@ -7,7 +7,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: "latest",
   },
-  ignorePatterns: ["src/assets/*", "coverage", "styles", "commitlint.config.js", "src/components/icons/*"],
+  ignorePatterns: ["src/assets/*", "coverage", "styles", "commitlint.config.cjs", "src/components/icons/*"],
   rules: {
     "no-unused-vars": [
       "error",

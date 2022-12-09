@@ -30,7 +30,6 @@ export default function usePagination(id) {
   });
 
   const nextPage = () => {
-    console.log(currentPage.value);
     setPage(currentPage.value + 1);
   };
 
