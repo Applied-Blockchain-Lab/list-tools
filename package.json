@@ -9,7 +9,7 @@
     "test:unit": "vitest --environment jsdom --root src/",
     "coverage": "vitest run --coverage",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "lint:ci": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --ignore-path .gitignore",
+    "lint:ci": "NODE_ENV='production' eslint . --ext .vue,.js,.jsx,.cjs,.mjs --ignore-path .gitignore",
     "prettier": "prettier . --write",
     "prettier:ci": "prettier .",
     "buddy": "buddy -e src/",
@@ -29,6 +29,7 @@
   "dependencies": {
     "buddy.js": "^0.9.3",
     "pinia": "^2.0.26",
+    "sass": "^1.56.1",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
