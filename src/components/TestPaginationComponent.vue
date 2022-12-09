@@ -1,11 +1,32 @@
 <script setup>
 import { ref, computed } from "vue";
-import usePagination from "../mixins/PaginationComponent.js";
-const { prevPage, currentPage, setPage, onLastPage, onFirstPage, nextPage, lastPage, firstPage, value } =
-  usePagination(1);
+import { useTableStore } from "../stores/tableStore";
+
+const tableStore = useTableStore(1);
+
 const eachSide = ref(1);
+
+const total = ref(Math.ceil(tableStore.allItems.length / tableStore.itemsPerPage));
+
+const firstPage = computed(() => {
+  return 1;
+});
+
+const lastPage = computed(() => {
+  return total.value;
+});
+
+const onFirstPage = computed(() => {
+  return tableStore.currentPage === firstPage.value;
+});
+
+const onLastPage = computed(() => {
+  return tableStore.currentPage === lastPage.value;
+});
+
 const paginators = computed(() => {
   const paginators = [];
+
   if (lastPage.value < eachSide.value * 2 + 4) {
     for (let i = firstPage.value; i < lastPage.value + 1; ++i) {
       paginators.push({
@@ -14,9 +35,13 @@ const paginators = computed(() => {
       });
     }
   } else {
-    if (currentPage.value - firstPage.value < eachSide.value + 2) {
+    if (tableStore.currentPage - firstPage.value < eachSide.value + 2) {
       // if currentPage near firstPage
-      for (let i = firstPage.value; i < Math.max(eachSide.value * 2 + 1, currentPage.value + eachSide.value + 1); ++i) {
+      for (
+        let i = firstPage.value;
+        i < Math.max(eachSide.value * 2 + 1, tableStore.currentPage + eachSide.value + 1);
+        ++i
+      ) {
         paginators.push({
           value: i,
           enable: true,
@@ -30,7 +55,7 @@ const paginators = computed(() => {
         value: lastPage.value,
         enable: true,
       });
-    } else if (lastPage.value - currentPage.value < eachSide.value + 2) {
+    } else if (lastPage.value - tableStore.currentPage < eachSide.value + 2) {
       // if currentPage near lastPage
       paginators.push({
         value: firstPage.value,
@@ -41,7 +66,7 @@ const paginators = computed(() => {
         enable: false,
       });
       for (
-        let i = Math.min(lastPage.value - eachSide.value * 2 + 1, currentPage.value - eachSide.value);
+        let i = Math.min(lastPage.value - eachSide.value * 2 + 1, tableStore.currentPage - eachSide.value);
         i < lastPage.value + 1;
         ++i
       ) {
@@ -60,7 +85,7 @@ const paginators = computed(() => {
         value: "...",
         enable: false,
       });
-      for (let i = currentPage.value - eachSide.value; i < currentPage.value + eachSide.value + 1; ++i) {
+      for (let i = tableStore.currentPage - eachSide.value; i < tableStore.currentPage + eachSide.value + 1; ++i) {
         paginators.push({
           value: i,
           enable: true,
@@ -84,7 +109,7 @@ const paginators = computed(() => {
   <ul class="pagination">
     <!--Prev Button-->
     <li :class="{ disabled: onFirstPage }" class="page-item">
-      <a @click.prevent="prevPage" class="page-link" rel="prev" aria-label="Previous">
+      <a @click.prevent="tableStore.prevPage(lastPage, firstPage)" class="page-link" rel="prev" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
@@ -93,23 +118,25 @@ const paginators = computed(() => {
     <li
       v-for="(paginator, i) in paginators"
       :key="i"
-      :class="{ active: paginator.value === currentPage, disabled: !paginator.enable }"
+      :class="{ active: paginator.value === tableStore.currentPage, disabled: !paginator.enable }"
       class="page-item"
     >
-      <a @click.prevent="setPage(paginator.value)" class="page-link" :disabled="!paginator.enable">
+      <a
+        @click.prevent="tableStore.setPage(paginator.value, lastPage, firstPage)"
+        class="page-link"
+        :disabled="!paginator.enable"
+      >
         <span>{{ paginator.value }}</span>
       </a>
     </li>
 
     <!--Next Button-->
     <li :class="{ disabled: onLastPage }" class="page-item">
-      <a @click.prevent="nextPage" class="page-link" rel="next" aria-label="Next">
+      <a @click.prevent="tableStore.nextPage(lastPage, firstPage)" class="page-link" rel="next" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
   </ul>
-
-  <p>{{ value }}</p>
 </template>
 
 <style scoped lang="scss">
