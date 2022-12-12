@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import _ from "lodash";
 
 export const useListStore = (storeId) =>
   defineStore(`${storeId}`, {
@@ -43,7 +44,25 @@ export const useListStore = (storeId) =>
       prevPage(lastPage, firstPage) {
         this.setPage(this.currentPage - 1, lastPage, firstPage);
       },
-      // Sort by values
+      /********* SORT FUNCTIONS *********/
+      sortBy(key, order) {
+        this.allItems = _.sortBy(this.allItems, [key]);
+
+        if (order === "desc") {
+          this.allItems = this.allItems.reverse();
+        }
+        this.setCurrentPage(1);
+      },
+      keyify(obj, prefix = "") {
+        return Object.keys(obj).reduce((res, el) => {
+          if (Array.isArray(obj[el])) {
+            return res;
+          } else if (typeof obj[el] === "object" && obj[el] !== null) {
+            return [...res, ...this.keyify(obj[el], prefix + el + ".")];
+          }
+          return [...res, prefix + el];
+        }, []);
+      },
       // Filter by values
     },
   })();
