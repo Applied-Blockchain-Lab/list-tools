@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export const useTableStore = (storeId) =>
+export const useListStore = (storeId) =>
   defineStore(`${storeId}`, {
     state: () => ({
       allItems: [],
