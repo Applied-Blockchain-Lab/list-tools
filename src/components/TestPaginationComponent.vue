@@ -1,8 +1,8 @@
 <script setup>
 import { ref, computed } from "vue";
-import { useTableStore } from "../stores/tableStore";
+import { useListStore } from "../stores/listStore";
 
-const tableStore = useTableStore(1);
+const tableStore = useListStore(1);
 
 const eachSide = ref(1);
 
