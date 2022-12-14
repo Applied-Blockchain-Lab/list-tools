@@ -1,17 +1,26 @@
+import _ from "lodash";
+
 export default function useSortUtils(listStore) {
   const sortedByAsc = {};
   const sortBy = (key, order) => {
+    if (!key) {
+      return;
+    }
+
+    listStore.setAllItems(_.sortBy(listStore.getAllItems, [key]));
+
     if (!order) {
       if (!sortedByAsc[key]) {
-        listStore.sortBy(key, "asc");
         sortedByAsc[key] = true;
       } else {
-        listStore.sortBy(key, "desc");
+        listStore.setAllItems(listStore.getAllItems.reverse());
         sortedByAsc[key] = false;
       }
-    } else {
-      listStore.sortBy(key, order);
+    } else if (order === "desc") {
+      listStore.setAllItems(listStore.getAllItems.reverse());
     }
+
+    listStore.setCurrentPage(1);
   };
 
   const keyify = (obj, prefix = "") => {

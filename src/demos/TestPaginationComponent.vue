@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
-import { useListStore } from "../stores/listStore";
+import useGlobalComposable from "../composables/globalComposable";
 
 const props = defineProps({
   id: {
@@ -9,44 +9,33 @@ const props = defineProps({
   },
 });
 
-const tableStore = useListStore(props.id);
+const { paginationUtils } = useGlobalComposable(props.id);
 
 const eachSide = ref(1);
 
-const total = computed(() => Math.ceil(tableStore.allItems.length / tableStore.itemsPerPage));
+const total = computed(() => paginationUtils.getTotalPages());
 
-const firstPage = computed(() => {
-  return 1;
-});
+const firstPage = ref(1);
 
-const lastPage = computed(() => {
-  return total.value;
-});
-
-const onFirstPage = computed(() => {
-  return tableStore.currentPage === firstPage.value;
-});
-
-const onLastPage = computed(() => {
-  return tableStore.currentPage === lastPage.value;
-});
+const onFirstPage = computed(() => paginationUtils.getCurrentPage() === firstPage.value);
+const onLastPage = computed(() => paginationUtils.getCurrentPage() === total.value);
 
 const paginators = computed(() => {
   const paginators = [];
 
-  if (lastPage.value < eachSide.value * 2 + 4) {
-    for (let i = firstPage.value; i < lastPage.value + 1; ++i) {
+  if (total.value < eachSide.value * 2 + 4) {
+    for (let i = firstPage.value; i < total.value + 1; ++i) {
       paginators.push({
         value: i,
         enable: true,
       });
     }
   } else {
-    if (tableStore.currentPage - firstPage.value < eachSide.value + 2) {
+    if (paginationUtils.getCurrentPage() - firstPage.value < eachSide.value + 2) {
       // if currentPage near firstPage
       for (
         let i = firstPage.value;
-        i < Math.max(eachSide.value * 2 + 1, tableStore.currentPage + eachSide.value + 1);
+        i < Math.max(eachSide.value * 2 + 1, paginationUtils.getCurrentPage() + eachSide.value + 1);
         ++i
       ) {
         paginators.push({
@@ -59,11 +48,11 @@ const paginators = computed(() => {
         enable: false,
       });
       paginators.push({
-        value: lastPage.value,
+        value: total.value,
         enable: true,
       });
-    } else if (lastPage.value - tableStore.currentPage < eachSide.value + 2) {
-      // if currentPage near lastPage
+    } else if (total.value - paginationUtils.getCurrentPage() < eachSide.value + 2) {
+      // if currentPage near total
       paginators.push({
         value: firstPage.value,
         enable: true,
@@ -73,8 +62,8 @@ const paginators = computed(() => {
         enable: false,
       });
       for (
-        let i = Math.min(lastPage.value - eachSide.value * 2 + 1, tableStore.currentPage - eachSide.value);
-        i < lastPage.value + 1;
+        let i = Math.min(total.value - eachSide.value * 2 + 1, paginationUtils.getCurrentPage() - eachSide.value);
+        i < total.value + 1;
         ++i
       ) {
         paginators.push({
@@ -92,7 +81,11 @@ const paginators = computed(() => {
         value: "...",
         enable: false,
       });
-      for (let i = tableStore.currentPage - eachSide.value; i < tableStore.currentPage + eachSide.value + 1; ++i) {
+      for (
+        let i = paginationUtils.getCurrentPage() - eachSide.value;
+        i < paginationUtils.getCurrentPage() + eachSide.value + 1;
+        ++i
+      ) {
         paginators.push({
           value: i,
           enable: true,
@@ -103,7 +96,7 @@ const paginators = computed(() => {
         enable: false,
       });
       paginators.push({
-        value: lastPage.value,
+        value: total.value,
         enable: true,
       });
     }
@@ -116,7 +109,7 @@ const paginators = computed(() => {
   <ul class="pagination">
     <!--Prev Button-->
     <li :class="{ disabled: onFirstPage }" class="page-item">
-      <a @click.prevent="tableStore.prevPage(lastPage, firstPage)" class="page-link" rel="prev" aria-label="Previous">
+      <a @click.prevent="paginationUtils.prevPage()" class="page-link" rel="prev" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
@@ -125,21 +118,17 @@ const paginators = computed(() => {
     <li
       v-for="(paginator, i) in paginators"
       :key="i"
-      :class="{ active: paginator.value === tableStore.currentPage, disabled: !paginator.enable }"
+      :class="{ active: paginator.value === paginationUtils.getCurrentPage(), disabled: !paginator.enable }"
       class="page-item"
     >
-      <a
-        @click.prevent="tableStore.setPage(paginator.value, lastPage, firstPage)"
-        class="page-link"
-        :disabled="!paginator.enable"
-      >
+      <a @click.prevent="paginationUtils.setPage(paginator.value)" class="page-link" :disabled="!paginator.enable">
         <span>{{ paginator.value }}</span>
       </a>
     </li>
 
     <!--Next Button-->
     <li :class="{ disabled: onLastPage }" class="page-item">
-      <a @click.prevent="tableStore.nextPage(lastPage, firstPage)" class="page-link" rel="next" aria-label="Next">
+      <a @click.prevent="paginationUtils.nextPage()" class="page-link" rel="next" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
