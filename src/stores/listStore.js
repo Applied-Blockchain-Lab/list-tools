@@ -5,6 +5,7 @@ export const useListStore = (storeId) =>
   defineStore(`${storeId}`, {
     state: () => ({
       allItems: [],
+      filteredItems: [],
       currentPage: 0,
       itemsPerPage: 0,
       pageItems: {
@@ -13,11 +14,14 @@ export const useListStore = (storeId) =>
       },
     }),
     actions: {
-      init(allItems, itemsPerPage) {
+      init(allItems, itemsPerPage = 5) {
         this.setAllItems(allItems);
         this.setCurrentPage(1);
-        this.setItemsPerPage(itemsPerPage);
-        this.setPageItems({ startIndex: 0, endIndex: this.pageItems.startIndex + itemsPerPage - 1 });
+
+        const _itemsPerPage = this.allItems.length < itemsPerPage ? this.allItems.length : itemsPerPage;
+
+        this.setItemsPerPage(_itemsPerPage);
+        this.setPageItems({ startIndex: 0, endIndex: this.pageItems.startIndex + this.itemsPerPage - 1 });
       },
       insertRow(item) {
         this.allItems.push(item);
@@ -25,7 +29,9 @@ export const useListStore = (storeId) =>
       setAllItems(allItems) {
         this.allItems = allItems;
       },
-
+      setFilteredItems(filteredItems) {
+        this.filteredItems = filteredItems;
+      },
       setItemsPerPage(itemsPerPage) {
         this.itemsPerPage = Number(itemsPerPage);
       },
@@ -41,6 +47,6 @@ export const useListStore = (storeId) =>
     getters: {
       getItemsPerPage: (state) => state.itemsPerPage,
       getCurrentPage: (state) => state.currentPage,
-      getAllItems: (state) => state.allItems,
+      getAllItems: (state) => (state.filteredItems.length === 0 ? state.allItems : state.filteredItems),
     },
   })();

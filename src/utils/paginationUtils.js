@@ -2,7 +2,7 @@ export default function usePaginationUtils(listStore) {
   const paginate = () => {
     const items = [];
     for (let i = listStore.pageItems.startIndex; i <= listStore.pageItems.endIndex; i++) {
-      items.push(listStore.allItems[i]);
+      items.push(listStore.getAllItems[i]);
     }
     return items;
   };
@@ -26,7 +26,8 @@ export default function usePaginationUtils(listStore) {
   const updatePagination = (itemsPerPage) => {
     const pageItems = {};
     pageItems.startIndex = 0;
-    pageItems.endIndex = pageItems.startIndex + itemsPerPage - 1;
+    const lastIndex = pageItems.startIndex + itemsPerPage - 1;
+    pageItems.endIndex = lastIndex >= listStore.getAllItems.length ? listStore.getAllItems.length - 1 : lastIndex;
     listStore.setPageItems(pageItems);
     listStore.setCurrentPage(1);
   };
