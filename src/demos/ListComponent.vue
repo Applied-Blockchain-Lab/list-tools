@@ -1,9 +1,8 @@
-<script setup>
+<!-- <script setup>
 import { computed, watch } from "vue";
 import { ref } from "vue";
-import useSortComponent from "../components/sortComponent";
-import usePaginationComponent from "../components/paginationComponent";
-import useEventBus from "../composables/eventBus";
+import SortComponent from "../components/SortComponent.vue";
+import usePaginationComponent from "../utils/paginationUtils";
 
 const props = defineProps({
   id: {
@@ -15,14 +14,10 @@ const props = defineProps({
 const { bus } = useEventBus();
 const sortedOrder = ref("sort");
 
-const sortComponent = useSortComponent(props.id);
 const paginationComponent = usePaginationComponent(props.id);
 
 const rows = computed(() => paginationComponent.paginate());
 
-const sortableKeys = ref(sortComponent.keyify(rows.value[0]));
-const selectedSortKey = ref("");
-const selectedSortOrder = ref("");
 
 watch(
   () => bus.value.get("sortOrder"),
@@ -33,17 +28,7 @@ watch(
 </script>
 
 <template>
-  <select name="" id="" v-model="selectedSortKey">
-    <option value="" selected disabled hidden>Choose key</option>
-    <option :value="key" v-for="(key, i) in sortableKeys" :key="i">{{ key }}</option>
-  </select>
-  <select name="" id="" v-model="selectedSortOrder">
-    <option value="" selected disabled hidden>Choose order</option>
-    <option value="asc">Ascending</option>
-    <option value="desc">Descending</option>
-  </select>
-
-  <button @click="sortComponent.sortBy(selectedSortKey, selectedSortOrder)">sort</button>
+  <SortComponent :id="props.id" />
 
   <ol :class="sortedOrder" v-for="(row, rowIndex) in rows" :key="rowIndex">
     <li>
@@ -67,4 +52,4 @@ th {
 ol {
   width: 100%;
 }
-</style>
+</style> -->
