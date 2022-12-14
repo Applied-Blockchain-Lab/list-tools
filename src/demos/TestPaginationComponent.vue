@@ -2,11 +2,18 @@
 import { ref, computed } from "vue";
 import { useListStore } from "../stores/listStore";
 
-const tableStore = useListStore(1);
+const props = defineProps({
+  id: {
+    type: Number,
+    required: true,
+  },
+});
+
+const tableStore = useListStore(props.id);
 
 const eachSide = ref(1);
 
-const total = ref(Math.ceil(tableStore.allItems.length / tableStore.itemsPerPage));
+const total = computed(() => Math.ceil(tableStore.allItems.length / tableStore.itemsPerPage));
 
 const firstPage = computed(() => {
   return 1;
