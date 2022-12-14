@@ -14,51 +14,33 @@ export const useListStore = (storeId) =>
     }),
     actions: {
       init(allItems, itemsPerPage) {
+        this.setAllItems(allItems);
+        this.setCurrentPage(1);
+        this.setItemsPerPage(itemsPerPage);
+        this.setPageItems({ startIndex: 0, endIndex: this.pageItems.startIndex + itemsPerPage - 1 });
+      },
+      insertRow(item) {
+        this.allItems.push(item);
+      },
+      setAllItems(allItems) {
         this.allItems = allItems;
-        this.currentPage = 1;
-        this.updatePagination(itemsPerPage);
       },
-      insertRow(row) {
-        this.rows.push(row);
-      },
+
       setItemsPerPage(itemsPerPage) {
-        this.updatePagination(itemsPerPage);
+        this.itemsPerPage = Number(itemsPerPage);
+      },
+      setPageItems(pageItems) {
+        this.pageItems = pageItems;
       },
       setCurrentPage(page) {
-        this.currentPage = page;
-        this.pageItems.startIndex = (page - 1) * this.itemsPerPage;
-        const lastIndex = this.pageItems.startIndex + this.itemsPerPage - 1;
-        this.pageItems.endIndex = lastIndex >= this.allItems.length ? this.allItems.length - 1 : lastIndex;
+        this.currentPage = Number(page);
       },
-      /********* PAGINATION FUNCTIONS *********/
-      setPage(targetPage, lastPage, firstPage) {
-        if (targetPage <= lastPage && targetPage >= firstPage) {
-          this.setCurrentPage(targetPage);
-        }
-      },
-      nextPage(lastPage, firstPage) {
-        this.setPage(this.currentPage + 1, lastPage, firstPage);
-      },
-      prevPage(lastPage, firstPage) {
-        this.setPage(this.currentPage - 1, lastPage, firstPage);
-      },
-      updatePagination(itemsPerPage) {
-        this.itemsPerPage = Number(itemsPerPage);
-        this.pageItems.startIndex = 0;
-        this.pageItems.endIndex = this.pageItems.startIndex + itemsPerPage - 1;
-      },
-      /********* SORT FUNCTIONS *********/
-      sortBy(key, order = "asc") {
-        this.allItems = _.sortBy(this.allItems, [key]);
 
-        if (order === "desc") {
-          this.allItems = this.allItems.reverse();
-        }
-        this.setCurrentPage(1);
-      },
       // Filter by values
     },
     getters: {
       getItemsPerPage: (state) => state.itemsPerPage,
+      getCurrentPage: (state) => state.currentPage,
+      getAllItems: (state) => state.allItems,
     },
   })();

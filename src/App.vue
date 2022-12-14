@@ -37,9 +37,8 @@ const itemsPerPage3 = ref(listTools3.paginationUtils.getItemsPerPage());
       <ol :class="sortedOrder1">
         <li v-for="(row, rowIndex) in items1" :key="rowIndex">
           Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City:
-          {{ row.L12.L23.L31 }}; Boolean: {{ row.L12.L23.L32 }}; R-num-string: {{ row.L12.L23.L33 }}; R-dates:
-          {{ row.L12.L23.L34 }}; R-booleans:
-          {{ row.L12.L23.L35 }}
+          {{ row.L12.L23.L31 }}; Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates:
+          {{ row.L12.L23.L34 }}; R-booleans: {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
         </li>
       </ol>
       <br />
@@ -57,9 +56,8 @@ const itemsPerPage3 = ref(listTools3.paginationUtils.getItemsPerPage());
       <ol :class="sortedOrder2">
         <li v-for="(row, rowIndex) in items2" :key="rowIndex">
           Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City:
-          {{ row.L12.L23.L31 }}; Boolean: {{ row.L12.L23.L32 }}; R-num-string: {{ row.L12.L23.L33 }}; R-dates:
-          {{ row.L12.L23.L34 }}; R-booleans:
-          {{ row.L12.L23.L35 }}
+          {{ row.L12.L23.L31 }}; Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates:
+          {{ row.L12.L23.L34 }}; R-booleans: {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
         </li>
       </ol>
       <hr />
@@ -78,9 +76,10 @@ const itemsPerPage3 = ref(listTools3.paginationUtils.getItemsPerPage());
           <th @click="listTools3.sortUtils.sortBy(`L12.L22`)">Recent Date</th>
           <th @click="listTools3.sortUtils.sortBy(`L12.L23.L31`)">City</th>
           <th @click="listTools3.sortUtils.sortBy(`L12.L23.L32`)">Boolean</th>
-          <th>R-num-string</th>
+          <th>R-string</th>
           <th>R-dates</th>
           <th>R-booleans</th>
+          <th>R-nums</th>
         </thead>
         <tbody>
           <tr v-for="(row, rowIndex) in items3" :key="rowIndex">
@@ -92,6 +91,7 @@ const itemsPerPage3 = ref(listTools3.paginationUtils.getItemsPerPage());
             <td>{{ row.L12.L23.L33 }}</td>
             <td>{{ row.L12.L23.L34 }}</td>
             <td>{{ row.L12.L23.L35 }}</td>
+            <td>{{ row.L12.L23.L36 }}</td>
           </tr>
         </tbody>
       </table>
