@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { useListStore } from "../stores/listStore";
-import useSortUtils from "../utils/sortUtils";
+import useGlobalComposable from "../composables/globalComposable";
 
 const props = defineProps({
   id: {
@@ -11,8 +10,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["sortOrder"]);
-const listStore = useListStore(props.id);
-const sortUtils = useSortUtils(listStore);
+const { sortUtils, keyify } = useGlobalComposable(props.id);
 
 const selectedSortKey = ref("");
 const selectedSortOrder = ref("");
@@ -29,7 +27,7 @@ const sortBy = (key, order) => {
   }
 };
 
-const sortableKeys = ref(sortUtils.keyify(listStore.allItems[0]));
+const sortableKeys = ref(keyify());
 </script>
 
 <template>

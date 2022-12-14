@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import SortComponent from "./components/SortComponent.vue";
+import FilterComponent from "./demos/FilterComponent.vue";
 
 import TestPaginationComponent from "./demos/TestPaginationComponent.vue";
 import demoData from "../demo-data/demoData2.json";
@@ -66,6 +67,7 @@ const itemsPerPage3 = ref(listTools3.paginationUtils.getItemsPerPage());
     </div>
     <div class="wrapper">
       <h1>Table 1</h1>
+      <FilterComponent :id="3" />
       <input type="text" name="" id="" v-model="itemsPerPage3" />
       <button @click="listTools3.paginationUtils.setItemsPerPage(itemsPerPage3)">Set items per page</button>
 
