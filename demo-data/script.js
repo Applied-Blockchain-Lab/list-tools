@@ -7,6 +7,8 @@ for (let i = 0; i < 3; ++i) {
 
   const randomDateArr = [faker.date.recent(), faker.date.soon(), faker.date.future()];
   const randomBoolArr = [_.sample([true, false]), _.sample([true, false]), _.sample([true, false])];
+  const randomStrArr = [faker.color.human(), faker.color.human(), faker.color.human()];
+  const randomIntArr = [faker.datatype.number(), faker.datatype.number(), faker.datatype.number()];
 
   for (let j = 0; j < Math.random() * (50 - 30) + 30; ++j) {
     const randomObj = {
@@ -17,9 +19,10 @@ for (let i = 0; i < 3; ++i) {
         L23: {
           L31: faker.address.city(),
           L32: _.sample([true, false]),
-          L33: faker.datatype.array(3),
+          L33: randomStrArr,
           L34: randomDateArr,
           L35: randomBoolArr,
+          L36: randomIntArr,
         },
       },
     };
