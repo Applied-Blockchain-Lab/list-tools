@@ -6,10 +6,17 @@ for (let i = 0; i < 3; ++i) {
   const randomData = [];
 
   for (let j = 0; j < Math.random() * (50 - 30) + 30; ++j) {
-    const randomDateArr = [faker.date.recent(), faker.date.soon(), faker.date.future()];
-    const randomBoolArr = [_.sample([true, false]), _.sample([true, false]), _.sample([true, false])];
-    const randomStrArr = [faker.color.human(), faker.color.human(), faker.color.human()];
-    const randomIntArr = [faker.datatype.number(), faker.datatype.number(), faker.datatype.number()];
+    const randomDateArr = []
+    const randomBoolArr = []
+    const randomStrArr = []
+    const randomIntArr = []
+    
+    for (let k = 0; k < Math.random() * (5 - 1) + 1; ++k) {
+      randomDateArr.push(faker.date.recent());
+      randomBoolArr.push(_.sample([true, false]));
+      randomStrArr.push(faker.color.human());
+      randomIntArr.push(faker.datatype.number());
+    }
 
     const randomObj = {
       L11: faker.datatype.number(),

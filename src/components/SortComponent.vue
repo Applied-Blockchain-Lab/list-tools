@@ -16,7 +16,7 @@ const selectedSortKey = ref("");
 const selectedSortOrder = ref("");
 
 const sortBy = (key, order) => {
-  sortUtils.sortBy(key, order);
+  sortUtils.sortBy({ key, order });
   switch (order) {
     case "asc":
       emit("sortOrder", "sort-asc");
