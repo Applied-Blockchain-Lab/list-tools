@@ -1,7 +1,14 @@
 <script setup>
 import { ref, computed } from "vue";
 import SortComponent from "./components/SortComponent.vue";
-import FilterComponent from "./demos/FilterComponent.vue";
+import InputFilterComponent from "./demos/InputFilterComponent.vue";
+import RangeFilterComponent from "./components/filters/RangeFilterComponent.vue";
+import SelectionFilterComponent from "./components/filters/SelectionFilterComponent.vue";
+import ValuesFilterComponent from "./components/filters/ValuesFilterComponent.vue";
+import VueSelectFilterComponent from "./components/filters/VueSelectFilterComponent.vue";
+import ItemSelectorComponent from "./components/selectors/ItemSelectorComponent.vue";
+import BulkItemsSelectorComponent from "./components/selectors/BulkItemsSelectorComponent.vue";
+import NumberOfSelectedItemsComponent from "./components/selectors/NumberOfSelectedItemsComponent.vue";
 
 import TestPaginationComponent from "./demos/TestPaginationComponent.vue";
 import demoData from "../demo-data/demoData2.json";
@@ -34,9 +41,15 @@ const itemsPerPage3 = ref(listTools3.paginationUtils.getItemsPerPage());
       <SortComponent :id="1" />
       <input type="text" name="" id="" v-model="itemsPerPage1" />
       <button @click="listTools1.paginationUtils.setItemsPerPage(itemsPerPage1)">Set items per page</button>
-
+      <RangeFilterComponent />
+      <SelectionFilterComponent />
+      <ValuesFilterComponent />
+      <VueSelectFilterComponent />
+      <BulkItemsSelectorComponent />
+      <NumberOfSelectedItemsComponent />
       <ol :class="sortedOrder1">
         <li v-for="(row, rowIndex) in items1" :key="rowIndex">
+          <ItemSelectorComponent />
           Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City:
           {{ row.L12.L23.L31 }}; Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates:
           {{ row.L12.L23.L34 }}; R-booleans: {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
@@ -50,12 +63,17 @@ const itemsPerPage3 = ref(listTools3.paginationUtils.getItemsPerPage());
     <div class="wrapper">
       <h2>List 2</h2>
       <SortComponent :id="2" />
-
       <input type="text" name="" id="" v-model="itemsPerPage2" />
       <button @click="listTools2.setItemsPerPage(itemsPerPage2)">Set items per page</button>
-
+      <RangeFilterComponent />
+      <SelectionFilterComponent />
+      <ValuesFilterComponent />
+      <VueSelectFilterComponent />
+      <BulkItemsSelectorComponent />
+      <NumberOfSelectedItemsComponent />
       <ol :class="sortedOrder2">
         <li v-for="(row, rowIndex) in items2" :key="rowIndex">
+          <ItemSelectorComponent />
           Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City:
           {{ row.L12.L23.L31 }}; Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates:
           {{ row.L12.L23.L34 }}; R-booleans: {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
@@ -67,12 +85,20 @@ const itemsPerPage3 = ref(listTools3.paginationUtils.getItemsPerPage());
     </div>
     <div class="wrapper">
       <h1>Table 1</h1>
-      <FilterComponent :id="3" />
+      <InputFilterComponent :id="3" />
       <input type="text" name="" id="" v-model="itemsPerPage3" />
       <button @click="listTools3.paginationUtils.setItemsPerPage(itemsPerPage3)">Set items per page</button>
-
+      <RangeFilterComponent />
+      <SelectionFilterComponent />
+      <ValuesFilterComponent />
+      <VueSelectFilterComponent />
+      <p>
+        <BulkItemsSelectorComponent />
+        <NumberOfSelectedItemsComponent />
+      </p>
       <table>
         <thead>
+          <th></th>
           <th @click="listTools3.sortUtils.sortBy(`L11`)">Number</th>
           <th @click="listTools3.sortUtils.sortBy(`L12.L21`)">Country</th>
           <th @click="listTools3.sortUtils.sortBy(`L12.L22`)">Recent Date</th>
@@ -85,6 +111,7 @@ const itemsPerPage3 = ref(listTools3.paginationUtils.getItemsPerPage());
         </thead>
         <tbody>
           <tr v-for="(row, rowIndex) in items3" :key="rowIndex">
+            <td><ItemSelectorComponent /></td>
             <td>{{ row.L11 }}</td>
             <td>{{ row.L12.L21 }}</td>
             <td>{{ row.L12.L22 }}</td>
