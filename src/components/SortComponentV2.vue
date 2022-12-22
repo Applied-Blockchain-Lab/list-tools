@@ -13,10 +13,9 @@ const emit = defineEmits(["sortOrder"]);
 const { sortUtils, keyify } = useGlobalComposable(props.id);
 
 const selectedSortKey = ref("");
-const selectedSortOrder = ref("");
 
 const sortBy = (key, order) => {
-  sortUtils.sortBy({ key, order });
+  sortUtils.sortBy(key, order);
   switch (order) {
     case "asc":
       emit("sortOrder", "sort-asc");
@@ -27,19 +26,31 @@ const sortBy = (key, order) => {
   }
 };
 
-const sortableKeys = ref(keyify());
+const sortableKeys = () => {
+  const keys = keyify();
+
+  const newKeys = [];
+
+  for (let i = 0; i < keys.length; ++i) {
+    newKeys.push({
+      key: keys[i],
+      order: "asc",
+    });
+
+    newKeys.push({
+      key: keys[i],
+      order: "desc",
+    });
+  }
+
+  return newKeys;
+};
 </script>
 
 <template>
   <select name="" id="" v-model="selectedSortKey">
     <option value="" selected disabled hidden>Choose key</option>
-    <option :value="key" v-for="(key, i) in sortableKeys" :key="i">{{ key }}</option>
+    <option :value="elem" v-for="(elem, i) in sortableKeys()" :key="i">{{ `${elem.key} - ${elem.order}` }}</option>
   </select>
-  <select name="" id="" v-model="selectedSortOrder">
-    <option value="" selected disabled hidden>Choose order</option>
-    <option value="asc">Ascending</option>
-    <option value="desc">Descending</option>
-  </select>
-
-  <button @click="sortBy(selectedSortKey, selectedSortOrder)">sort</button>
+  <button @click="sortBy(selectedSortKey.key, selectedSortKey.order)">sort</button>
 </template>

@@ -15,9 +15,20 @@ export default function useGlobalComposable(storeId) {
   const keyify = (obj = listStore.getAllItems[0], prefix = "") => {
     return Object.keys(obj).reduce((res, el) => {
       if (Array.isArray(obj[el])) {
-        return res;
+        return [...res, prefix + el];
       } else if (typeof obj[el] === "object" && obj[el] !== null) {
         return [...res, ...keyify(obj[el], prefix + el + ".")];
+      }
+      return [...res, prefix + el];
+    }, []);
+  };
+
+  const keyifyExcludedArr = (obj = listStore.getAllItems[0], prefix = "") => {
+    return Object.keys(obj).reduce((res, el) => {
+      if (Array.isArray(obj[el])) {
+        return res;
+      } else if (typeof obj[el] === "object" && obj[el] !== null) {
+        return [...res, ...keyifyExcludedArr(obj[el], prefix + el + ".")];
       }
       return [...res, prefix + el];
     }, []);
@@ -26,6 +37,7 @@ export default function useGlobalComposable(storeId) {
   return {
     init,
     keyify,
+    keyifyExcludedArr,
     sortUtils,
     paginationUtils,
     filterUtils,
