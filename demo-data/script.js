@@ -6,11 +6,11 @@ for (let i = 0; i < 3; ++i) {
   const randomData = [];
 
   for (let j = 0; j < Math.random() * (50 - 30) + 30; ++j) {
-    const randomDateArr = []
-    const randomBoolArr = []
-    const randomStrArr = []
-    const randomIntArr = []
-    
+    const randomDateArr = [];
+    const randomBoolArr = [];
+    const randomStrArr = [];
+    const randomIntArr = [];
+
     for (let k = 0; k < Math.random() * (5 - 1) + 1; ++k) {
       randomDateArr.push(faker.date.recent());
       randomBoolArr.push(_.sample([true, false]));

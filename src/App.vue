@@ -96,9 +96,15 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <br />
     <input type="text" name="" id="" v-model="itemsPerPage2" />
     <button @click="listTools2.paginationUtils.setItemsPerPage(itemsPerPage2)">Set items per page</button>
-
+    <RangeFilterComponent />
+    <SelectionFilterComponent />
+    <ValuesFilterComponent />
+    <VueSelectFilterComponent />
+    <BulkItemsSelectorComponent />
+    <NumberOfSelectedItemsComponent /> <br />
     <table>
       <thead>
+        <th></th>
         <th @click="listTools2.sortUtils.sortBy({ key: `L11`, event: $event })">Number</th>
         <th @click="listTools2.sortUtils.sortBy({ key: `L12.L21`, event: $event })">Country</th>
         <th @click="listTools2.sortUtils.sortBy({ key: `L12.L22`, event: $event })">Recent Date</th>
@@ -111,6 +117,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items2" :key="rowIndex">
+          <td><ItemSelectorComponent /></td>
           <td>{{ row.L11 }}</td>
           <td>{{ row.L12.L21 }}</td>
           <td>{{ row.L12.L22 }}</td>
@@ -135,8 +142,15 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <button @click="listTools3.setItemsPerPage(itemsPerPage3)">Set items per page</button>
     <br />
     <span @click="listTools3.sortUtils.sortBy({ key: `L12.L21`, event: $event })">Sort by Country</span>
+    <RangeFilterComponent />
+    <SelectionFilterComponent />
+    <ValuesFilterComponent />
+    <VueSelectFilterComponent />
+    <BulkItemsSelectorComponent />
+    <NumberOfSelectedItemsComponent /> <br />
     <ol>
       <li v-for="(row, rowIndex) in items3" :key="rowIndex">
+        <ItemSelectorComponent />
         Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City: {{ row.L12.L23.L31 }};
         Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates: {{ row.L12.L23.L34 }}; R-booleans:
         {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
@@ -154,9 +168,15 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <br />
     <input type="text" name="" id="" v-model="itemsPerPage4" />
     <button @click="listTools4.paginationUtils.setItemsPerPage(itemsPerPage4)">Set items per page</button>
-
+    <RangeFilterComponent />
+    <SelectionFilterComponent />
+    <ValuesFilterComponent />
+    <VueSelectFilterComponent />
+    <BulkItemsSelectorComponent />
+    <NumberOfSelectedItemsComponent /> <br />
     <table>
       <thead>
+        <th></th>
         <th @click="listTools4.sortUtils.sortBy({ key: `L11`, event: $event })">Number</th>
         <th @click="listTools4.sortUtils.sortBy({ key: `L12.L21`, event: $event })">Country</th>
         <th @click="listTools4.sortUtils.sortBy({ key: `L12.L22`, event: $event })">Recent Date</th>
@@ -169,6 +189,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items4" :key="rowIndex">
+          <td><ItemSelectorComponent /></td>
           <td>{{ row.L11 }}</td>
           <td>{{ row.L12.L21 }}</td>
           <td>{{ row.L12.L22 }}</td>
@@ -193,8 +214,15 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <button @click="listTools5.paginationUtils.setItemsPerPage(itemsPerPage5)">Set items per page</button>
     <br />
     <span @click="listTools5.sortUtils.sortBy({ key: `L12.L22`, event: $event })">Sort by Recent Date</span>
+    <RangeFilterComponent />
+    <SelectionFilterComponent />
+    <ValuesFilterComponent />
+    <VueSelectFilterComponent />
+    <BulkItemsSelectorComponent />
+    <NumberOfSelectedItemsComponent /> <br />
     <ol>
       <li v-for="(row, rowIndex) in items5" :key="rowIndex">
+        <ItemSelectorComponent />
         Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City: {{ row.L12.L23.L31 }};
         Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates: {{ row.L12.L23.L34 }}; R-booleans:
         {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
@@ -213,9 +241,15 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <br />
     <input type="text" name="" id="" v-model="itemsPerPage6" />
     <button @click="listTools6.paginationUtils.setItemsPerPage(itemsPerPage6)">Set items per page</button>
-
+    <RangeFilterComponent />
+    <SelectionFilterComponent />
+    <ValuesFilterComponent />
+    <VueSelectFilterComponent />
+    <BulkItemsSelectorComponent />
+    <NumberOfSelectedItemsComponent /> <br />
     <table>
       <thead>
+        <th></th>
         <th @click="listTools6.sortUtils.sortBy({ key: `L11`, event: $event })">Number</th>
         <th @click="listTools6.sortUtils.sortBy({ key: `L12.L21`, event: $event })">Country</th>
         <th @click="listTools6.sortUtils.sortBy({ key: `L12.L22`, event: $event })">Recent Date</th>
@@ -228,6 +262,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items6" :key="rowIndex">
+          <td><ItemSelectorComponent /></td>
           <td>{{ row.L11 }}</td>
           <td>{{ row.L12.L21 }}</td>
           <td>{{ row.L12.L22 }}</td>
@@ -252,8 +287,15 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <button @click="listTools7.setItemsPerPage(itemsPerPage7)">Set items per page</button>
     <br />
     <span @click="listTools7.sortUtils.sortBy({ key: `L12.L23.L31`, event: $event })">Sort by City</span>
+    <RangeFilterComponent />
+    <SelectionFilterComponent />
+    <ValuesFilterComponent />
+    <VueSelectFilterComponent />
+    <BulkItemsSelectorComponent />
+    <NumberOfSelectedItemsComponent /> <br />
     <ol>
       <li v-for="(row, rowIndex) in items7" :key="rowIndex">
+        <ItemSelectorComponent />
         Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City: {{ row.L12.L23.L31 }};
         Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates: {{ row.L12.L23.L34 }}; R-booleans:
         {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
@@ -279,6 +321,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <NumberOfSelectedItemsComponent />
     <table>
       <thead>
+        <th></th>
         <th @click="listTools8.sortUtils.sortBy({ key: `L11`, event: $event })">Number</th>
         <th @click="listTools8.sortUtils.sortBy({ key: `L12.L21`, event: $event })">Country</th>
         <th @click="listTools8.sortUtils.sortBy({ key: `L12.L22`, event: $event })">Recent Date</th>
@@ -316,8 +359,15 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <button @click="listTools9.setItemsPerPage(itemsPerPage9)">Set items per page</button>
     <br />
     <span @click="listTools9.sortUtils.sortBy({ key: `L12.L23.L32`, event: $event })">Sort by Boolean</span>
+    <RangeFilterComponent />
+    <SelectionFilterComponent />
+    <ValuesFilterComponent />
+    <VueSelectFilterComponent />
+    <BulkItemsSelectorComponent />
+    <NumberOfSelectedItemsComponent /> <br />
     <ol>
       <li v-for="(row, rowIndex) in items9" :key="rowIndex">
+        <ItemSelectorComponent />
         Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City: {{ row.L12.L23.L31 }};
         Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates: {{ row.L12.L23.L34 }}; R-booleans:
         {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
