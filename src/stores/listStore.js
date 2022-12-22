@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 
+const ITEMS_PER_PAGE = 5;
+
 export const useListStore = (storeId) =>
   defineStore(`${storeId}`, {
     state: () => ({
@@ -13,7 +15,7 @@ export const useListStore = (storeId) =>
       },
     }),
     actions: {
-      init(allItems, itemsPerPage = 5) {
+      init(allItems, itemsPerPage = ITEMS_PER_PAGE) {
         this.setAllItems(allItems);
         this.setCurrentPage(1);
 
