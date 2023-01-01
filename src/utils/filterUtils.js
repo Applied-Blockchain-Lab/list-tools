@@ -1,6 +1,75 @@
 import _ from "lodash";
+import useComparators from "./comparators.js";
+import demoData from "../../demo-data/demoData2.json";
+const comparators = useComparators();
 
 export default function useFilterUtils(listStore) {
+  const filterByRange = (key, compareType, minRange, maxRange) => {
+    if (!key || !compareType || !minRange || !maxRange) {
+      return;
+    }
+    let filteredItems;
+
+    switch (compareType) {
+      case "num": {
+        filteredItems = _.filter(
+          listStore.allItems,
+          _.partial(comparators.filterByRangeNumber, _, [minRange, maxRange], key),
+        );
+        break;
+      }
+      case "day": {
+        console.log(key);
+        filteredItems = _.filter(
+          listStore.allItems,
+          _.partial(comparators.filterByRangeDay, _, [minRange, maxRange], key),
+        );
+        break;
+      }
+      case "month": {
+        filteredItems = _.filter(
+          listStore.allItems,
+          _.partial(comparators.filterByRangeMonth, _, [minRange, maxRange], key),
+        );
+        break;
+      }
+      case "year": {
+        filteredItems = _.filter(
+          listStore.allItems,
+          _.partial(comparators.filterByRangeYear, _, [minRange, maxRange], key),
+        );
+        break;
+      }
+      case "numEl": {
+        filteredItems = _.filter(
+          listStore.allItems,
+          _.partial(comparators.filterByRangeNumberElInArr, _, [minRange, maxRange], key),
+        );
+        break;
+      }
+      case "numInArr": {
+        filteredItems = _.filter(
+          listStore.allItems,
+          _.partial(comparators.filterByRangeNumberInArr, _, [minRange, maxRange], key),
+        );
+        break;
+      }
+    }
+
+    console.log("Filtered items:", filteredItems);
+
+    if (filteredItems.length === 0) {
+      return;
+    }
+
+    listStore.setFilteredItems(filteredItems);
+    listStore.setCurrentPage(1);
+    const allItemsLength = listStore.getAllItems.length;
+    const itemsPerPage = listStore.getItemsPerPage;
+    listStore.setItemsPerPage(allItemsLength < itemsPerPage ? allItemsLength : itemsPerPage);
+    listStore.setPageItems({ startIndex: 0, endIndex: listStore.getItemsPerPage - 1 });
+  };
+
   const applyFilter = (key, value, compareType) => {
     if (!key || !value || !compareType) {
       return;
@@ -96,11 +165,13 @@ export default function useFilterUtils(listStore) {
   const resetFilter = () => {
     listStore.filteredItems = [];
 
-    listStore.init(listStore.allItems);
+    listStore.init(demoData, 5); // pass items per page // doesnt work without it for some reason???
+    // remov
   };
 
   return {
     applyFilter,
     resetFilter,
+    filterByRange,
   };
 }

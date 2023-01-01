@@ -1,4 +1,4 @@
-import { useListStore } from "../stores/listStore";
+import { useListStore } from "../listStore";
 import { useFilterUtils, usePaginationUtils, useSortUtils } from "../utils";
 
 export default function useGlobalComposable(storeId) {

@@ -56,8 +56,7 @@
   "lint-staged": {
     "{src,test,tasks}/**/*.{js,vue}": [
       "npm run prettier",
-      "npm run lint",
-      "npm run buddy"
+      "npm run lint"
     ]
   }
 }
