@@ -105,8 +105,8 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <p><label>Selection filter:</label> <SelectionFilter /></p>
     <p><label>Values filter:</label> <ValuesFilter /></p>
     <p><label>Vue-Select filter:</label> <VueSelectFilter /></p>
-    <p><label>Bulk items selector:</label> <BulkItemsSelector /></p>
-    <p><label>Number of selected items:</label> <NumberOfSelectedItems /></p>
+    <p><label>Bulk items selector:</label> <BulkItemsSelector :id="1" /></p>
+    <p><label>Number of selected items:</label> <NumberOfSelectedItems :id="1" /></p>
     <p>
       <label>Sorter with means at hand:</label>
       <span @click="listTools1.sortUtils.sortBy({ key: `L11`, event: $event })">Sort by Number</span>
@@ -115,7 +115,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
 
     <ol>
       <li v-for="(row, rowIndex) in items1" :key="rowIndex">
-        <ItemSelector />
+        <ItemSelector :id="1" :item="row" />
         Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City: {{ row.L12.L23.L31 }};
         Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates: {{ row.L12.L23.L34 }}; R-booleans:
         {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
@@ -138,8 +138,8 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <SelectionFilter />
     <ValuesFilter />
     <VueSelectFilter />
-    <BulkItemsSelector />
-    <NumberOfSelectedItems /> <br />
+    <BulkItemsSelector :id="2" />
+    <NumberOfSelectedItems :id="2" /> <br />
     <table>
       <thead>
         <th></th>
@@ -155,7 +155,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items2" :key="rowIndex">
-          <td><ItemSelector /></td>
+          <td><ItemSelector :id="2" :item="row" /></td>
           <td>{{ row.L11 }}</td>
           <td>{{ row.L12.L21 }}</td>
           <td>{{ row.L12.L22 }}</td>
@@ -184,11 +184,11 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <SelectionFilter />
     <ValuesFilter />
     <VueSelectFilter />
-    <BulkItemsSelector />
-    <NumberOfSelectedItems /> <br />
+    <BulkItemsSelector :id="3" />
+    <NumberOfSelectedItems :id="3" /> <br />
     <ol>
       <li v-for="(row, rowIndex) in items3" :key="rowIndex">
-        <ItemSelector />
+        <ItemSelector :id="3" :item="row" />
         Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City: {{ row.L12.L23.L31 }};
         Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates: {{ row.L12.L23.L34 }}; R-booleans:
         {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
@@ -210,8 +210,8 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <SelectionFilter />
     <ValuesFilter />
     <VueSelectFilter />
-    <BulkItemsSelector />
-    <NumberOfSelectedItems /> <br />
+    <BulkItemsSelector :id="4" />
+    <NumberOfSelectedItems :id="4" /> <br />
     <table>
       <thead>
         <th></th>
@@ -227,7 +227,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items4" :key="rowIndex">
-          <td><ItemSelector /></td>
+          <td><ItemSelector :id="4" :item="row" /></td>
           <td>{{ row.L11 }}</td>
           <td>{{ row.L12.L21 }}</td>
           <td>{{ row.L12.L22 }}</td>
@@ -256,11 +256,11 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <SelectionFilter />
     <ValuesFilter />
     <VueSelectFilter />
-    <BulkItemsSelector />
-    <NumberOfSelectedItems /> <br />
+    <BulkItemsSelector :id="5" />
+    <NumberOfSelectedItems :id="5" /> <br />
     <ol>
       <li v-for="(row, rowIndex) in items5" :key="rowIndex">
-        <ItemSelector />
+        <ItemSelector :id="5" :item="row" />
         Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City: {{ row.L12.L23.L31 }};
         Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates: {{ row.L12.L23.L34 }}; R-booleans:
         {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
@@ -283,8 +283,8 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <SelectionFilter />
     <ValuesFilter />
     <VueSelectFilter />
-    <BulkItemsSelector />
-    <NumberOfSelectedItems /> <br />
+    <BulkItemsSelector :id="6" />
+    <NumberOfSelectedItems :id="6" /> <br />
     <table>
       <thead>
         <th></th>
@@ -300,7 +300,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items6" :key="rowIndex">
-          <td><ItemSelector /></td>
+          <td><ItemSelector :id="6" :item="row" /></td>
           <td>{{ row.L11 }}</td>
           <td>{{ row.L12.L21 }}</td>
           <td>{{ row.L12.L22 }}</td>
@@ -329,11 +329,11 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <SelectionFilter />
     <ValuesFilter />
     <VueSelectFilter />
-    <BulkItemsSelector />
-    <NumberOfSelectedItems /> <br />
+    <BulkItemsSelector :id="7" />
+    <NumberOfSelectedItems :id="7" /> <br />
     <ol>
       <li v-for="(row, rowIndex) in items7" :key="rowIndex">
-        <ItemSelector />
+        <ItemSelector :id="7" :item="row" />
         Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City: {{ row.L12.L23.L31 }};
         Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates: {{ row.L12.L23.L34 }}; R-booleans:
         {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
@@ -355,8 +355,8 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <SelectionFilter />
     <ValuesFilter />
     <VueSelectFilter />
-    <BulkItemsSelector />
-    <NumberOfSelectedItems />
+    <BulkItemsSelector :id="8" />
+    <NumberOfSelectedItems :id="8" />
     <table>
       <thead>
         <th></th>
@@ -372,7 +372,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items8" :key="rowIndex">
-          <ItemSelector />
+          <ItemSelector :id="8" :item="row" />
           <td>{{ row.L11 }}</td>
           <td>{{ row.L12.L21 }}</td>
           <td>{{ row.L12.L22 }}</td>
@@ -401,11 +401,11 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <SelectionFilter />
     <ValuesFilter />
     <VueSelectFilter />
-    <BulkItemsSelector />
-    <NumberOfSelectedItems /> <br />
+    <BulkItemsSelector :id="9" />
+    <NumberOfSelectedItems :id="9" /> <br />
     <ol>
       <li v-for="(row, rowIndex) in items9" :key="rowIndex">
-        <ItemSelector />
+        <ItemSelector :id="9" :item="row" />
         Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City: {{ row.L12.L23.L31 }};
         Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates: {{ row.L12.L23.L34 }}; R-booleans:
         {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
@@ -428,8 +428,8 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <ValuesFilter />
     <VueSelectFilter />
     <p>
-      <BulkItemsSelector />
-      <NumberOfSelectedItems />
+      <BulkItemsSelector :id="10" />
+      <NumberOfSelectedItems :id="10" />
     </p>
     <table>
       <thead>
@@ -446,7 +446,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items10" :key="rowIndex">
-          <td><ItemSelector /></td>
+          <td><ItemSelector :id="10" :item="row" /></td>
           <td>{{ row.L11 }}</td>
           <td>{{ row.L12.L21 }}</td>
           <td>{{ row.L12.L22 }}</td>

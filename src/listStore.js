@@ -6,6 +6,7 @@ export const useListStore = (storeId, itemsPerPage, isScrollable = false) =>
     state: () => ({
       allItems: [],
       filteredItems: [],
+      selectedItems: [],
       currentPage: 0,
       itemsPerPage: itemsPerPage,
       pageItems: {
@@ -33,6 +34,21 @@ export const useListStore = (storeId, itemsPerPage, isScrollable = false) =>
       },
       setFilteredItems(filteredItems) {
         this.filteredItems = filteredItems;
+      },
+      setSelectedItems(selectedItems) {
+        this.selectedItems = selectedItems;
+      },
+      addSelectedItem(item) {
+        this.selectedItems.push(item);
+      },
+      removeSelectedItem(item) {
+        for (let i = 0; i < this.selectedItems.length; i++) {
+          if (_.isEqual(this.selectedItems[i], item)) {
+            const arr = this.selectedItems.filter((elem) => elem !== item);
+            this.selectedItems = arr;
+            return;
+          }
+        }
       },
       setItemsPerPage(itemsPerPage) {
         this.itemsPerPage = Number(itemsPerPage);
@@ -65,8 +81,6 @@ export const useListStore = (storeId, itemsPerPage, isScrollable = false) =>
       // removeFilter(filter) {
       //   this.setFilteredItems([]);
       // },
-
-      // Filter by values
     },
     getters: {
       getItemsPerPage: (state) => state.itemsPerPage,
