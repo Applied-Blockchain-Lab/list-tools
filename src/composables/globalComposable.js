@@ -12,7 +12,7 @@ export default function useGlobalComposable(storeId) {
   const paginationUtils = usePaginationUtils(listStore);
   const filterUtils = useFilterUtils(listStore);
 
-  const keyify = (obj = listStore.getAllItems[0], prefix = "") => {
+  const keyify = (obj = listStore.getFilteredItems[0], prefix = "") => {
     return Object.keys(obj).reduce((res, el) => {
       if (Array.isArray(obj[el])) {
         return [...res, prefix + el];
@@ -23,7 +23,7 @@ export default function useGlobalComposable(storeId) {
     }, []);
   };
 
-  const keyifyExcludedArr = (obj = listStore.getAllItems[0], prefix = "") => {
+  const keyifyExcludedArr = (obj = listStore.getFilteredItems[0], prefix = "") => {
     return Object.keys(obj).reduce((res, el) => {
       if (Array.isArray(obj[el])) {
         return res;

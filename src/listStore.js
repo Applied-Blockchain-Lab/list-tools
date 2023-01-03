@@ -48,12 +48,13 @@ export const useListStore = (storeId, itemsPerPage, isScrollable = false) =>
       },
       applyFilter(filter, filterKey, args) {
         console.log("Range:", args);
-        const filteredItems = _.filter(this.allItems, _.partial(filter, _, filterKey, args));
+        // console.log(this.getFilteredItems);
+        const filteredItems = _.filter(this.getFilteredItems, _.partial(filter, _, filterKey, args));
 
         console.log("Filtered items:", filteredItems);
         this.setFilteredItems(filteredItems);
         this.setCurrentPage(1);
-        const allItemsLength = this.getAllItems.length;
+        const allItemsLength = this.getFilteredItems.length;
         const itemsPerPage = this.getItemsPerPage;
         this.setItemsPerPage(allItemsLength < itemsPerPage ? allItemsLength : itemsPerPage);
         this.setPageItems({ startIndex: 0, endIndex: this.getItemsPerPage - 1 });
@@ -68,6 +69,6 @@ export const useListStore = (storeId, itemsPerPage, isScrollable = false) =>
     getters: {
       getItemsPerPage: (state) => state.itemsPerPage,
       getCurrentPage: (state) => state.currentPage,
-      getAllItems: (state) => (state.filteredItems.length === 0 ? state.allItems : state.filteredItems),
+      getFilteredItems: (state) => (state.filteredItems.length === 0 ? state.allItems : state.filteredItems),
     },
   })();
