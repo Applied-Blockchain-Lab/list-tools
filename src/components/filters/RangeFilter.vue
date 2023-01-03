@@ -1,35 +1,38 @@
 <script setup>
 import { ref } from "vue";
-// import { useListStore } from "../../listStore.js";
+import { useListStore } from "../../listStore.js";
+import useComparators from "../../utils/comparators.js";
+const comparators = useComparators();
 
-// const props = defineProps({
-//   listId: {
-//     type: Number,
-//     required: true,
-//   },
-//   filterKey: {
-//     type: String,
-//     required: true,
-//   },
-//   compare: {
-//     type: String,
-//     required: true,
-//   },
-// });
+const props = defineProps({
+  listId: {
+    type: Number,
+    required: true,
+  },
+  filterKey: {
+    type: String,
+    required: true,
+  },
+  compare: {
+    type: String,
+    required: true,
+  },
+});
 
-// const { filterUtils } = useGlobalComposable(props.listId);
-
-// const listStore = useListStore(props.listId);
+const listStore = useListStore(props.listId);
 const minRange = ref("");
 const maxRange = ref("");
-// import store, comparators !!!
 
 const removeFilter = () => {
   // listStore.removeFilter(_); /// !!!!
 };
 
 const applyFilter = () => {
-  // listStore.applyFilter(comparators.func, filterKey, compare); // !!!!
+  //check compare.value and pass the needed comparator
+  listStore.applyFilter(comparators.filterByRangeNumber, props.filterKey, [
+    Number(minRange.value),
+    Number(maxRange.value),
+  ]); // !!!!
 };
 </script>
 
@@ -37,6 +40,5 @@ const applyFilter = () => {
   <input type="number" v-model="minRange" />
   <input type="number" v-model="maxRange" />
   <button @click="applyFilter()">Filter</button>
-  <!-- filterUtils.filterByRange(filterKey, compare, minRange, maxRange) -->
   <button @click="removeFilter()">X</button>
 </template>
