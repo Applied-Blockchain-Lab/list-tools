@@ -1,8 +1,16 @@
 import _ from "lodash";
 function useComparators() {
-  const filterByRangeNumber = (el, range, key) => {
+  const filterByRangeNumber = (el, key, range) => {
     console.log("here", el);
+    console.log("el", el[key]);
+    console.log("range", range);
+
+    // const numberRange = range.map(el => Number(el));
+
+    // console.log(numberRange);
+
     const [min, max] = range;
+    console.log("min", range[0]);
     return min <= el[key] && el[key] <= max;
   };
 
