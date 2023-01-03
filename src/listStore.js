@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import _ from "lodash";
 
 // export const useListStore = (storeId, itemsPerPage, isScrollable = false) =>
 export const useListStore = (storeId) =>
@@ -6,6 +7,7 @@ export const useListStore = (storeId) =>
     state: () => ({
       allItems: [],
       filteredItems: [],
+      selectedItems: [],
       currentPage: 0,
       itemsPerPage: 0,
       pageItems: {
@@ -32,6 +34,21 @@ export const useListStore = (storeId) =>
       setFilteredItems(filteredItems) {
         this.filteredItems = filteredItems;
       },
+      setSelectedItems(selectedItems) {
+        this.selectedItems = selectedItems;
+      },
+      addSelectedItem(item) {
+        this.selectedItems.push(item);
+      },
+      removeSelectedItem(item) {
+        for (let i = 0; i < this.selectedItems.length; i++) {
+          if (_.isEqual(this.selectedItems[i], item)) {
+            const arr = this.selectedItems.filter((elem) => elem !== item);
+            this.selectedItems = arr;
+            return;
+          }
+        }
+      },
       setItemsPerPage(itemsPerPage) {
         this.itemsPerPage = Number(itemsPerPage);
       },
@@ -41,8 +58,6 @@ export const useListStore = (storeId) =>
       setCurrentPage(page) {
         this.currentPage = Number(page);
       },
-
-      // Filter by values
     },
     getters: {
       getItemsPerPage: (state) => state.itemsPerPage,
