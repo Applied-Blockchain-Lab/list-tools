@@ -54,10 +54,12 @@ export const useListStore = (storeId, itemsPerPage, isScrollable = false) =>
         console.log("Filtered items:", filteredItems);
         this.setFilteredItems(filteredItems);
         this.setCurrentPage(1);
+        // TODO: Fix this
         const allItemsLength = this.getFilteredItems.length;
         const itemsPerPage = this.getItemsPerPage;
         this.setItemsPerPage(allItemsLength < itemsPerPage ? allItemsLength : itemsPerPage);
         this.setPageItems({ startIndex: 0, endIndex: this.getItemsPerPage - 1 });
+        //
         this.addFilter(filter, filterKey, args);
       },
       // removeFilter(filter) {
