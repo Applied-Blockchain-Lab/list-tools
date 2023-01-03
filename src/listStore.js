@@ -1,17 +1,17 @@
 import { defineStore } from "pinia";
 
-// export const useListStore = (storeId, itemsPerPage, isScrollable = false) =>
-export const useListStore = (storeId) =>
+export const useListStore = (storeId, itemsPerPage, isScrollable = false) =>
   defineStore(`${storeId}`, {
     state: () => ({
       allItems: [],
       filteredItems: [],
       currentPage: 0,
-      itemsPerPage: 0,
+      itemsPerPage: itemsPerPage,
       pageItems: {
         startIndex: 0,
         endIndex: 0,
       },
+      isScrollable: isScrollable,
     }),
     actions: {
       init(allItems, itemsPerPage) {
