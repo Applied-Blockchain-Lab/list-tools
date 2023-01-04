@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 // TODO: Import separate packages for every used lodash function
-import _ from "lodash";
 import isEqual from "lodash.isequal";
+import filter from "lodash.filter";
 
 export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
   defineStore(`${storeId}`, {
@@ -58,13 +58,16 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
       setCurrentPage(page) {
         this.currentPage = Number(page);
       },
-      addFilter(filter, filterKey, args) {
-        this.appliedFilters.push({ filter, filterKey, args });
+      // addFilter(filter, filterKey, args) {
+      //   this.appliedFilters.push({ filter, filterKey, args });
+      // },
+      addFilter(filter) {
+        this.appliedFilters.push({ filter });
       },
-      applyFilter(filter, filterKey, args) {
-        console.log("Range:", args);
+      applyFilter(comparator) {
+        // console.log("Range:", args);
         // console.log(this.getFilteredItems);
-        const filteredItems = _.filter(this.getFilteredItems, _.partial(filter, _, filterKey, args));
+        const filteredItems = filter(this.getFilteredItems, comparator);
 
         console.log("Filtered items:", filteredItems);
         this.setFilteredItems(filteredItems);
@@ -75,7 +78,8 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
         this.setItemsPerPage(allItemsLength < itemsPerPage ? allItemsLength : itemsPerPage);
         this.setPageItems({ startIndex: 0, endIndex: this.getItemsPerPage - 1 });
         //
-        this.addFilter(filter, filterKey, args);
+        // this.addFilter(filter, filterKey, args);
+        this.addFilter(filter);
       },
       // removeFilter(filter) {
       //   this.setFilteredItems([]);

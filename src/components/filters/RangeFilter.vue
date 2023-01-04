@@ -27,12 +27,26 @@ const removeFilter = () => {
   // listStore.removeFilter(_); /// !!!!
 };
 
+const getComparator = () => {
+  switch (props.compare) {
+    case "num":
+      return (el) => comparators.filterByRangeNumber(el, props.filterKey, [+minRange.value, +maxRange.value]);
+    case "day":
+      return (el) =>
+        comparators.filterByRangeDay(el, props.filterKey, [Number(minRange.value), Number(maxRange.value)]);
+    default:
+      console.error("Unknown compare value");
+  }
+};
+
 const applyFilter = () => {
   //TODO: check compare.value and pass the needed comparator
-  listStore.applyFilter(comparators.filterByRangeNumber, props.filterKey, [
-    Number(minRange.value),
-    Number(maxRange.value),
-  ]); // !!!!
+  const comparator = getComparator();
+  listStore.applyFilter(comparator);
+  // listStore.applyFilter(comparators.filterByRangeNumber, props.filterKey, [
+  //   Number(minRange.value),
+  //   Number(maxRange.value),
+  // ]); // !!!!
 };
 </script>
 

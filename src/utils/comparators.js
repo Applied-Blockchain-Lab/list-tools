@@ -14,7 +14,7 @@ function useComparators() {
     return min <= el[key] && el[key] <= max;
   };
 
-  const filterByRangeDay = (el, range, key) => {
+  const filterByRangeDay = (el, key, range) => {
     console.log(el);
     console.log("here", _.get(el, key));
 
