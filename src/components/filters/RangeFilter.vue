@@ -28,7 +28,7 @@ const removeFilter = () => {
 };
 
 const applyFilter = () => {
-  //check compare.value and pass the needed comparator
+  //TODO: check compare.value and pass the needed comparator
   listStore.applyFilter(comparators.filterByRangeNumber, props.filterKey, [
     Number(minRange.value),
     Number(maxRange.value),
