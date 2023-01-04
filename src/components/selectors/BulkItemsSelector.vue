@@ -29,7 +29,7 @@ function bulkCheckChange() {
   }
 }
 </script>
+
 <template>
   <input type="checkbox" :indeterminate="isIndeterminate" @change="bulkCheckChange" v-model="isChecked" />
 </template>
-<style scoped></style>

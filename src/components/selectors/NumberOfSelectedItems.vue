@@ -17,7 +17,7 @@ const itemCountMsg = computed(() => {
     : `${listStore.selectedItems.length} item selected`;
 });
 </script>
+
 <template>
   <span>{{ itemCountMsg }}</span>
 </template>
-<style scoped></style>

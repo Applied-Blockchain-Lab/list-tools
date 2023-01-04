@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
+// TODO: Import separate packages for every used lodash function
 import _ from "lodash";
+import isEqual from "lodash.isequal";
 
 export const useListStore = (storeId, itemsPerPage, isScrollable = false) =>
   defineStore(`${storeId}`, {
@@ -38,17 +40,14 @@ export const useListStore = (storeId, itemsPerPage, isScrollable = false) =>
       setSelectedItems(selectedItems) {
         this.selectedItems = selectedItems;
       },
-      addSelectedItem(item) {
-        this.selectedItems.push(item);
-      },
-      removeSelectedItem(item) {
+      isItemSelected(item) {
         for (let i = 0; i < this.selectedItems.length; i++) {
-          if (_.isEqual(this.selectedItems[i], item)) {
-            const arr = this.selectedItems.filter((elem) => elem !== item);
-            this.selectedItems = arr;
-            return;
+          if (isEqual(this.selectedItems[i], item)) {
+            return true;
           }
         }
+
+        return false;
       },
       setItemsPerPage(itemsPerPage) {
         this.itemsPerPage = Number(itemsPerPage);
