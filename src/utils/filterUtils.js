@@ -64,7 +64,7 @@ export default function useFilterUtils(listStore) {
 
     listStore.setFilteredItems(filteredItems);
     listStore.setCurrentPage(1);
-    const allItemsLength = listStore.getAllItems.length;
+    const allItemsLength = listStore.getFilteredItems.length;
     const itemsPerPage = listStore.getItemsPerPage;
     listStore.setItemsPerPage(allItemsLength < itemsPerPage ? allItemsLength : itemsPerPage);
     listStore.setPageItems({ startIndex: 0, endIndex: listStore.getItemsPerPage - 1 });
@@ -138,7 +138,7 @@ export default function useFilterUtils(listStore) {
 
     listStore.setFilteredItems(filteredItems);
     listStore.setCurrentPage(1);
-    const allItemsLength = listStore.getAllItems.length;
+    const allItemsLength = listStore.getFilteredItems.length;
     const itemsPerPage = listStore.getItemsPerPage;
     listStore.setItemsPerPage(allItemsLength < itemsPerPage ? allItemsLength : itemsPerPage);
     listStore.setPageItems({ startIndex: 0, endIndex: listStore.getItemsPerPage - 1 });

@@ -14,7 +14,7 @@ const listStore = ListStore(props.id);
 const isChecked = ref();
 
 const isIndeterminate = computed(() => {
-  if (listStore.selectedItems.length >= 1 && listStore.selectedItems.length <= listStore.getAllItems.length - 1) {
+  if (listStore.selectedItems.length >= 1 && listStore.selectedItems.length <= listStore.getFilteredItems.length - 1) {
     return true;
   }
 
@@ -23,7 +23,7 @@ const isIndeterminate = computed(() => {
 
 function bulkCheckChange() {
   if (isChecked.value) {
-    listStore.setSelectedItems(listStore.getAllItems);
+    listStore.setSelectedItems(listStore.getFilteredItems);
   } else {
     listStore.setSelectedItems([]);
   }
