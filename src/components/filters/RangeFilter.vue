@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { useListStore } from "../../listStore.js";
+import { ListStore } from "../../listStore.js";
 import useComparators from "../../utils/comparators.js";
 const comparators = useComparators();
 
@@ -19,7 +19,7 @@ const props = defineProps({
   },
 });
 
-const listStore = useListStore(props.listId);
+const listStore = ListStore(props.listId);
 const minRange = ref("");
 const maxRange = ref("");
 

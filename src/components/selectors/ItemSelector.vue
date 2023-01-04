@@ -1,5 +1,5 @@
 <script setup>
-import { useListStore } from "../../listStore";
+import { ListStore } from "../../listStore";
 
 const props = defineProps({
   id: {
@@ -12,7 +12,7 @@ const props = defineProps({
   },
 });
 
-const listStore = useListStore(props.id);
+const listStore = ListStore(props.id);
 </script>
 
 <template>

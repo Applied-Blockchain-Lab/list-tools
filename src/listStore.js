@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 import _ from "lodash";
 import isEqual from "lodash.isequal";
 
-export const useListStore = (storeId, itemsPerPage, isScrollable = false) =>
+export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
   defineStore(`${storeId}`, {
     state: () => ({
       allItems: [],

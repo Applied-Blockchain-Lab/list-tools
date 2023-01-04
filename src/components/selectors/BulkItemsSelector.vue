@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
-import { useListStore } from "../../listStore";
+import { ListStore } from "../../listStore";
 
 const props = defineProps({
   id: {
@@ -9,7 +9,7 @@ const props = defineProps({
   },
 });
 
-const listStore = useListStore(props.id);
+const listStore = ListStore(props.id);
 
 const isChecked = ref();
 
