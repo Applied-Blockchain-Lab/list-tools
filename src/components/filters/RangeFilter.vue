@@ -22,6 +22,7 @@ const props = defineProps({
 const listStore = ListStore(props.listId);
 const minRange = ref("");
 const maxRange = ref("");
+const isApplied = ref(false);
 
 const getComparator = (comparatorFn) => {
   return (el) => comparatorFn(el, +minRange.value, +maxRange.value);
@@ -33,6 +34,14 @@ const getComparatorByCompare = () => {
       return getComparator(comparators.compareByRangeNumber);
     case "day":
       return getComparator(comparators.compareByRangeDay);
+    case "month":
+      return getComparator(comparators.compareByRangeMonth);
+    case "year":
+      return getComparator(comparators.compareByRangeYear);
+    case "numEl":
+      return getComparator(comparators.compareByRangeNumberElInArr);
+    case "numInArr":
+      return getComparator(comparators.compareByRangeNumberInArr);
     default:
       console.error("Unknown compare value");
       return null;
@@ -45,16 +54,13 @@ const applyFilter = () => {
     return;
   }
   listStore.applyFilter(comparator, props.filterKey);
-
-  // listStore.applyFilter(comparators.filterByRangeNumber, props.filterKey, [
-  //   Number(minRange.value),
-  //   Number(maxRange.value),
-  // ]); // !!!!
+  isApplied.value = true;
 };
 
 const removeFilter = () => {
   const comparator = getComparatorByCompare();
-  listStore.removeFilter(comparator, props.filterKey); /// !!!!
+  listStore.removeFilter(comparator, props.filterKey);
+  isApplied.value = false;
 };
 </script>
 
@@ -62,5 +68,5 @@ const removeFilter = () => {
   <input type="number" v-model="minRange" />
   <input type="number" v-model="maxRange" />
   <button @click="applyFilter()">Filter</button>
-  <button @click="removeFilter()">X</button>
+  <button v-if="isApplied" @click="removeFilter()">X</button>
 </template>

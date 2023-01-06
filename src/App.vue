@@ -70,7 +70,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
       <button @click="listTools1.paginationUtils.setItemsPerPage(itemsPerPage1)">Set items per page</button>
     </p>
 
-    <p><label>Input filter by number:</label> <InputFilter :listId="1" filterKey="L11" compare="Number" /></p>
+    <p><label>Input filter by number:</label> <InputFilter :listId="1" filterKey="L11" compare="num" /></p>
     <p>
       <label>Input filter by day of the month:</label> <InputFilter :listId="1" filterKey="L12.L22" compare="day" />
     </p>
@@ -82,12 +82,13 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     </p>
     <p>
       <label>Input filter by having an exact string in array of strings:</label>
-      <InputFilter :listId="1" filterKey="L12.L23.L33" compare="numEl" />
+      <InputFilter :listId="1" filterKey="L12.L23.L33" compare="stringInArr" />
     </p>
     <p>
-      <label>Input filter by string in string:</label> <InputFilter :listId="1" filterKey="L12.L21" compare="num" />
+      <label>Input filter by string in string:</label>
+      <InputFilter :listId="1" filterKey="L12.L21" compare="stringInString" />
     </p>
-    <p><label>Input filter by exact string:</label> <InputFilter :listId="1" filterKey="L12.L21" compare="num" /></p>
+    <p><label>Input filter by exact string:</label> <InputFilter :listId="1" filterKey="L12.L21" compare="string" /></p>
 
     <p><label>Range filter by number:</label> <RangeFilter :listId="1" filterKey="L11" compare="num" /></p>
     <p>
