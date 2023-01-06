@@ -23,30 +23,38 @@ const listStore = ListStore(props.listId);
 const minRange = ref("");
 const maxRange = ref("");
 
-const removeFilter = () => {
-  // listStore.removeFilter(_); /// !!!!
+const getComparator = (comparatorFn) => {
+  return (el) => comparatorFn(el, +minRange.value, +maxRange.value);
 };
 
-const getComparator = () => {
+const getComparatorByCompare = () => {
   switch (props.compare) {
     case "num":
-      return (el) => comparators.filterByRangeNumber(el, props.filterKey, [+minRange.value, +maxRange.value]);
+      return getComparator(comparators.compareByRangeNumber);
     case "day":
-      return (el) =>
-        comparators.filterByRangeDay(el, props.filterKey, [Number(minRange.value), Number(maxRange.value)]);
+      return getComparator(comparators.compareByRangeDay);
     default:
       console.error("Unknown compare value");
+      return null;
   }
 };
 
 const applyFilter = () => {
-  //TODO: check compare.value and pass the needed comparator
-  const comparator = getComparator();
-  listStore.applyFilter(comparator);
+  const comparator = getComparatorByCompare();
+  if (comparator === null) {
+    return;
+  }
+  listStore.applyFilter(comparator, props.filterKey);
+
   // listStore.applyFilter(comparators.filterByRangeNumber, props.filterKey, [
   //   Number(minRange.value),
   //   Number(maxRange.value),
   // ]); // !!!!
+};
+
+const removeFilter = () => {
+  const comparator = getComparatorByCompare();
+  listStore.removeFilter(comparator, props.filterKey); /// !!!!
 };
 </script>
 

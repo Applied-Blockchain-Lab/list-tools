@@ -1,66 +1,55 @@
-import _ from "lodash";
 function useComparators() {
-  const filterByRangeNumber = (el, key, range) => {
+  const compareByRangeNumber = (el, min, max) => {
     console.log("here", el);
-    console.log("el", el[key]);
-    console.log("range", range);
-
-    // const numberRange = range.map(el => Number(el));
-
-    // console.log(numberRange);
-
-    const [min, max] = range;
-    console.log("min", range[0]);
-    return min <= el[key] && el[key] <= max;
+    console.log("el", el);
+    return min <= el && el <= max;
   };
 
-  const filterByRangeDay = (el, key, range) => {
+  const compareByRangeDay = (el, min, max) => {
     console.log(el);
-    console.log("here", _.get(el, key));
-
-    const [min, max] = range;
-    const date = new Date(_.get(el, key));
+    console.log("here", el);
+    const date = new Date(el);
     const day = date.getDate();
     console.log("day", day);
     return min <= day && day <= max;
   };
 
-  const filterByRangeMonth = (el, range, key) => {
+  const compareByRangeMonth = (el, range) => {
     const [min, max] = range;
-    const date = new Date(_.get(el, key));
+    const date = new Date(el);
     const month = date.getMonth();
     return min <= month && month <= max;
   };
 
-  const filterByRangeYear = (el, range, key) => {
-    console.log("here", _.get(el, key));
+  const compareByRangeYear = (el, range) => {
+    console.log("here", el);
 
     const [min, max] = range;
-    const date = new Date(_.get(el, key));
+    const date = new Date(el);
     const year = date.getFullYear();
     return min <= year && year <= max;
   };
 
-  const filterByRangeNumberElInArr = (el, range, key) => {
+  const compareByRangeNumberElInArr = (el, range) => {
     const [min, max] = range;
-    const elCount = _.get(el, key).length;
+    const elCount = el.length;
     return min <= elCount && elCount <= max;
   };
 
-  const filterByRangeNumberInArr = (el, range, key) => {
+  const compareByRangeNumberInArr = (el, range) => {
     const [min, max] = range;
-    const elArr = _.get(el, key);
-    const filteredArr = _.filter(elArr, (el) => min <= el && el <= max);
+    const elArr = el;
+    const filteredArr = elArr.filter((el) => min <= el && el <= max);
     return filteredArr.length > 0;
   };
 
   return {
-    filterByRangeNumber,
-    filterByRangeDay,
-    filterByRangeMonth,
-    filterByRangeYear,
-    filterByRangeNumberElInArr,
-    filterByRangeNumberInArr,
+    compareByRangeNumber,
+    compareByRangeDay,
+    compareByRangeMonth,
+    compareByRangeYear,
+    compareByRangeNumberElInArr,
+    compareByRangeNumberInArr,
   };
 }
 

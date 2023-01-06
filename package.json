@@ -50,6 +50,7 @@
     "lint-staged": "^13.1.0",
     "lodash": "^4.17.21",
     "lodash.filter": "^4.6.0",
+    "lodash.get": "^4.4.2",
     "lodash.partial": "^4.2.1",
     "prettier": "^2.7.1",
     "vite": "^3.2.4",

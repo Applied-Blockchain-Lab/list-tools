@@ -2,8 +2,6 @@
 import { ref, computed } from "vue";
 import SortComponent from "./components/SortComponent.vue";
 import SortComponentV2 from "./components/SortComponentV2.vue";
-// import SortComponentDirective from "./components/SortComponentDirective.vue";
-// import InputFilter from "./demos/InputFilterComponent.vue";
 import InputFilter from "./components/filters/InputFilter.vue";
 import RangeFilter from "./components/filters/RangeFilter.vue";
 import SelectionFilter from "./components/filters/SelectionFilter.vue";
