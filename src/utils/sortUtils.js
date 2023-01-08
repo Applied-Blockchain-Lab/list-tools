@@ -7,18 +7,18 @@ export default function useSortUtils(listStore) {
       return;
     }
 
-    const keys = obj.key.split(".").reduce((o, i) => o[i], listStore.getAllItems[0]);
+    const keys = obj.key.split(".").reduce((o, i) => o[i], listStore.getFilteredItems[0]);
 
     if (Array.isArray(keys)) {
       listStore.setAllItems(
-        _.sortBy(listStore.getAllItems, [
+        _.sortBy(listStore.getFilteredItems, [
           function (o) {
             return obj.key.split(".").reduce((o, i) => o[i], o).length;
           },
         ]),
       );
     } else {
-      listStore.setAllItems(_.sortBy(listStore.getAllItems, [obj.key]));
+      listStore.setAllItems(_.sortBy(listStore.getFilteredItems, [obj.key]));
     }
 
     if (!obj.order) {
@@ -28,13 +28,13 @@ export default function useSortUtils(listStore) {
         obj.event.target.classList.add("sort-asc");
         obj.event.target.classList.remove("sort-desc");
       } else {
-        listStore.setAllItems(listStore.getAllItems.reverse());
+        listStore.setAllItems(listStore.getFilteredItems.reverse());
         sortedByAsc[obj.key] = false;
         obj.event.target.classList.remove("sort-asc");
         obj.event.target.classList.add("sort-desc");
       }
     } else if (obj.order === "desc") {
-      listStore.setAllItems(listStore.getAllItems.reverse());
+      listStore.setAllItems(listStore.getFilteredItems.reverse());
       obj.event.target.classList.remove("sort-asc");
       obj.event.target.classList.add("sort-desc");
     }

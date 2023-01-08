@@ -2,7 +2,7 @@ export default function usePaginationUtils(listStore) {
   const paginate = () => {
     const items = [];
     for (let i = listStore.pageItems.startIndex; i <= listStore.pageItems.endIndex; i++) {
-      items.push(listStore.getAllItems[i]);
+      items.push(listStore.getFilteredItems[i]);
     }
     return items;
   };
@@ -15,7 +15,7 @@ export default function usePaginationUtils(listStore) {
   };
 
   const getCurrentPage = () => listStore.getCurrentPage;
-  const getTotalPages = () => Math.ceil(listStore.getAllItems.length / listStore.getItemsPerPage);
+  const getTotalPages = () => Math.ceil(listStore.getFilteredItems.length / listStore.getItemsPerPage);
 
   const nextPage = () => {
     setPage(listStore.getCurrentPage + 1);
@@ -27,7 +27,8 @@ export default function usePaginationUtils(listStore) {
     const pageItems = {};
     pageItems.startIndex = 0;
     const lastIndex = pageItems.startIndex + itemsPerPage - 1;
-    pageItems.endIndex = lastIndex >= listStore.getAllItems.length ? listStore.getAllItems.length - 1 : lastIndex;
+    pageItems.endIndex =
+      lastIndex >= listStore.getFilteredItems.length ? listStore.getFilteredItems.length - 1 : lastIndex;
     listStore.setPageItems(pageItems);
     listStore.setCurrentPage(1);
   };
@@ -38,7 +39,8 @@ export default function usePaginationUtils(listStore) {
       const pageItems = {};
       pageItems.startIndex = (targetPage - 1) * listStore.getItemsPerPage;
       const lastIndex = pageItems.startIndex + listStore.getItemsPerPage - 1;
-      pageItems.endIndex = lastIndex >= listStore.getAllItems.length ? listStore.getAllItems.length - 1 : lastIndex;
+      pageItems.endIndex =
+        lastIndex >= listStore.getFilteredItems.length ? listStore.getFilteredItems.length - 1 : lastIndex;
       listStore.setPageItems(pageItems);
     }
   };
