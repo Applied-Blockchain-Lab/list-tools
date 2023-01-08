@@ -11,6 +11,9 @@ import ItemSelector from "./components/selectors/ItemSelector.vue";
 import BulkItemsSelector from "./components/selectors/BulkItemsSelector.vue";
 import NumberOfSelectedItems from "./components/selectors/NumberOfSelectedItems.vue";
 
+import RangeFilter1 from "./components/filters/RangeFilter.vue?listId=1";
+import InputFilter1 from "./components/filters/InputFilter.vue?listId=1";
+
 import TestPaginationComponent from "./demos/TestPaginationComponent.vue";
 import demoData from "../demo-data/demoData2.json";
 import useGlobalComposable from "./composables/globalComposable";
@@ -70,39 +73,34 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
       <button @click="listTools1.paginationUtils.setItemsPerPage(itemsPerPage1)">Set items per page</button>
     </p>
 
-    <p><label>Input filter by number:</label> <InputFilter :listId="1" filterKey="L11" compare="num" /></p>
-    <p>
-      <label>Input filter by day of the month:</label> <InputFilter :listId="1" filterKey="L12.L22" compare="day" />
-    </p>
-    <p><label>Input filter by month:</label> <InputFilter :listId="1" filterKey="L12.L22" compare="month" /></p>
-    <p><label>Input filter by year:</label> <InputFilter :listId="1" filterKey="L12.L22" compare="year" /></p>
+    <p><label>Input filter by number:</label> <InputFilter1 filterKey="L11" compare="num" /></p>
+    <p><label>Input filter by day of the month:</label> <InputFilter1 filterKey="L12.L22" compare="day" /></p>
+    <p><label>Input filter by month:</label> <InputFilter1 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year:</label> <InputFilter1 filterKey="L12.L22" compare="year" /></p>
     <p>
       <label>Input filter by number of elements in array:</label>
-      <InputFilter :listId="1" filterKey="L12.L23.L33" compare="numEl" />
+      <InputFilter1 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
       <label>Input filter by having an exact string in array of strings:</label>
-      <InputFilter :listId="1" filterKey="L12.L23.L33" compare="stringInArr" />
+      <InputFilter1 filterKey="L12.L23.L33" compare="stringInArr" />
     </p>
     <p>
       <label>Input filter by string in string:</label>
-      <InputFilter :listId="1" filterKey="L12.L21" compare="stringInString" />
+      <InputFilter1 filterKey="L12.L21" compare="stringInString" />
     </p>
-    <p><label>Input filter by exact string:</label> <InputFilter :listId="1" filterKey="L12.L21" compare="string" /></p>
-
-    <p><label>Range filter by number:</label> <RangeFilter :listId="1" filterKey="L11" compare="num" /></p>
-    <p>
-      <label>Range filter by day of the month:</label> <RangeFilter :listId="1" filterKey="L12.L22" compare="day" />
-    </p>
-    <p><label>Range filter by month:</label> <RangeFilter :listId="1" filterKey="L12.L22" compare="month" /></p>
-    <p><label>Range filter by year:</label> <RangeFilter :listId="1" filterKey="L12.L22" compare="year" /></p>
+    <p><label>Input filter by exact string:</label> <InputFilter1 filterKey="L12.L21" compare="string" /></p>
+    <p><label>Range filter by number:</label> <RangeFilter1 filterKey="L11" compare="num" /></p>
+    <p><label>Range filter by day of the month:</label> <RangeFilter1 filterKey="L12.L22" compare="day" /></p>
+    <p><label>Range filter by month:</label> <RangeFilter1 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year:</label> <RangeFilter1 filterKey="L12.L22" compare="year" /></p>
     <p>
       <label>Range filter by number of elements in array:</label>
-      <RangeFilter :listId="1" filterKey="L12.L23.L33" compare="numEl" />
+      <RangeFilter1 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
       <label>Range filter by having a number in array of numbers:</label>
-      <RangeFilter :listId="1" filterKey="L12.L23.L36" compare="numInArr" />
+      <RangeFilter1 filterKey="L12.L23.L36" compare="numInArr" />
     </p>
 
     <p><label>Selection filter:</label> <SelectionFilter /></p>

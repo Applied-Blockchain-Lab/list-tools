@@ -59,9 +59,6 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
       setCurrentPage(page) {
         this.currentPage = Number(page);
       },
-      // addFilter(filter, filterKey, args) {
-      //   this.appliedFilters.push({ filter, filterKey, args });
-      // },
       addFilter(comparator, filterKey) {
         this.appliedFilters.push({ comparator: comparator, filterKey: filterKey });
         console.log("Applied filters:", this.appliedFilters);

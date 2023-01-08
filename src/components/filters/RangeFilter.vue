@@ -1,14 +1,10 @@
 <script setup>
 import { ref } from "vue";
 import { ListStore } from "../../listStore.js";
-import useComparators from "../../utils/comparators.js";
-const comparators = useComparators();
+import { useFilterUtils } from "../../utils";
+const listId = new URL(import.meta.url).searchParams.get("listId");
 
 const props = defineProps({
-  listId: {
-    type: Number,
-    required: true,
-  },
   filterKey: {
     type: String,
     required: true,
@@ -19,7 +15,8 @@ const props = defineProps({
   },
 });
 
-const listStore = ListStore(props.listId);
+const listStore = ListStore(listId);
+const filters = useFilterUtils(listStore);
 const minRange = ref("");
 const maxRange = ref("");
 const isApplied = ref(false);
@@ -28,38 +25,13 @@ const getComparator = (comparatorFn) => {
   return (el) => comparatorFn(el, +minRange.value, +maxRange.value);
 };
 
-const getComparatorByCompare = () => {
-  switch (props.compare) {
-    case "num":
-      return getComparator(comparators.compareByRangeNumber);
-    case "day":
-      return getComparator(comparators.compareByRangeDay);
-    case "month":
-      return getComparator(comparators.compareByRangeMonth);
-    case "year":
-      return getComparator(comparators.compareByRangeYear);
-    case "numEl":
-      return getComparator(comparators.compareByRangeNumberElInArr);
-    case "numInArr":
-      return getComparator(comparators.compareByRangeNumberInArr);
-    default:
-      console.error("Unknown compare value");
-      return null;
-  }
-};
-
 const applyFilter = () => {
-  const comparator = getComparatorByCompare();
-  if (comparator === null) {
-    return;
-  }
-  listStore.applyFilter(comparator, props.filterKey);
+  filters.applyFilter(getComparator, "range", props.compare, props.filterKey);
   isApplied.value = true;
 };
 
 const removeFilter = () => {
-  const comparator = getComparatorByCompare();
-  listStore.removeFilter(comparator, props.filterKey);
+  filters.removeFilter(getComparator, "range", props.compare, props.filterKey);
   isApplied.value = false;
 };
 </script>
