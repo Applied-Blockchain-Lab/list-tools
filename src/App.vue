@@ -2,8 +2,17 @@
 import { ref, computed } from "vue";
 import SortComponent from "./components/SortComponent.vue";
 import SortComponentV2 from "./components/SortComponentV2.vue";
-// import SortComponentDirective from "./components/SortComponentDirective.vue";
-import FilterComponent from "./demos/FilterComponent.vue";
+import InputFilter from "./components/filters/InputFilter.vue";
+import RangeFilter from "./components/filters/RangeFilter.vue";
+import SelectionFilter from "./components/filters/SelectionFilter.vue";
+import ValuesFilter from "./components/filters/ValuesFilter.vue";
+import VueSelectFilter from "./components/filters/VueSelectFilter.vue";
+import ItemSelector from "./components/selectors/ItemSelector.vue";
+import BulkItemsSelector from "./components/selectors/BulkItemsSelector.vue";
+import NumberOfSelectedItems from "./components/selectors/NumberOfSelectedItems.vue";
+
+import RangeFilter1 from "./components/filters/RangeFilter.vue?listId=1";
+import InputFilter1 from "./components/filters/InputFilter.vue?listId=1";
 
 import TestPaginationComponent from "./demos/TestPaginationComponent.vue";
 import demoData from "../demo-data/demoData2.json";
@@ -57,17 +66,60 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
 <template>
   <div class="wrapper">
     <h2>List 1</h2>
-    <SortComponentV2 :id="1" />
-    <br />
-    <input type="text" name="" id="" v-model="itemsPerPage1" />
-    <button @click="listTools1.paginationUtils.setItemsPerPage(itemsPerPage1)">Set items per page</button>
-    <br />
-    <span @click="listTools1.sortUtils.sortBy({ key: `L11`, event: $event })">Sort by Number</span>
+    <p><label>Text:</label> <SortComponentV2 :id="1" /></p>
+    <p>
+      <label>Items per page:</label>
+      <input type="text" name="" id="" v-model="itemsPerPage1" />
+      <button @click="listTools1.paginationUtils.setItemsPerPage(itemsPerPage1)">Set items per page</button>
+    </p>
+
+    <p><label>Input filter by number:</label> <InputFilter1 filterKey="L11" compare="num" /></p>
+    <p><label>Input filter by day of the month:</label> <InputFilter1 filterKey="L12.L22" compare="day" /></p>
+    <p><label>Input filter by month:</label> <InputFilter1 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year:</label> <InputFilter1 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array:</label>
+      <InputFilter1 filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by having an exact string in array of strings:</label>
+      <InputFilter1 filterKey="L12.L23.L33" compare="stringInArr" />
+    </p>
+    <p>
+      <label>Input filter by string in string:</label>
+      <InputFilter1 filterKey="L12.L21" compare="stringInString" />
+    </p>
+    <p><label>Input filter by exact string:</label> <InputFilter1 filterKey="L12.L21" compare="string" /></p>
+    <p><label>Range filter by number:</label> <RangeFilter1 filterKey="L11" compare="num" /></p>
+    <p><label>Range filter by day of the month:</label> <RangeFilter1 filterKey="L12.L22" compare="day" /></p>
+    <p><label>Range filter by month:</label> <RangeFilter1 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year:</label> <RangeFilter1 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array:</label>
+      <RangeFilter1 filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Range filter by having a number in array of numbers:</label>
+      <RangeFilter1 filterKey="L12.L23.L36" compare="numInArr" />
+    </p>
+
+    <p><label>Selection filter:</label> <SelectionFilter /></p>
+    <p><label>Values filter:</label> <ValuesFilter /></p>
+    <p><label>Vue-Select filter:</label> <VueSelectFilter /></p>
+    <p><label>Bulk items selector:</label> <BulkItemsSelector :id="1" /></p>
+    <p><label>Number of selected items:</label> <NumberOfSelectedItems :id="1" /></p>
+    <p>
+      <label>Sorter with means at hand: </label>
+      <span @click="listTools1.sortUtils.sortBy({ key: `L11`, event: $event })">Sort by Number</span>
+    </p>
+    <p><label>Sorter with custom directive:</label> <span>Sort by Number</span></p>
+
     <ol>
       <li v-for="(row, rowIndex) in items1" :key="rowIndex">
+        <ItemSelector :id="1" :item="row" />
         Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City: {{ row.L12.L23.L31 }};
-        Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates: {{ row.L12.L23.L34 }}; R-booleans:
-        {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
+        Boolean: {{ row.L12.L23.L32 }}; Arr-string: {{ row.L12.L23.L33 }}; Arr-dates: {{ row.L12.L23.L34 }};
+        Arr-booleans: {{ row.L12.L23.L35 }}; Arr-nums : {{ row.L12.L23.L36 }}
       </li>
     </ol>
     <br />
@@ -83,21 +135,66 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <br />
     <input type="text" name="" id="" v-model="itemsPerPage2" />
     <button @click="listTools2.paginationUtils.setItemsPerPage(itemsPerPage2)">Set items per page</button>
+    <p><label>Input filter by number:</label> <InputFilter :listId="2" filterKey="L11" compare="Number" /></p>
+    <p>
+      <label>Input filter by day of the month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by having an exact string in array of strings:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by string in string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" />
+    </p>
+    <p><label>Input filter by exact string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" /></p>
 
+    <p><label>Range filter by number:</label> <RangeFilter :listId="2" filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Range filter by having a number in array of numbers:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L36" compare="numInArr" />
+    </p>
+
+    <p><label>Selection filter:</label> <SelectionFilter /></p>
+    <p><label>Values filter:</label> <ValuesFilter /></p>
+    <p><label>Vue-Select filter:</label> <VueSelectFilter /></p>
+    <p><label>Bulk items selector:</label> <BulkItemsSelector :id="2" /></p>
+    <p><label>Number of selected items:</label> <NumberOfSelectedItems :id="2" /></p>
+    <p>
+      <label>Sorter with means at hand: </label>
+      <span @click="listTools1.sortUtils.sortBy({ key: `L11`, event: $event })">Sort by Number</span>
+    </p>
+    <p><label>Sorter with custom directive:</label> <span>Sort by Number</span></p>
     <table>
       <thead>
+        <th></th>
         <th @click="listTools2.sortUtils.sortBy({ key: `L11`, event: $event })">Number</th>
         <th @click="listTools2.sortUtils.sortBy({ key: `L12.L21`, event: $event })">Country</th>
         <th @click="listTools2.sortUtils.sortBy({ key: `L12.L22`, event: $event })">Recent Date</th>
         <th @click="listTools2.sortUtils.sortBy({ key: `L12.L23.L31`, event: $event })">City</th>
         <th @click="listTools2.sortUtils.sortBy({ key: `L12.L23.L32`, event: $event })">Boolean</th>
-        <th @click="listTools2.sortUtils.sortBy({ key: `L12.L23.L33`, event: $event })">R-string</th>
-        <th @click="listTools2.sortUtils.sortBy({ key: `L12.L23.L34`, event: $event })">R-dates</th>
-        <th @click="listTools2.sortUtils.sortBy({ key: `L12.L23.L35`, event: $event })">R-booleans</th>
-        <th @click="listTools2.sortUtils.sortBy({ key: `L12.L23.L36`, event: $event })">R-nums</th>
+        <th @click="listTools2.sortUtils.sortBy({ key: `L12.L23.L33`, event: $event })">Array of strings</th>
+        <th @click="listTools2.sortUtils.sortBy({ key: `L12.L23.L34`, event: $event })">Array of dates</th>
+        <th @click="listTools2.sortUtils.sortBy({ key: `L12.L23.L35`, event: $event })">Array of booleans</th>
+        <th @click="listTools2.sortUtils.sortBy({ key: `L12.L23.L36`, event: $event })">Array of numbers</th>
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items2" :key="rowIndex">
+          <td><ItemSelector :id="2" :item="row" /></td>
           <td>{{ row.L11 }}</td>
           <td>{{ row.L12.L21 }}</td>
           <td>{{ row.L12.L22 }}</td>
@@ -122,11 +219,56 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <button @click="listTools3.setItemsPerPage(itemsPerPage3)">Set items per page</button>
     <br />
     <span @click="listTools3.sortUtils.sortBy({ key: `L12.L21`, event: $event })">Sort by Country</span>
+    <p><label>Input filter by number:</label> <InputFilter :listId="2" filterKey="L11" compare="Number" /></p>
+    <p>
+      <label>Input filter by day of the month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by having an exact string in array of strings:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by string in string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" />
+    </p>
+    <p><label>Input filter by exact string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" /></p>
+
+    <p><label>Range filter by number:</label> <RangeFilter :listId="2" filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Range filter by having a number in array of numbers:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L36" compare="numInArr" />
+    </p>
+
+    <p><label>Selection filter:</label> <SelectionFilter /></p>
+    <p><label>Values filter:</label> <ValuesFilter /></p>
+    <p><label>Vue-Select filter:</label> <VueSelectFilter /></p>
+    <p><label>Bulk items selector:</label> <BulkItemsSelector :id="2" /></p>
+    <p><label>Number of selected items:</label> <NumberOfSelectedItems :id="2" /></p>
+    <p>
+      <label>Sorter with means at hand: </label>
+      <span @click="listTools1.sortUtils.sortBy({ key: `L11`, event: $event })">Sort by Number</span>
+    </p>
+    <p><label>Sorter with custom directive:</label> <span>Sort by Number</span></p>
     <ol>
       <li v-for="(row, rowIndex) in items3" :key="rowIndex">
+        <ItemSelector :id="3" :item="row" />
         Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City: {{ row.L12.L23.L31 }};
-        Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates: {{ row.L12.L23.L34 }}; R-booleans:
-        {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
+        Boolean: {{ row.L12.L23.L32 }}; Arr-string: {{ row.L12.L23.L33 }}; Arr-dates: {{ row.L12.L23.L34 }};
+        Arr-booleans: {{ row.L12.L23.L35 }}; Arr-nums : {{ row.L12.L23.L36 }}
       </li>
     </ol>
     <hr />
@@ -141,21 +283,66 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <br />
     <input type="text" name="" id="" v-model="itemsPerPage4" />
     <button @click="listTools4.paginationUtils.setItemsPerPage(itemsPerPage4)">Set items per page</button>
+    <p><label>Input filter by number:</label> <InputFilter :listId="2" filterKey="L11" compare="Number" /></p>
+    <p>
+      <label>Input filter by day of the month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by having an exact string in array of strings:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by string in string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" />
+    </p>
+    <p><label>Input filter by exact string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" /></p>
 
+    <p><label>Range filter by number:</label> <RangeFilter :listId="2" filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Range filter by having a number in array of numbers:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L36" compare="numInArr" />
+    </p>
+
+    <p><label>Selection filter:</label> <SelectionFilter /></p>
+    <p><label>Values filter:</label> <ValuesFilter /></p>
+    <p><label>Vue-Select filter:</label> <VueSelectFilter /></p>
+    <p><label>Bulk items selector:</label> <BulkItemsSelector :id="2" /></p>
+    <p><label>Number of selected items:</label> <NumberOfSelectedItems :id="2" /></p>
+    <p>
+      <label>Sorter with means at hand: </label>
+      <span @click="listTools1.sortUtils.sortBy({ key: `L11`, event: $event })">Sort by Number</span>
+    </p>
+    <p><label>Sorter with custom directive:</label> <span>Sort by Number</span></p>
     <table>
       <thead>
+        <th></th>
         <th @click="listTools4.sortUtils.sortBy({ key: `L11`, event: $event })">Number</th>
         <th @click="listTools4.sortUtils.sortBy({ key: `L12.L21`, event: $event })">Country</th>
         <th @click="listTools4.sortUtils.sortBy({ key: `L12.L22`, event: $event })">Recent Date</th>
         <th @click="listTools4.sortUtils.sortBy({ key: `L12.L23.L31`, event: $event })">City</th>
         <th @click="listTools4.sortUtils.sortBy({ key: `L12.L23.L32`, event: $event })">Boolean</th>
-        <th @click="listTools4.sortUtils.sortBy({ key: `L12.L23.L33`, event: $event })">R-string</th>
-        <th @click="listTools4.sortUtils.sortBy({ key: `L12.L23.L34`, event: $event })">R-dates</th>
-        <th @click="listTools4.sortUtils.sortBy({ key: `L12.L23.L35`, event: $event })">R-booleans</th>
-        <th @click="listTools4.sortUtils.sortBy({ key: `L12.L23.L36`, event: $event })">R-nums</th>
+        <th @click="listTools4.sortUtils.sortBy({ key: `L12.L23.L33`, event: $event })">Array of strings</th>
+        <th @click="listTools4.sortUtils.sortBy({ key: `L12.L23.L34`, event: $event })">Array of dates</th>
+        <th @click="listTools4.sortUtils.sortBy({ key: `L12.L23.L35`, event: $event })">Array of booleans</th>
+        <th @click="listTools4.sortUtils.sortBy({ key: `L12.L23.L36`, event: $event })">Array of numbers</th>
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items4" :key="rowIndex">
+          <td><ItemSelector :id="4" :item="row" /></td>
           <td>{{ row.L11 }}</td>
           <td>{{ row.L12.L21 }}</td>
           <td>{{ row.L12.L22 }}</td>
@@ -180,11 +367,56 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <button @click="listTools5.paginationUtils.setItemsPerPage(itemsPerPage5)">Set items per page</button>
     <br />
     <span @click="listTools5.sortUtils.sortBy({ key: `L12.L22`, event: $event })">Sort by Recent Date</span>
+    <p><label>Input filter by number:</label> <InputFilter :listId="2" filterKey="L11" compare="Number" /></p>
+    <p>
+      <label>Input filter by day of the month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by having an exact string in array of strings:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by string in string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" />
+    </p>
+    <p><label>Input filter by exact string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" /></p>
+
+    <p><label>Range filter by number:</label> <RangeFilter :listId="2" filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Range filter by having a number in array of numbers:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L36" compare="numInArr" />
+    </p>
+
+    <p><label>Selection filter:</label> <SelectionFilter /></p>
+    <p><label>Values filter:</label> <ValuesFilter /></p>
+    <p><label>Vue-Select filter:</label> <VueSelectFilter /></p>
+    <p><label>Bulk items selector:</label> <BulkItemsSelector :id="2" /></p>
+    <p><label>Number of selected items:</label> <NumberOfSelectedItems :id="2" /></p>
+    <p>
+      <label>Sorter with means at hand: </label>
+      <span @click="listTools1.sortUtils.sortBy({ key: `L11`, event: $event })">Sort by Number</span>
+    </p>
+    <p><label>Sorter with custom directive:</label> <span>Sort by Number</span></p>
     <ol>
       <li v-for="(row, rowIndex) in items5" :key="rowIndex">
+        <ItemSelector :id="5" :item="row" />
         Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City: {{ row.L12.L23.L31 }};
-        Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates: {{ row.L12.L23.L34 }}; R-booleans:
-        {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
+        Boolean: {{ row.L12.L23.L32 }}; Arr-string: {{ row.L12.L23.L33 }}; Arr-dates: {{ row.L12.L23.L34 }};
+        Arr-booleans: {{ row.L12.L23.L35 }}; Arr-nums : {{ row.L12.L23.L36 }}
       </li>
     </ol>
     <br />
@@ -200,21 +432,66 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <br />
     <input type="text" name="" id="" v-model="itemsPerPage6" />
     <button @click="listTools6.paginationUtils.setItemsPerPage(itemsPerPage6)">Set items per page</button>
+    <p><label>Input filter by number:</label> <InputFilter :listId="2" filterKey="L11" compare="Number" /></p>
+    <p>
+      <label>Input filter by day of the month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by having an exact string in array of strings:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by string in string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" />
+    </p>
+    <p><label>Input filter by exact string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" /></p>
 
+    <p><label>Range filter by number:</label> <RangeFilter :listId="2" filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Range filter by having a number in array of numbers:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L36" compare="numInArr" />
+    </p>
+
+    <p><label>Selection filter:</label> <SelectionFilter /></p>
+    <p><label>Values filter:</label> <ValuesFilter /></p>
+    <p><label>Vue-Select filter:</label> <VueSelectFilter /></p>
+    <p><label>Bulk items selector:</label> <BulkItemsSelector :id="2" /></p>
+    <p><label>Number of selected items:</label> <NumberOfSelectedItems :id="2" /></p>
+    <p>
+      <label>Sorter with means at hand: </label>
+      <span @click="listTools1.sortUtils.sortBy({ key: `L11`, event: $event })">Sort by Number</span>
+    </p>
+    <p><label>Sorter with custom directive:</label> <span>Sort by Number</span></p>
     <table>
       <thead>
+        <th></th>
         <th @click="listTools6.sortUtils.sortBy({ key: `L11`, event: $event })">Number</th>
         <th @click="listTools6.sortUtils.sortBy({ key: `L12.L21`, event: $event })">Country</th>
         <th @click="listTools6.sortUtils.sortBy({ key: `L12.L22`, event: $event })">Recent Date</th>
         <th @click="listTools6.sortUtils.sortBy({ key: `L12.L23.L31`, event: $event })">City</th>
         <th @click="listTools6.sortUtils.sortBy({ key: `L12.L23.L32`, event: $event })">Boolean</th>
-        <th @click="listTools6.sortUtils.sortBy({ key: `L12.L23.L33`, event: $event })">R-string</th>
-        <th @click="listTools6.sortUtils.sortBy({ key: `L12.L23.L34`, event: $event })">R-dates</th>
-        <th @click="listTools6.sortUtils.sortBy({ key: `L12.L23.L35`, event: $event })">R-booleans</th>
-        <th @click="listTools6.sortUtils.sortBy({ key: `L12.L23.L36`, event: $event })">R-nums</th>
+        <th @click="listTools6.sortUtils.sortBy({ key: `L12.L23.L33`, event: $event })">Array of strings</th>
+        <th @click="listTools6.sortUtils.sortBy({ key: `L12.L23.L34`, event: $event })">Array of dates</th>
+        <th @click="listTools6.sortUtils.sortBy({ key: `L12.L23.L35`, event: $event })">Array of booleans</th>
+        <th @click="listTools6.sortUtils.sortBy({ key: `L12.L23.L36`, event: $event })">Array of numbers</th>
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items6" :key="rowIndex">
+          <td><ItemSelector :id="6" :item="row" /></td>
           <td>{{ row.L11 }}</td>
           <td>{{ row.L12.L21 }}</td>
           <td>{{ row.L12.L22 }}</td>
@@ -239,11 +516,56 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <button @click="listTools7.setItemsPerPage(itemsPerPage7)">Set items per page</button>
     <br />
     <span @click="listTools7.sortUtils.sortBy({ key: `L12.L23.L31`, event: $event })">Sort by City</span>
+    <p><label>Input filter by number:</label> <InputFilter :listId="2" filterKey="L11" compare="Number" /></p>
+    <p>
+      <label>Input filter by day of the month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by having an exact string in array of strings:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by string in string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" />
+    </p>
+    <p><label>Input filter by exact string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" /></p>
+
+    <p><label>Range filter by number:</label> <RangeFilter :listId="2" filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Range filter by having a number in array of numbers:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L36" compare="numInArr" />
+    </p>
+
+    <p><label>Selection filter:</label> <SelectionFilter /></p>
+    <p><label>Values filter:</label> <ValuesFilter /></p>
+    <p><label>Vue-Select filter:</label> <VueSelectFilter /></p>
+    <p><label>Bulk items selector:</label> <BulkItemsSelector :id="2" /></p>
+    <p><label>Number of selected items:</label> <NumberOfSelectedItems :id="2" /></p>
+    <p>
+      <label>Sorter with means at hand: </label>
+      <span @click="listTools1.sortUtils.sortBy({ key: `L11`, event: $event })">Sort by Number</span>
+    </p>
+    <p><label>Sorter with custom directive:</label> <span>Sort by Number</span></p>
     <ol>
       <li v-for="(row, rowIndex) in items7" :key="rowIndex">
+        <ItemSelector :id="7" :item="row" />
         Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City: {{ row.L12.L23.L31 }};
-        Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates: {{ row.L12.L23.L34 }}; R-booleans:
-        {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
+        Boolean: {{ row.L12.L23.L32 }}; Arr-string: {{ row.L12.L23.L33 }}; Arr-dates: {{ row.L12.L23.L34 }};
+        Arr-booleans: {{ row.L12.L23.L35 }}; Arr-nums : {{ row.L12.L23.L36 }}
       </li>
     </ol>
     <hr />
@@ -258,21 +580,66 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <br />
     <input type="text" name="" id="" v-model="itemsPerPage8" />
     <button @click="listTools8.paginationUtils.setItemsPerPage(itemsPerPage8)">Set items per page</button>
+    <p><label>Input filter by number:</label> <InputFilter :listId="2" filterKey="L11" compare="Number" /></p>
+    <p>
+      <label>Input filter by day of the month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by having an exact string in array of strings:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by string in string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" />
+    </p>
+    <p><label>Input filter by exact string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" /></p>
 
+    <p><label>Range filter by number:</label> <RangeFilter :listId="2" filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Range filter by having a number in array of numbers:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L36" compare="numInArr" />
+    </p>
+
+    <p><label>Selection filter:</label> <SelectionFilter /></p>
+    <p><label>Values filter:</label> <ValuesFilter /></p>
+    <p><label>Vue-Select filter:</label> <VueSelectFilter /></p>
+    <p><label>Bulk items selector:</label> <BulkItemsSelector :id="2" /></p>
+    <p><label>Number of selected items:</label> <NumberOfSelectedItems :id="2" /></p>
+    <p>
+      <label>Sorter with means at hand: </label>
+      <span @click="listTools1.sortUtils.sortBy({ key: `L11`, event: $event })">Sort by Number</span>
+    </p>
+    <p><label>Sorter with custom directive:</label> <span>Sort by Number</span></p>
     <table>
       <thead>
+        <th></th>
         <th @click="listTools8.sortUtils.sortBy({ key: `L11`, event: $event })">Number</th>
         <th @click="listTools8.sortUtils.sortBy({ key: `L12.L21`, event: $event })">Country</th>
         <th @click="listTools8.sortUtils.sortBy({ key: `L12.L22`, event: $event })">Recent Date</th>
         <th @click="listTools8.sortUtils.sortBy({ key: `L12.L23.L31`, event: $event })">City</th>
         <th @click="listTools8.sortUtils.sortBy({ key: `L12.L23.L32`, event: $event })">Boolean</th>
-        <th @click="listTools8.sortUtils.sortBy({ key: `L12.L23.L33`, event: $event })">R-string</th>
-        <th @click="listTools8.sortUtils.sortBy({ key: `L12.L23.L34`, event: $event })">R-dates</th>
-        <th @click="listTools8.sortUtils.sortBy({ key: `L12.L23.L35`, event: $event })">R-booleans</th>
-        <th @click="listTools8.sortUtils.sortBy({ key: `L12.L23.L36`, event: $event })">R-nums</th>
+        <th @click="listTools8.sortUtils.sortBy({ key: `L12.L23.L33`, event: $event })">Array of strings</th>
+        <th @click="listTools8.sortUtils.sortBy({ key: `L12.L23.L34`, event: $event })">Array of dates</th>
+        <th @click="listTools8.sortUtils.sortBy({ key: `L12.L23.L35`, event: $event })">Array of booleans</th>
+        <th @click="listTools8.sortUtils.sortBy({ key: `L12.L23.L36`, event: $event })">Array of numbers</th>
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items8" :key="rowIndex">
+          <ItemSelector :id="8" :item="row" />
           <td>{{ row.L11 }}</td>
           <td>{{ row.L12.L21 }}</td>
           <td>{{ row.L12.L22 }}</td>
@@ -297,11 +664,56 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <button @click="listTools9.setItemsPerPage(itemsPerPage9)">Set items per page</button>
     <br />
     <span @click="listTools9.sortUtils.sortBy({ key: `L12.L23.L32`, event: $event })">Sort by Boolean</span>
+    <p><label>Input filter by number:</label> <InputFilter :listId="2" filterKey="L11" compare="Number" /></p>
+    <p>
+      <label>Input filter by day of the month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by having an exact string in array of strings:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by string in string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" />
+    </p>
+    <p><label>Input filter by exact string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" /></p>
+
+    <p><label>Range filter by number:</label> <RangeFilter :listId="2" filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Range filter by having a number in array of numbers:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L36" compare="numInArr" />
+    </p>
+
+    <p><label>Selection filter:</label> <SelectionFilter /></p>
+    <p><label>Values filter:</label> <ValuesFilter /></p>
+    <p><label>Vue-Select filter:</label> <VueSelectFilter /></p>
+    <p><label>Bulk items selector:</label> <BulkItemsSelector :id="2" /></p>
+    <p><label>Number of selected items:</label> <NumberOfSelectedItems :id="2" /></p>
+    <p>
+      <label>Sorter with means at hand: </label>
+      <span @click="listTools1.sortUtils.sortBy({ key: `L11`, event: $event })">Sort by Number</span>
+    </p>
+    <p><label>Sorter with custom directive:</label> <span>Sort by Number</span></p>
     <ol>
       <li v-for="(row, rowIndex) in items9" :key="rowIndex">
+        <ItemSelector :id="9" :item="row" />
         Number: {{ row.L11 }}; Country: {{ row.L12.L21 }}; Recent Date: {{ row.L12.L22 }}; City: {{ row.L12.L23.L31 }};
-        Boolean: {{ row.L12.L23.L32 }}; R-string: {{ row.L12.L23.L33 }}; R-dates: {{ row.L12.L23.L34 }}; R-booleans:
-        {{ row.L12.L23.L35 }}; R-nums : {{ row.L12.L23.L36 }}
+        Boolean: {{ row.L12.L23.L32 }}; Arr-string: {{ row.L12.L23.L33 }}; Arr-dates: {{ row.L12.L23.L34 }};
+        Arr-booleans: {{ row.L12.L23.L35 }}; Arr-nums : {{ row.L12.L23.L36 }}
       </li>
     </ol>
     <hr />
@@ -312,25 +724,70 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <h1>Table 5</h1>
     <SortComponent :id="10" />
     <br />
-    <FilterComponent :id="10" />
+    <InputFilterComponent :id="10" />
     <br />
     <input type="text" name="" id="" v-model="itemsPerPage10" />
     <button @click="listTools10.paginationUtils.setItemsPerPage(itemsPerPage10)">Set items per page</button>
+    <p><label>Input filter by number:</label> <InputFilter :listId="2" filterKey="L11" compare="Number" /></p>
+    <p>
+      <label>Input filter by day of the month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year:</label> <InputFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by having an exact string in array of strings:</label>
+      <InputFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Input filter by string in string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" />
+    </p>
+    <p><label>Input filter by exact string:</label> <InputFilter :listId="2" filterKey="L12.L21" compare="num" /></p>
 
+    <p><label>Range filter by number:</label> <RangeFilter :listId="2" filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year:</label> <RangeFilter :listId="2" filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L33" compare="numEl" />
+    </p>
+    <p>
+      <label>Range filter by having a number in array of numbers:</label>
+      <RangeFilter :listId="2" filterKey="L12.L23.L36" compare="numInArr" />
+    </p>
+
+    <p><label>Selection filter:</label> <SelectionFilter /></p>
+    <p><label>Values filter:</label> <ValuesFilter /></p>
+    <p><label>Vue-Select filter:</label> <VueSelectFilter /></p>
+    <p><label>Bulk items selector:</label> <BulkItemsSelector :id="2" /></p>
+    <p><label>Number of selected items:</label> <NumberOfSelectedItems :id="2" /></p>
+    <p>
+      <label>Sorter with means at hand: </label>
+      <span @click="listTools1.sortUtils.sortBy({ key: `L11`, event: $event })">Sort by Number</span>
+    </p>
+    <p><label>Sorter with custom directive:</label> <span>Sort by Number</span></p>
     <table>
       <thead>
+        <th></th>
         <th @click="listTools10.sortUtils.sortBy({ key: `L11`, event: $event })">Number</th>
         <th @click="listTools10.sortUtils.sortBy({ key: `L12.L21`, event: $event })">Country</th>
         <th @click="listTools10.sortUtils.sortBy({ key: `L12.L22`, event: $event })">Recent Date</th>
         <th @click="listTools10.sortUtils.sortBy({ key: `L12.L23.L31`, event: $event })">City</th>
         <th @click="listTools10.sortUtils.sortBy({ key: `L12.L23.L32`, event: $event })">Boolean</th>
-        <th @click="listTools10.sortUtils.sortBy({ key: `L12.L23.L33`, event: $event })">R-string</th>
-        <th @click="listTools10.sortUtils.sortBy({ key: `L12.L23.L34`, event: $event })">R-dates</th>
-        <th @click="listTools10.sortUtils.sortBy({ key: `L12.L23.L35`, event: $event })">R-booleans</th>
-        <th @click="listTools10.sortUtils.sortBy({ key: `L12.L23.L36`, event: $event })">R-nums</th>
+        <th @click="listTools10.sortUtils.sortBy({ key: `L12.L23.L33`, event: $event })">Array of strings</th>
+        <th @click="listTools10.sortUtils.sortBy({ key: `L12.L23.L34`, event: $event })">Array of dates</th>
+        <th @click="listTools10.sortUtils.sortBy({ key: `L12.L23.L35`, event: $event })">Array of booleans</th>
+        <th @click="listTools10.sortUtils.sortBy({ key: `L12.L23.L36`, event: $event })">Array of numbers</th>
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items10" :key="rowIndex">
+          <td><ItemSelector :id="10" :item="row" /></td>
           <td>{{ row.L11 }}</td>
           <td>{{ row.L12.L21 }}</td>
           <td>{{ row.L12.L22 }}</td>

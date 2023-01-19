@@ -3,13 +3,13 @@ import { ref } from "vue";
 import useGlobalComposable from "../composables/globalComposable";
 
 const props = defineProps({
-  id: {
+  listId: {
     type: Number,
     required: true,
   },
 });
 
-const { filterUtils, keyifyExcludedArr } = useGlobalComposable(props.id);
+const { filterUtils, keyifyExcludedArr } = useGlobalComposable(props.listId);
 const filterableKeys = keyifyExcludedArr();
 const filterTypes = ["Number", "Number as string", "String in string", "Exact string", "Date", "Day", "Month", "Year"];
 
