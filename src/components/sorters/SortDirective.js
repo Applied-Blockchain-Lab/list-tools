@@ -13,8 +13,13 @@ export const sort = {
       listStore.appliedSorters,
       () => {
         const index = listStore.getSorterIndex(componentId);
-
-        addIndex(el, index, componentId);
+        if (index === undefined) {
+          el.classList.remove("sort-asc");
+          el.classList.remove("sort-desc");
+        }
+        if (listStore.appliedSorters.length > 1 || index === undefined) {
+          addIndex(el, index, componentId);
+        }
       },
       { deep: true },
     );

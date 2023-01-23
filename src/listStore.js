@@ -21,9 +21,12 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
       isScrollable: isScrollable,
       appliedSorters: [],
       appliedFilters: [],
+      singleSort: false,
     }),
     actions: {
-      init(allItems, itemsPerPage) {
+      init(allItems, itemsPerPage, singleSort) {
+        console.log(singleSort);
+        this.setSingleSort(singleSort);
         this.setAllItems(allItems);
         this.setCurrentPage(1);
 
@@ -43,6 +46,9 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
       },
       setSelectedItems(selectedItems) {
         this.selectedItems = selectedItems;
+      },
+      setSingleSort(singleSort) {
+        this.singleSort = singleSort;
       },
       isItemSelected(item) {
         for (let i = 0; i < this.selectedItems.length; i++) {
@@ -129,19 +135,23 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
         this.applySorters();
       },
       addSorter(sorter) {
-        console.log(sorter);
-        let found = false;
-        for (let i = 0; i < this.appliedSorters.length; i++) {
-          if (this.appliedSorters[i].key === sorter.key) {
-            this.appliedSorters[i] = sorter;
-            found = true;
-            break;
+        if (this.singleSort) {
+          this.appliedSorters[0] = sorter;
+        } else {
+          let found = false;
+          for (let i = 0; i < this.appliedSorters.length; i++) {
+            if (this.appliedSorters[i].key === sorter.key) {
+              this.appliedSorters[i] = sorter;
+              found = true;
+              break;
+            }
+          }
+
+          if (!found) {
+            this.appliedSorters.push(sorter);
           }
         }
 
-        if (!found) {
-          this.appliedSorters.push(sorter);
-        }
         this.applySorters();
       },
       removeSorter(componentId) {
@@ -155,11 +165,8 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
         this.applySorters();
       },
       applySorters() {
-        console.log(this.appliedSorters);
         const keys = this.appliedSorters.map((sorter) => sorter.key);
         const orders = this.appliedSorters.map((sorter) => sorter.order);
-        console.log(keys);
-        console.log(orders);
 
         const sortedItems = orderBy(this.allItems, keys, orders);
         this.setFilteredItems(sortedItems);

@@ -31,16 +31,16 @@ const listTools8 = useGlobalComposable(8);
 const listTools9 = useGlobalComposable(9);
 const listTools10 = useGlobalComposable(10);
 
-listTools1.init(demoData, 5);
-listTools2.init(demoData, 10);
-listTools3.init(demoData, 7);
-listTools4.init(demoData, 7);
-listTools5.init(demoData, 7);
-listTools6.init(demoData, 7);
-listTools7.init(demoData, 7);
-listTools8.init(demoData, 7);
-listTools9.init(demoData, 7);
-listTools10.init(demoData, 7);
+listTools1.init(demoData, 5, false);
+listTools2.init(demoData, 10, true);
+listTools3.init(demoData, 7, true);
+listTools4.init(demoData, 7, true);
+listTools5.init(demoData, 7, true);
+listTools6.init(demoData, 7, true);
+listTools7.init(demoData, 7, true);
+listTools8.init(demoData, 7, true);
+listTools9.init(demoData, 7, true);
+listTools10.init(demoData, 7, true);
 
 const items1 = computed(() => listTools1.paginationUtils.paginate());
 const items2 = computed(() => listTools2.paginationUtils.paginate());
