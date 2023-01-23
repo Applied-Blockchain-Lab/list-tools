@@ -1,5 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
+import SingleSort from "./components/sorters/SingleSort.vue?listId=1";
+import MultipleSort from "./components/sorters/MultipleSort.vue?listId=1";
 import SortComponent from "./components/SortComponent.vue";
 import SortComponentV2 from "./components/SortComponentV2.vue";
 import InputFilter from "./components/filters/InputFilter.vue";
@@ -66,7 +68,18 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
 <template>
   <div class="wrapper">
     <h2>List 1</h2>
-    <p><label>Text:</label> <SortComponentV2 :id="1" /></p>
+    <p><label>Single sort:</label> <SingleSort /></p>
+    <p><label>Single sort:</label> <SingleSort /></p>
+
+    <p><label>Multiple sort:</label> <MultipleSort /></p>
+
+    <p><span v-sort:[1]="'L11'">sort d1</span></p>
+    <p><span v-sort:[1]="'L12.L21'">sort d2</span></p>
+    <p><span v-sort:[1]="'L12.L23.L32'">sort d3</span></p>
+    <p><span>sort d4</span></p>
+    <p><span>sort d5</span></p>
+
+    <p><label>Sort component 2 (TODO):</label> <SortComponentV2 :id="1" /></p>
     <p>
       <label>Items per page:</label>
       <input type="text" name="" id="" v-model="itemsPerPage1" />

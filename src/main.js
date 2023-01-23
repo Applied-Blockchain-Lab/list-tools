@@ -5,10 +5,13 @@ import vSelect from "vue-select";
 import App from "./App.vue";
 import router from "./router";
 // import directives from "./plugins/directives";
+import { sort } from "./components/sorters/SortDirective";
 
 import "./assets/main.css";
 
 const app = createApp(App);
+
+app.directive("sort", sort);
 
 app.component("v-select", vSelect);
 
