@@ -22,29 +22,23 @@ const listStore = ListStore(listId);
 const clickCallback = (pageNum) => {
   console.log(pageNum);
   listStore.setCurrentPage(pageNum);
-
-  // const pageItems = listStore.getFilteredItems.slice(
-  //   (this.page - 1) * this.perPage,
-  //   this.page * this.perPage,
-  // );
-  // listStore.setPageItems();
 };
 </script>
 
-<style scoped lang="scss">
-.pagination {
-  a.page-link:not(.disabled) {
-    cursor: pointer;
-  }
+<style>
+.pagination a.page-link:not(.disabled) {
+  cursor: pointer;
+}
 
+.pagination {
   list-style-type: none;
   display: flex;
   margin-top: 50px;
+}
 
-  li {
-    padding: 10px;
-    text-decoration: none;
-  }
+.pagination li {
+  padding: 10px;
+  text-decoration: none;
 }
 
 .active {
