@@ -32,7 +32,6 @@
     "lodash.isequal": "^4.5.0",
     "pinia": "^2.0.26",
     "sass": "^1.56.1",
-    "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
@@ -43,6 +42,8 @@
     "@vitejs/plugin-vue": "^3.2.0",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/test-utils": "^2.2.4",
+    "bootstrap": "^5.2.3",
+    "bootstrap-vue": "^2.23.1",
     "eslint": "^8.22.0",
     "eslint-plugin-vue": "^9.3.0",
     "husky": "^8.0.2",
@@ -53,9 +54,12 @@
     "lodash.get": "^4.4.2",
     "lodash.partial": "^4.2.1",
     "prettier": "^2.7.1",
+    "v-pagination-3": "^0.1.7",
     "vite": "^3.2.4",
     "vitest": "^0.25.3",
-    "vue-select": "^4.0.0-beta.6"
+    "vue": "^3.2.45",
+    "vue-select": "^4.0.0-beta.6",
+    "vuejs-paginate-next": "^1.0.2"
   },
   "lint-staged": {
     "{src,test,tasks}/**/*.{js,vue}": [

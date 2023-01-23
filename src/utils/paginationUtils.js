@@ -7,6 +7,10 @@ export default function usePaginationUtils(listStore) {
     return items;
   };
 
+  const getItems = () => {
+    return listStore.getItemsForList;
+  };
+
   const getItemsPerPage = () => listStore.getItemsPerPage;
 
   const setItemsPerPage = (itemsPerPage) => {
@@ -54,5 +58,6 @@ export default function usePaginationUtils(listStore) {
     nextPage,
     prevPage,
     setPage,
+    getItems,
   };
 }

@@ -1,15 +1,9 @@
 <script setup>
 import { ref, computed } from "vue";
 import useGlobalComposable from "../composables/globalComposable";
+const listId = new URL(import.meta.url).searchParams.get("listId");
 
-const props = defineProps({
-  id: {
-    type: Number,
-    required: true,
-  },
-});
-
-const { paginationUtils } = useGlobalComposable(props.id);
+const { paginationUtils } = useGlobalComposable(listId);
 
 const eachSide = ref(1);
 

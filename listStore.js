@@ -125,9 +125,12 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
       getItemsPerPage: (state) => state.itemsPerPage,
       getCurrentPage: (state) => state.currentPage,
       getFilteredItems: (state) => (state.filteredItems.length === 0 ? state.allItems : state.filteredItems),
-      getItemsForList() {
-        const pageItems = this.getFilteredItems.slice((this.currentPage - 1) * 5, this.currentPage * 5);
+      getItemsForList () {
+        const pageItems =  this.getFilteredItems.slice(
+          (this.currentPage - 1) * 5,
+          this.currentPage * 5,
+        );
         return pageItems;
-      },
+      }
     },
   })();
