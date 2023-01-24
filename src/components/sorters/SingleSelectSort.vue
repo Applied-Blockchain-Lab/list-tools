@@ -33,7 +33,9 @@ const sortableKeys = () => {
 };
 
 const sortBy = () => {
-  listStore.addSorter({ key: selectedSorter.value.key, order: selectedSorter.value.order, id: componentId });
+  if (selectedSorter.value !== "") {
+    listStore.addSorter({ key: selectedSorter.value.key, order: selectedSorter.value.order, id: componentId });
+  }
 };
 
 function removeSorter() {
@@ -45,8 +47,12 @@ watch(
   listStore.appliedSorters,
   () => {
     const index = listStore.getSorterIndex(componentId);
-    addIndex(root.value, index, componentId);
-    // if(index === undefined){selectedSorter.value=""}
+    if (listStore.singleSort === false) {
+      addIndex(root.value, index, componentId);
+    }
+    if (index === undefined) {
+      selectedSorter.value = "";
+    }
   },
   { deep: true },
 );

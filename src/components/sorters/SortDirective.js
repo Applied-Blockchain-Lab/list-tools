@@ -17,7 +17,7 @@ export const sort = {
           el.classList.remove("sort-asc");
           el.classList.remove("sort-desc");
         }
-        if (listStore.appliedSorters.length > 1 || index === undefined) {
+        if (listStore.singleSort === false) {
           addIndex(el, index, componentId);
         }
       },

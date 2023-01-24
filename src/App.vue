@@ -1,7 +1,9 @@
 <script setup>
 import { ref, computed } from "vue";
-import SingleSort from "./components/sorters/SingleSort.vue?listId=1";
-import MultipleSort from "./components/sorters/MultipleSort.vue?listId=1";
+import SingleSelectSort1 from "./components/sorters/SingleSelectSort.vue?listId=1";
+import SingleSelectSort3 from "./components/sorters/SingleSelectSort.vue?listId=3";
+import DoubleSelectSort1 from "./components/sorters/DoubleSelectSort.vue?listId=1";
+import DoubleSelectSort3 from "./components/sorters/DoubleSelectSort.vue?listId=3";
 import SortComponent from "./components/SortComponent.vue";
 import SortComponentV2 from "./components/SortComponentV2.vue";
 import InputFilter from "./components/filters/InputFilter.vue";
@@ -31,14 +33,14 @@ const listTools8 = useGlobalComposable(8);
 const listTools9 = useGlobalComposable(9);
 const listTools10 = useGlobalComposable(10);
 
-listTools1.init(demoData, 5, false);
+listTools1.init(demoData, 5, true);
 listTools2.init(demoData, 10, true);
-listTools3.init(demoData, 7, true);
-listTools4.init(demoData, 7, true);
+listTools3.init(demoData, 7, false);
+listTools4.init(demoData, 7, false);
 listTools5.init(demoData, 7, true);
 listTools6.init(demoData, 7, true);
-listTools7.init(demoData, 7, true);
-listTools8.init(demoData, 7, true);
+listTools7.init(demoData, 7, false);
+listTools8.init(demoData, 7, false);
 listTools9.init(demoData, 7, true);
 listTools10.init(demoData, 7, true);
 
@@ -68,16 +70,18 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
 <template>
   <div class="wrapper">
     <h2>List 1</h2>
-    <p><label>Single sort:</label> <SingleSort /></p>
-    <p><label>Single sort:</label> <SingleSort /></p>
-
-    <p><label>Multiple sort:</label> <MultipleSort /></p>
+    <p><label>Single select sort:</label> <SingleSelectSort1 /></p>
+    <p><label>Double select sort:</label> <DoubleSelectSort1 /></p>
 
     <p><span v-sort:[1]="'L11'">sort d1</span></p>
     <p><span v-sort:[1]="'L12.L21'">sort d2</span></p>
-    <p><span v-sort:[1]="'L12.L23.L32'">sort d3</span></p>
-    <p><span>sort d4</span></p>
-    <p><span>sort d5</span></p>
+    <p><span v-sort:[1]="'L12.L22'">sort d3</span></p>
+    <p><span v-sort:[1]="'L12.L23.L31'">sort d4</span></p>
+    <p><span v-sort:[1]="'L12.L23.L32'">sort d5</span></p>
+    <p><span v-sort:[1]="'L12.L23.L33'">sort d6</span></p>
+    <p><span v-sort:[1]="'L12.L23.L34'">sort d7</span></p>
+    <p><span v-sort:[1]="'L12.L23.L35'">sort d8</span></p>
+    <p><span v-sort:[1]="'L12.L23.L36'">sort d9</span></p>
 
     <p><label>Sort component 2 (TODO):</label> <SortComponentV2 :id="1" /></p>
     <p>
@@ -224,7 +228,11 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
   </div>
   <div class="wrapper">
     <h2>List 2</h2>
-    <SortComponent :id="3" />
+    <SingleSelectSort3 />
+    <SingleSelectSort3 />
+    <DoubleSelectSort3 />
+
+    <p><label>Sort component (TODO):</label> <SortComponent :id="3" /></p>
     <br />
     <FilterComponent :id="3" />
     <br />
