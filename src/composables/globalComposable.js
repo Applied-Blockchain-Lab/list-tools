@@ -1,10 +1,10 @@
 import { ListStore } from "../listStore";
 import { useFilterUtils, usePaginationUtils, useSortUtils } from "../utils";
 
-export default function useGlobalComposable(storeId) {
-  const listStore = ListStore(storeId);
+export default function useGlobalComposable(storeId, itemsPerPage, singleSort) {
+  const listStore = ListStore(storeId, itemsPerPage, singleSort);
 
-  const init = (allItems, itemsPerPage, singleSort) => {
+  const init = (allItems) => {
     listStore.init(allItems, itemsPerPage, singleSort);
   };
 

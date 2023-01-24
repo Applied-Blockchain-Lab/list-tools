@@ -11,7 +11,8 @@ const { keyify } = useGlobalComposable(listId);
 const selectedSorter = ref("");
 const selectedOrder = ref("");
 const root = ref(null);
-const componentId = Math.ceil(Math.random() * 1000000); // buddy ignore:line
+const digits = 1000000;
+const componentId = Math.ceil(Math.random() * digits);
 const keys = keyify();
 
 const sortBy = () => {

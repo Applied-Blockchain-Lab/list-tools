@@ -4,13 +4,14 @@ import { watch } from "vue";
 import { ListStore } from "../../listStore.js";
 import { addIndex } from "../../utils/sorterIndex.js";
 import useGlobalComposable from "../../composables/globalComposable";
-const listId = new URL(import.meta.url).searchParams.get("listId");
 
+const listId = new URL(import.meta.url).searchParams.get("listId");
 const listStore = ListStore(listId);
 const { keyify } = useGlobalComposable(listId);
 const selectedSorter = ref("");
 const root = ref(null);
-const componentId = Math.ceil(Math.random() * 1000000); // buddy ignore:line
+const digits = 1000000;
+const componentId = Math.ceil(Math.random() * digits);
 
 const sortableKeys = () => {
   const keys = keyify();

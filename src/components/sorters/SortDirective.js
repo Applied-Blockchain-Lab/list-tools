@@ -2,13 +2,16 @@ import { ListStore } from "../../listStore.js";
 import { watch } from "vue";
 import { addIndex } from "../../utils/sorterIndex.js";
 
+const digits = 1000000;
+
 export const sort = {
   mounted(el, binding) {
-    const componentId = Math.ceil(Math.random() * 1000000); // buddy ignore:line
+    const componentId = Math.ceil(Math.random() * digits);
     const listStore = ListStore(binding.arg);
 
     el.classList.add("sorter");
 
+    //TODO: How to do it without watch?
     watch(
       listStore.appliedSorters,
       () => {

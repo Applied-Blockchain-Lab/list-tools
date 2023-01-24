@@ -7,7 +7,7 @@ export function addIndex(el, index, key) {
       const newContent = document.createTextNode(index);
       newEl.appendChild(newContent);
       newEl.classList.add(`index.${key}`);
-      el.before(newEl);
+      el.append(newEl);
     }
   } else {
     if (index !== undefined) {
