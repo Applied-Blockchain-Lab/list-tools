@@ -24,6 +24,6 @@ const getComparator = (comparatorFn) => {
 
 <template>
   <input type="text" v-model="filterValue" />
-  <button @click="applyFilter(getComparator)">Filter</button>
+  <button v-if="!isApplied" @click="applyFilter(getComparator)">Filter</button>
   <button v-if="isApplied" @click="removeFilter(getComparator)">X</button>
 </template>

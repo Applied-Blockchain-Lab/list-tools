@@ -1,6 +1,6 @@
 <template>
   <paginate
-    :page-count="20"
+    :page-count="totalPages"
     :page-range="3"
     :margin-pages="2"
     :click-handler="clickCallback"
@@ -8,20 +8,26 @@
     :next-text="'Next'"
     :container-class="'pagination'"
     :page-class="'page-item'"
+    :force-page="currentPage"
   >
   </paginate>
 </template>
 
 <script setup>
 import Paginate from "vuejs-paginate-next";
-import { ListStore } from "../listStore.js";
+import { ListStore } from "../../listStore.js";
+import { computed } from "vue";
+import usePaginationUtils from "../../utils/paginationUtils.js";
 
 const listId = new URL(import.meta.url).searchParams.get("listId");
 const listStore = ListStore(listId);
+const paginationUtils = usePaginationUtils(listStore);
+const totalPages = computed(() => paginationUtils.getTotalPages());
+const currentPage = computed(() => paginationUtils.getCurrentPage());
 
 const clickCallback = (pageNum) => {
   console.log(pageNum);
-  listStore.setCurrentPage(pageNum);
+  paginationUtils.setCurrentPage(pageNum);
 };
 </script>
 

@@ -94,12 +94,6 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
           }
           console.log("Apply filters/Items:", items);
           this.setFilteredItems(items);
-          // TODO: Fix this
-          // const allItemsLength = items.length;
-          // const itemsPerPage = this.getItemsPerPage;
-          // this.setItemsPerPage(allItemsLength < itemsPerPage ? allItemsLength : itemsPerPage);
-          // this.setPageItems({ startIndex: 0, endIndex: this.getItemsPerPage - 1 });
-          //
         }
       },
       applyFilter(comparator, filterKey) {
@@ -113,20 +107,20 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
         console.log("Filtered items:", updatedItems);
         this.setFilteredItems(updatedItems);
         this.setCurrentPage(1);
-        // // TODO: Fix this
-        // const allItemsLength = this.getFilteredItems.length;
-        // const itemsPerPage = this.getItemsPerPage;
-        // this.setItemsPerPage(allItemsLength < itemsPerPage ? allItemsLength : itemsPerPage);
-        // this.setPageItems({ startIndex: 0, endIndex: this.getItemsPerPage - 1 });
         this.addFilter(comparator, filterKey);
       },
     },
     getters: {
       getItemsPerPage: (state) => state.itemsPerPage,
       getCurrentPage: (state) => state.currentPage,
-      getFilteredItems: (state) => (state.filteredItems.length === 0 ? state.allItems : state.filteredItems),
+      getFilteredItems: (state) =>
+        state.filteredItems.length === 0 && state.appliedFilters.length === 0 ? state.allItems : state.filteredItems,
       getItemsForList() {
-        const pageItems = this.getFilteredItems.slice((this.currentPage - 1) * 5, this.currentPage * 5);
+        const pageItems = this.getFilteredItems.slice(
+          (this.currentPage - 1) * this.getItemsPerPage,
+          this.currentPage * this.getItemsPerPage,
+        );
+        console.log("Page items: ", pageItems);
         return pageItems;
       },
     },

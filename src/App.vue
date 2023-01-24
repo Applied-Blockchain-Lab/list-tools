@@ -56,18 +56,17 @@ import NumberOfSelectedItems8 from "./components/selectors/NumberOfSelectedItems
 import NumberOfSelectedItems9 from "./components/selectors/NumberOfSelectedItems.vue?listId=9";
 import NumberOfSelectedItems10 from "./components/selectors/NumberOfSelectedItems.vue?listId=10";
 
-import TestPaginationComponent1 from "./demos/TestPaginationComponent.vue?listId=1";
-import TestPaginationComponent2 from "./demos/TestPaginationComponent.vue?listId=2";
-import TestPaginationComponent3 from "./demos/TestPaginationComponent.vue?listId=3";
-import TestPaginationComponent4 from "./demos/TestPaginationComponent.vue?listId=4";
-import TestPaginationComponent5 from "./demos/TestPaginationComponent.vue?listId=5";
-import TestPaginationComponent6 from "./demos/TestPaginationComponent.vue?listId=6";
-import TestPaginationComponent7 from "./demos/TestPaginationComponent.vue?listId=7";
-import TestPaginationComponent8 from "./demos/TestPaginationComponent.vue?listId=8";
-import TestPaginationComponent9 from "./demos/TestPaginationComponent.vue?listId=9";
-import TestPaginationComponent10 from "./demos/TestPaginationComponent.vue?listId=10";
+import Pagination1 from "./components/pagination/PaginationComponent.vue?listId=1";
+import Pagination2 from "./components/pagination/PaginationComponent.vue?listId=2";
+import Pagination3 from "./components/pagination/PaginationComponent.vue?listId=3";
+import Pagination4 from "./components/pagination/PaginationComponent.vue?listId=4";
+import Pagination5 from "./components/pagination/PaginationComponent.vue?listId=5";
+import Pagination6 from "./components/pagination/PaginationComponent.vue?listId=6";
+import Pagination7 from "./components/pagination/PaginationComponent.vue?listId=7";
+import Pagination8 from "./components/pagination/PaginationComponent.vue?listId=8";
+import Pagination9 from "./components/pagination/PaginationComponent.vue?listId=9";
+import Pagination10 from "./components/pagination/PaginationComponent.vue?listId=10";
 
-import Pagination1 from "./demos/PaginationComponent.vue?listId=1";
 import demoData from "../demo-data/demoData2.json";
 import useGlobalComposable from "./composables/globalComposable";
 
@@ -93,17 +92,16 @@ listTools8.init(demoData, 7);
 listTools9.init(demoData, 7);
 listTools10.init(demoData, 7);
 
-// const items1 = computed(() => listTools1.paginationUtils.paginate());
 const items1 = computed(() => listTools1.paginationUtils.getItems());
-const items2 = computed(() => listTools2.paginationUtils.paginate());
-const items3 = computed(() => listTools3.paginationUtils.paginate());
-const items4 = computed(() => listTools4.paginationUtils.paginate());
-const items5 = computed(() => listTools5.paginationUtils.paginate());
-const items6 = computed(() => listTools6.paginationUtils.paginate());
-const items7 = computed(() => listTools7.paginationUtils.paginate());
-const items8 = computed(() => listTools8.paginationUtils.paginate());
-const items9 = computed(() => listTools9.paginationUtils.paginate());
-const items10 = computed(() => listTools10.paginationUtils.paginate());
+const items2 = computed(() => listTools2.paginationUtils.getItems());
+const items3 = computed(() => listTools3.paginationUtils.getItems());
+const items4 = computed(() => listTools4.paginationUtils.getItems());
+const items5 = computed(() => listTools5.paginationUtils.getItems());
+const items6 = computed(() => listTools6.paginationUtils.getItems());
+const items7 = computed(() => listTools7.paginationUtils.getItems());
+const items8 = computed(() => listTools8.paginationUtils.getItems());
+const items9 = computed(() => listTools9.paginationUtils.getItems());
+const items10 = computed(() => listTools10.paginationUtils.getItems());
 
 const itemsPerPage1 = ref(listTools1.paginationUtils.getItemsPerPage());
 const itemsPerPage2 = ref(listTools2.paginationUtils.getItemsPerPage());
@@ -178,7 +176,6 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     </ol>
     <br />
     <hr />
-    <TestPaginationComponent1 />
     <Pagination1 />
   </div>
   <div class="wrapper">
@@ -255,7 +252,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
         </tr>
       </tbody>
     </table>
-    <TestPaginationComponent2 />
+    <Pagination2 />
   </div>
   <div class="wrapper">
     <h2>List 2</h2>
@@ -315,7 +312,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     </ol>
     <hr />
     <br />
-    <TestPaginationComponent3 />
+    <Pagination3 />
   </div>
   <div class="wrapper">
     <h1>Table 2</h1>
@@ -391,7 +388,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
         </tr>
       </tbody>
     </table>
-    <TestPaginationComponent4 />
+    <Pagination4 />
   </div>
   <div class="wrapper">
     <h2>List 3</h2>
@@ -451,7 +448,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     </ol>
     <br />
     <hr />
-    <TestPaginationComponent5 />
+    <Pagination5 />
   </div>
 
   <div class="wrapper">
@@ -528,7 +525,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
         </tr>
       </tbody>
     </table>
-    <TestPaginationComponent6 />
+    <Pagination6 />
   </div>
   <div class="wrapper">
     <h2>List 4</h2>
@@ -588,7 +585,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     </ol>
     <hr />
     <br />
-    <TestPaginationComponent7 />
+    <Pagination7 />
   </div>
   <div class="wrapper">
     <h1>Table 4</h1>
@@ -664,7 +661,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
         </tr>
       </tbody>
     </table>
-    <TestPaginationComponent8 />
+    <Pagination8 />
   </div>
   <div class="wrapper">
     <h2>List 5</h2>
@@ -724,7 +721,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     </ol>
     <hr />
     <br />
-    <TestPaginationComponent9 />
+    <Pagination9 />
   </div>
   <div class="wrapper">
     <h1>Table 5</h1>
@@ -800,7 +797,7 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
         </tr>
       </tbody>
     </table>
-    <TestPaginationComponent10 />
+    <Pagination10 />
   </div>
 </template>
 
