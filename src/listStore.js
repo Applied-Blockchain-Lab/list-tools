@@ -3,11 +3,13 @@ import { defineStore } from "pinia";
 import isEqual from "lodash.isequal";
 import filter from "lodash.filter";
 import get from "lodash.get";
+import orderBy from "lodash/orderBy";
 
-export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
+export const ListStore = (storeId, itemsPerPage, singleSort = true, isScrollable = false) =>
   defineStore(`${storeId}`, {
     state: () => ({
       allItems: [],
+      sortedItems: [],
       filteredItems: [],
       selectedItems: [],
       currentPage: 0,
@@ -17,10 +19,13 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
         endIndex: 0,
       },
       isScrollable: isScrollable,
+      appliedSorters: [],
       appliedFilters: [],
+      singleSort: singleSort,
     }),
     actions: {
-      init(allItems, itemsPerPage) {
+      init(allItems, itemsPerPage, singleSort) {
+        this.setSingleSort(singleSort);
         this.setAllItems(allItems);
         this.setCurrentPage(1);
 
@@ -28,6 +33,11 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
 
         this.setItemsPerPage(_itemsPerPage);
         this.setPageItems({ startIndex: 0, endIndex: this.pageItems.startIndex + this.itemsPerPage - 1 });
+        if (singleSort) {
+          this.addSorter = addSorterSingle;
+        } else {
+          this.addSorter = addSorterMultiple;
+        }
       },
       insertRow(item) {
         this.allItems.push(item);
@@ -40,6 +50,9 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
       },
       setSelectedItems(selectedItems) {
         this.selectedItems = selectedItems;
+      },
+      setSingleSort(singleSort) {
+        this.singleSort = singleSort;
       },
       isItemSelected(item) {
         for (let i = 0; i < this.selectedItems.length; i++) {
@@ -75,6 +88,7 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
           this.setFilteredItems(this.allItems);
         } else {
           this.applyFilters();
+          this.appliedSorters();
         }
       },
       applyFilters() {
@@ -120,10 +134,69 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
         this.setPageItems({ startIndex: 0, endIndex: this.getItemsPerPage - 1 });
         this.addFilter(comparator, filterKey);
       },
+      setSorters(sorters) {
+        this.appliedSorters = sorters;
+        this.applySorters();
+      },
+      removeSorter(componentId) {
+        for (let i = 0; i < this.appliedSorters.length; i++) {
+          if (this.appliedSorters[i].id === componentId) {
+            this.appliedSorters.splice(i, 1);
+            break;
+          }
+        }
+
+        this.applySorters();
+      },
+      applySorters() {
+        const keys = this.appliedSorters.map((sorter) => sorter.key);
+        const orders = this.appliedSorters.map((sorter) => sorter.order);
+
+        const sortedItems = orderBy(this.allItems, keys, orders);
+        this.setFilteredItems(sortedItems);
+
+        // TODO: Fix this
+        const allItemsLength = this.allItems.length;
+        const itemsPerPage = this.getItemsPerPage;
+        this.setItemsPerPage(allItemsLength < itemsPerPage ? allItemsLength : itemsPerPage);
+        this.setPageItems({ startIndex: 0, endIndex: this.getItemsPerPage - 1 });
+        //
+      },
     },
     getters: {
       getItemsPerPage: (state) => state.itemsPerPage,
       getCurrentPage: (state) => state.currentPage,
       getFilteredItems: (state) => (state.filteredItems.length === 0 ? state.allItems : state.filteredItems),
+      getSorterIndex: (state) => {
+        return (componentId) => {
+          for (let i = 0; i < state.appliedSorters.length; i++) {
+            if (state.appliedSorters[i].id === componentId) {
+              return i + 1;
+            }
+          }
+          return undefined;
+        };
+      },
     },
   })();
+
+function addSorterSingle(sorter) {
+  this.appliedSorters[0] = sorter;
+  this.applySorters();
+}
+
+function addSorterMultiple(sorter) {
+  let found = false;
+  for (let i = 0; i < this.appliedSorters.length; i++) {
+    if (this.appliedSorters[i].key === sorter.key) {
+      this.appliedSorters[i] = sorter;
+      found = true;
+      break;
+    }
+  }
+
+  if (!found) {
+    this.appliedSorters.push(sorter);
+  }
+  this.applySorters();
+}

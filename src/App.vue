@@ -1,5 +1,16 @@
+// buddy ignore:start
 <script setup>
 import { ref, computed } from "vue";
+import SingleSelectSort1 from "./components/sorters/SingleSelectSort.vue?listId=1";
+import SingleSelectSort3 from "./components/sorters/SingleSelectSort.vue?listId=3";
+import SingleSelectSort5 from "./components/sorters/SingleSelectSort.vue?listId=5";
+import SingleSelectSort7 from "./components/sorters/SingleSelectSort.vue?listId=7";
+import SingleSelectSort9 from "./components/sorters/SingleSelectSort.vue?listId=9";
+import DoubleSelectSort1 from "./components/sorters/DoubleSelectSort.vue?listId=1";
+import DoubleSelectSort3 from "./components/sorters/DoubleSelectSort.vue?listId=3";
+import DoubleSelectSort5 from "./components/sorters/DoubleSelectSort.vue?listId=5";
+import DoubleSelectSort7 from "./components/sorters/DoubleSelectSort.vue?listId=7";
+import DoubleSelectSort9 from "./components/sorters/DoubleSelectSort.vue?listId=9";
 import SortComponent from "./components/SortComponent.vue";
 import SortComponentV2 from "./components/SortComponentV2.vue";
 import InputFilter from "./components/filters/InputFilter.vue";
@@ -18,27 +29,27 @@ import TestPaginationComponent from "./demos/TestPaginationComponent.vue";
 import demoData from "../demo-data/demoData2.json";
 import useGlobalComposable from "./composables/globalComposable";
 
-const listTools1 = useGlobalComposable(1);
-const listTools2 = useGlobalComposable(2);
-const listTools3 = useGlobalComposable(3);
-const listTools4 = useGlobalComposable(4);
-const listTools5 = useGlobalComposable(5);
-const listTools6 = useGlobalComposable(6);
-const listTools7 = useGlobalComposable(7);
-const listTools8 = useGlobalComposable(8);
-const listTools9 = useGlobalComposable(9);
-const listTools10 = useGlobalComposable(10);
+const listTools1 = useGlobalComposable(1, 5, true);
+const listTools2 = useGlobalComposable(2, 10, true);
+const listTools3 = useGlobalComposable(3, 7, false);
+const listTools4 = useGlobalComposable(4, 7, false);
+const listTools5 = useGlobalComposable(5, 7, true);
+const listTools6 = useGlobalComposable(6, 7, true);
+const listTools7 = useGlobalComposable(7, 7, false);
+const listTools8 = useGlobalComposable(8, 7, false);
+const listTools9 = useGlobalComposable(9, 7, true);
+const listTools10 = useGlobalComposable(10, 7, true);
 
-listTools1.init(demoData, 5);
-listTools2.init(demoData, 10);
-listTools3.init(demoData, 7);
-listTools4.init(demoData, 7);
-listTools5.init(demoData, 7);
-listTools6.init(demoData, 7);
-listTools7.init(demoData, 7);
-listTools8.init(demoData, 7);
-listTools9.init(demoData, 7);
-listTools10.init(demoData, 7);
+listTools1.init(demoData);
+listTools2.init(demoData);
+listTools3.init(demoData);
+listTools4.init(demoData);
+listTools5.init(demoData);
+listTools6.init(demoData);
+listTools7.init(demoData);
+listTools8.init(demoData);
+listTools9.init(demoData);
+listTools10.init(demoData);
 
 const items1 = computed(() => listTools1.paginationUtils.paginate());
 const items2 = computed(() => listTools2.paginationUtils.paginate());
@@ -66,7 +77,20 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
 <template>
   <div class="wrapper">
     <h2>List 1</h2>
-    <p><label>Text:</label> <SortComponentV2 :id="1" /></p>
+    <p><label>Single select sort:</label> <SingleSelectSort1 /></p>
+    <p><label>Double select sort:</label> <DoubleSelectSort1 /></p>
+
+    <p><span v-sort:[1]="'L11'">sort d1</span></p>
+    <p><span v-sort:[1]="'L12.L21'">sort d2</span></p>
+    <p><span v-sort:[1]="'L12.L22'">sort d3</span></p>
+    <p><span v-sort:[1]="'L12.L23.L31'">sort d4</span></p>
+    <p><span v-sort:[1]="'L12.L23.L32'">sort d5</span></p>
+    <p><span v-sort:[1]="'L12.L23.L33'">sort d6</span></p>
+    <p><span v-sort:[1]="'L12.L23.L34'">sort d7</span></p>
+    <p><span v-sort:[1]="'L12.L23.L35'">sort d8</span></p>
+    <p><span v-sort:[1]="'L12.L23.L36'">sort d9</span></p>
+
+    <p><label>Sort component 2 (TODO):</label> <SortComponentV2 :id="1" /></p>
     <p>
       <label>Items per page:</label>
       <input type="text" name="" id="" v-model="itemsPerPage1" />
@@ -182,15 +206,15 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <table>
       <thead>
         <th></th>
-        <th @click="listTools2.sortUtils.sortBy({ key: `L11`, event: $event })">Number</th>
-        <th @click="listTools2.sortUtils.sortBy({ key: `L12.L21`, event: $event })">Country</th>
-        <th @click="listTools2.sortUtils.sortBy({ key: `L12.L22`, event: $event })">Recent Date</th>
-        <th @click="listTools2.sortUtils.sortBy({ key: `L12.L23.L31`, event: $event })">City</th>
-        <th @click="listTools2.sortUtils.sortBy({ key: `L12.L23.L32`, event: $event })">Boolean</th>
-        <th @click="listTools2.sortUtils.sortBy({ key: `L12.L23.L33`, event: $event })">Array of strings</th>
-        <th @click="listTools2.sortUtils.sortBy({ key: `L12.L23.L34`, event: $event })">Array of dates</th>
-        <th @click="listTools2.sortUtils.sortBy({ key: `L12.L23.L35`, event: $event })">Array of booleans</th>
-        <th @click="listTools2.sortUtils.sortBy({ key: `L12.L23.L36`, event: $event })">Array of numbers</th>
+        <th v-sort:[2]="'L11'">Number</th>
+        <th v-sort:[2]="'L12.L21'">Country</th>
+        <th v-sort:[2]="'L12.L22'">Recent Date</th>
+        <th v-sort:[2]="'L12.L23.L31'">City</th>
+        <th v-sort:[2]="'L12.L23.L32'">Boolean</th>
+        <th v-sort:[2]="'L12.L23.L33'">Array of strings</th>
+        <th v-sort:[2]="'L12.L23.L34'">Array of dates</th>
+        <th v-sort:[2]="'L12.L23.L35'">Array of booleans</th>
+        <th v-sort:[2]="'L12.L23.L36'">Array of numbers</th>
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items2" :key="rowIndex">
@@ -211,7 +235,20 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
   </div>
   <div class="wrapper">
     <h2>List 2</h2>
-    <SortComponent :id="3" />
+    <SingleSelectSort3 />
+    <DoubleSelectSort3 />
+
+    <p><span v-sort:[3]="'L11'">sort d1</span></p>
+    <p><span v-sort:[3]="'L12.L21'">sort d2</span></p>
+    <p><span v-sort:[3]="'L12.L22'">sort d3</span></p>
+    <p><span v-sort:[3]="'L12.L23.L31'">sort d4</span></p>
+    <p><span v-sort:[3]="'L12.L23.L32'">sort d5</span></p>
+    <p><span v-sort:[3]="'L12.L23.L33'">sort d6</span></p>
+    <p><span v-sort:[3]="'L12.L23.L34'">sort d7</span></p>
+    <p><span v-sort:[3]="'L12.L23.L35'">sort d8</span></p>
+    <p><span v-sort:[3]="'L12.L23.L36'">sort d9</span></p>
+
+    <p><label>Sort component (TODO):</label> <SortComponent :id="3" /></p>
     <br />
     <FilterComponent :id="3" />
     <br />
@@ -330,15 +367,15 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <table>
       <thead>
         <th></th>
-        <th @click="listTools4.sortUtils.sortBy({ key: `L11`, event: $event })">Number</th>
-        <th @click="listTools4.sortUtils.sortBy({ key: `L12.L21`, event: $event })">Country</th>
-        <th @click="listTools4.sortUtils.sortBy({ key: `L12.L22`, event: $event })">Recent Date</th>
-        <th @click="listTools4.sortUtils.sortBy({ key: `L12.L23.L31`, event: $event })">City</th>
-        <th @click="listTools4.sortUtils.sortBy({ key: `L12.L23.L32`, event: $event })">Boolean</th>
-        <th @click="listTools4.sortUtils.sortBy({ key: `L12.L23.L33`, event: $event })">Array of strings</th>
-        <th @click="listTools4.sortUtils.sortBy({ key: `L12.L23.L34`, event: $event })">Array of dates</th>
-        <th @click="listTools4.sortUtils.sortBy({ key: `L12.L23.L35`, event: $event })">Array of booleans</th>
-        <th @click="listTools4.sortUtils.sortBy({ key: `L12.L23.L36`, event: $event })">Array of numbers</th>
+        <th v-sort:[4]="'L11'">Number</th>
+        <th v-sort:[4]="'L12.L21'">Country</th>
+        <th v-sort:[4]="'L12.L22'">Recent Date</th>
+        <th v-sort:[4]="'L12.L23.L31'">City</th>
+        <th v-sort:[4]="'L12.L23.L32'">Boolean</th>
+        <th v-sort:[4]="'L12.L23.L33'">Array of strings</th>
+        <th v-sort:[4]="'L12.L23.L34'">Array of dates</th>
+        <th v-sort:[4]="'L12.L23.L35'">Array of booleans</th>
+        <th v-sort:[4]="'L12.L23.L36'">Array of numbers</th>
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items4" :key="rowIndex">
@@ -359,7 +396,19 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
   </div>
   <div class="wrapper">
     <h2>List 3</h2>
-    <SortComponentV2 :id="5" />
+    <SingleSelectSort5 />
+    <DoubleSelectSort5 />
+    <p><span v-sort:[5]="'L11'">sort d1</span></p>
+    <p><span v-sort:[5]="'L12.L21'">sort d2</span></p>
+    <p><span v-sort:[5]="'L12.L22'">sort d3</span></p>
+    <p><span v-sort:[5]="'L12.L23.L31'">sort d4</span></p>
+    <p><span v-sort:[5]="'L12.L23.L32'">sort d5</span></p>
+    <p><span v-sort:[5]="'L12.L23.L33'">sort d6</span></p>
+    <p><span v-sort:[5]="'L12.L23.L34'">sort d7</span></p>
+    <p><span v-sort:[5]="'L12.L23.L35'">sort d8</span></p>
+    <p><span v-sort:[5]="'L12.L23.L36'">sort d9</span></p>
+
+    <p><label>Sort component (TODO):</label> <SortComponentV2 :id="5" /></p>
     <br />
     <FilterComponent :id="5" />
     <br />
@@ -479,15 +528,15 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <table>
       <thead>
         <th></th>
-        <th @click="listTools6.sortUtils.sortBy({ key: `L11`, event: $event })">Number</th>
-        <th @click="listTools6.sortUtils.sortBy({ key: `L12.L21`, event: $event })">Country</th>
-        <th @click="listTools6.sortUtils.sortBy({ key: `L12.L22`, event: $event })">Recent Date</th>
-        <th @click="listTools6.sortUtils.sortBy({ key: `L12.L23.L31`, event: $event })">City</th>
-        <th @click="listTools6.sortUtils.sortBy({ key: `L12.L23.L32`, event: $event })">Boolean</th>
-        <th @click="listTools6.sortUtils.sortBy({ key: `L12.L23.L33`, event: $event })">Array of strings</th>
-        <th @click="listTools6.sortUtils.sortBy({ key: `L12.L23.L34`, event: $event })">Array of dates</th>
-        <th @click="listTools6.sortUtils.sortBy({ key: `L12.L23.L35`, event: $event })">Array of booleans</th>
-        <th @click="listTools6.sortUtils.sortBy({ key: `L12.L23.L36`, event: $event })">Array of numbers</th>
+        <th v-sort:[6]="'L11'">Number</th>
+        <th v-sort:[6]="'L12.L21'">Country</th>
+        <th v-sort:[6]="'L12.L22'">Recent Date</th>
+        <th v-sort:[6]="'L12.L23.L31'">City</th>
+        <th v-sort:[6]="'L12.L23.L32'">Boolean</th>
+        <th v-sort:[6]="'L12.L23.L33'">Array of strings</th>
+        <th v-sort:[6]="'L12.L23.L34'">Array of dates</th>
+        <th v-sort:[6]="'L12.L23.L35'">Array of booleans</th>
+        <th v-sort:[6]="'L12.L23.L36'">Array of numbers</th>
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items6" :key="rowIndex">
@@ -508,7 +557,19 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
   </div>
   <div class="wrapper">
     <h2>List 4</h2>
-    <SortComponent :id="7" />
+    <SingleSelectSort7 />
+    <DoubleSelectSort7 />
+    <p><span v-sort:[7]="'L11'">sort d1</span></p>
+    <p><span v-sort:[7]="'L12.L21'">sort d2</span></p>
+    <p><span v-sort:[7]="'L12.L22'">sort d3</span></p>
+    <p><span v-sort:[7]="'L12.L23.L31'">sort d4</span></p>
+    <p><span v-sort:[7]="'L12.L23.L32'">sort d5</span></p>
+    <p><span v-sort:[7]="'L12.L23.L33'">sort d6</span></p>
+    <p><span v-sort:[7]="'L12.L23.L34'">sort d7</span></p>
+    <p><span v-sort:[7]="'L12.L23.L35'">sort d8</span></p>
+    <p><span v-sort:[7]="'L12.L23.L36'">sort d9</span></p>
+
+    <p><label>Sort component (TODO):</label> <SortComponent :id="7" /></p>
     <br />
     <FilterComponent :id="7" />
     <br />
@@ -627,15 +688,15 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <table>
       <thead>
         <th></th>
-        <th @click="listTools8.sortUtils.sortBy({ key: `L11`, event: $event })">Number</th>
-        <th @click="listTools8.sortUtils.sortBy({ key: `L12.L21`, event: $event })">Country</th>
-        <th @click="listTools8.sortUtils.sortBy({ key: `L12.L22`, event: $event })">Recent Date</th>
-        <th @click="listTools8.sortUtils.sortBy({ key: `L12.L23.L31`, event: $event })">City</th>
-        <th @click="listTools8.sortUtils.sortBy({ key: `L12.L23.L32`, event: $event })">Boolean</th>
-        <th @click="listTools8.sortUtils.sortBy({ key: `L12.L23.L33`, event: $event })">Array of strings</th>
-        <th @click="listTools8.sortUtils.sortBy({ key: `L12.L23.L34`, event: $event })">Array of dates</th>
-        <th @click="listTools8.sortUtils.sortBy({ key: `L12.L23.L35`, event: $event })">Array of booleans</th>
-        <th @click="listTools8.sortUtils.sortBy({ key: `L12.L23.L36`, event: $event })">Array of numbers</th>
+        <th v-sort:[8]="'L11'">Number</th>
+        <th v-sort:[8]="'L12.L21'">Country</th>
+        <th v-sort:[8]="'L12.L22'">Recent Date</th>
+        <th v-sort:[8]="'L12.L23.L31'">City</th>
+        <th v-sort:[8]="'L12.L23.L32'">Boolean</th>
+        <th v-sort:[8]="'L12.L23.L33'">Array of strings</th>
+        <th v-sort:[8]="'L12.L23.L34'">Array of dates</th>
+        <th v-sort:[8]="'L12.L23.L35'">Array of booleans</th>
+        <th v-sort:[8]="'L12.L23.L36'">Array of numbers</th>
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items8" :key="rowIndex">
@@ -656,7 +717,18 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
   </div>
   <div class="wrapper">
     <h2>List 5</h2>
-    <SortComponentV2 :id="9" />
+    <SingleSelectSort9 />
+    <DoubleSelectSort9 />
+    <p><span v-sort:[9]="'L11'">sort d1</span></p>
+    <p><span v-sort:[9]="'L12.L21'">sort d2</span></p>
+    <p><span v-sort:[9]="'L12.L22'">sort d3</span></p>
+    <p><span v-sort:[9]="'L12.L23.L31'">sort d4</span></p>
+    <p><span v-sort:[9]="'L12.L23.L32'">sort d5</span></p>
+    <p><span v-sort:[9]="'L12.L23.L33'">sort d6</span></p>
+    <p><span v-sort:[9]="'L12.L23.L34'">sort d7</span></p>
+    <p><span v-sort:[9]="'L12.L23.L35'">sort d8</span></p>
+    <p><span v-sort:[9]="'L12.L23.L36'">sort d9</span></p>
+    <p><label>Sort component (TODO):</label> <SortComponentV2 :id="9" /></p>
     <br />
     <FilterComponent :id="9" />
     <br />
@@ -775,15 +847,15 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <table>
       <thead>
         <th></th>
-        <th @click="listTools10.sortUtils.sortBy({ key: `L11`, event: $event })">Number</th>
-        <th @click="listTools10.sortUtils.sortBy({ key: `L12.L21`, event: $event })">Country</th>
-        <th @click="listTools10.sortUtils.sortBy({ key: `L12.L22`, event: $event })">Recent Date</th>
-        <th @click="listTools10.sortUtils.sortBy({ key: `L12.L23.L31`, event: $event })">City</th>
-        <th @click="listTools10.sortUtils.sortBy({ key: `L12.L23.L32`, event: $event })">Boolean</th>
-        <th @click="listTools10.sortUtils.sortBy({ key: `L12.L23.L33`, event: $event })">Array of strings</th>
-        <th @click="listTools10.sortUtils.sortBy({ key: `L12.L23.L34`, event: $event })">Array of dates</th>
-        <th @click="listTools10.sortUtils.sortBy({ key: `L12.L23.L35`, event: $event })">Array of booleans</th>
-        <th @click="listTools10.sortUtils.sortBy({ key: `L12.L23.L36`, event: $event })">Array of numbers</th>
+        <th v-sort:[10]="'L11'">Number</th>
+        <th v-sort:[10]="'L12.L21'">Country</th>
+        <th v-sort:[10]="'L12.L22'">Recent Date</th>
+        <th v-sort:[10]="'L12.L23.L31'">City</th>
+        <th v-sort:[10]="'L12.L23.L32'">Boolean</th>
+        <th v-sort:[10]="'L12.L23.L33'">Array of strings</th>
+        <th v-sort:[10]="'L12.L23.L34'">Array of dates</th>
+        <th v-sort:[10]="'L12.L23.L35'">Array of booleans</th>
+        <th v-sort:[10]="'L12.L23.L36'">Array of numbers</th>
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items10" :key="rowIndex">
@@ -833,3 +905,4 @@ table {
   background-color: yellow;
 }
 </style>
+// buddy ignore:end
