@@ -4,7 +4,7 @@ import { addIndex } from "../../utils/sorterIndex.js";
 
 export const sort = {
   mounted(el, binding) {
-    const componentId = Math.ceil(Math.random() * 1000000);
+    const componentId = Math.ceil(Math.random() * 1000000); // buddy ignore:line
     const listStore = ListStore(binding.arg);
 
     el.classList.add("sorter");

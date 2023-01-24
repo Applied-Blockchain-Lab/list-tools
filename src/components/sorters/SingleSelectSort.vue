@@ -10,7 +10,7 @@ const listStore = ListStore(listId);
 const { keyify } = useGlobalComposable(listId);
 const selectedSorter = ref("");
 const root = ref(null);
-const componentId = Math.ceil(Math.random() * 1000000);
+const componentId = Math.ceil(Math.random() * 1000000); // buddy ignore:line
 
 const sortableKeys = () => {
   const keys = keyify();
