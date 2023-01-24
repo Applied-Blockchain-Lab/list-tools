@@ -1,9 +1,16 @@
+// buddy ignore:start
 <script setup>
 import { ref, computed } from "vue";
 import SingleSelectSort1 from "./components/sorters/SingleSelectSort.vue?listId=1";
 import SingleSelectSort3 from "./components/sorters/SingleSelectSort.vue?listId=3";
+import SingleSelectSort5 from "./components/sorters/SingleSelectSort.vue?listId=5";
+import SingleSelectSort7 from "./components/sorters/SingleSelectSort.vue?listId=7";
+import SingleSelectSort9 from "./components/sorters/SingleSelectSort.vue?listId=9";
 import DoubleSelectSort1 from "./components/sorters/DoubleSelectSort.vue?listId=1";
 import DoubleSelectSort3 from "./components/sorters/DoubleSelectSort.vue?listId=3";
+import DoubleSelectSort5 from "./components/sorters/DoubleSelectSort.vue?listId=5";
+import DoubleSelectSort7 from "./components/sorters/DoubleSelectSort.vue?listId=7";
+import DoubleSelectSort9 from "./components/sorters/DoubleSelectSort.vue?listId=9";
 import SortComponent from "./components/SortComponent.vue";
 import SortComponentV2 from "./components/SortComponentV2.vue";
 import InputFilter from "./components/filters/InputFilter.vue";
@@ -229,8 +236,17 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
   <div class="wrapper">
     <h2>List 2</h2>
     <SingleSelectSort3 />
-    <SingleSelectSort3 />
     <DoubleSelectSort3 />
+
+    <p><span v-sort:[3]="'L11'">sort d1</span></p>
+    <p><span v-sort:[3]="'L12.L21'">sort d2</span></p>
+    <p><span v-sort:[3]="'L12.L22'">sort d3</span></p>
+    <p><span v-sort:[3]="'L12.L23.L31'">sort d4</span></p>
+    <p><span v-sort:[3]="'L12.L23.L32'">sort d5</span></p>
+    <p><span v-sort:[3]="'L12.L23.L33'">sort d6</span></p>
+    <p><span v-sort:[3]="'L12.L23.L34'">sort d7</span></p>
+    <p><span v-sort:[3]="'L12.L23.L35'">sort d8</span></p>
+    <p><span v-sort:[3]="'L12.L23.L36'">sort d9</span></p>
 
     <p><label>Sort component (TODO):</label> <SortComponent :id="3" /></p>
     <br />
@@ -380,7 +396,19 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
   </div>
   <div class="wrapper">
     <h2>List 3</h2>
-    <SortComponentV2 :id="5" />
+    <SingleSelectSort5 />
+    <DoubleSelectSort5 />
+    <p><span v-sort:[5]="'L11'">sort d1</span></p>
+    <p><span v-sort:[5]="'L12.L21'">sort d2</span></p>
+    <p><span v-sort:[5]="'L12.L22'">sort d3</span></p>
+    <p><span v-sort:[5]="'L12.L23.L31'">sort d4</span></p>
+    <p><span v-sort:[5]="'L12.L23.L32'">sort d5</span></p>
+    <p><span v-sort:[5]="'L12.L23.L33'">sort d6</span></p>
+    <p><span v-sort:[5]="'L12.L23.L34'">sort d7</span></p>
+    <p><span v-sort:[5]="'L12.L23.L35'">sort d8</span></p>
+    <p><span v-sort:[5]="'L12.L23.L36'">sort d9</span></p>
+
+    <p><label>Sort component (TODO):</label> <SortComponentV2 :id="5" /></p>
     <br />
     <FilterComponent :id="5" />
     <br />
@@ -529,7 +557,19 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
   </div>
   <div class="wrapper">
     <h2>List 4</h2>
-    <SortComponent :id="7" />
+    <SingleSelectSort7 />
+    <DoubleSelectSort7 />
+    <p><span v-sort:[7]="'L11'">sort d1</span></p>
+    <p><span v-sort:[7]="'L12.L21'">sort d2</span></p>
+    <p><span v-sort:[7]="'L12.L22'">sort d3</span></p>
+    <p><span v-sort:[7]="'L12.L23.L31'">sort d4</span></p>
+    <p><span v-sort:[7]="'L12.L23.L32'">sort d5</span></p>
+    <p><span v-sort:[7]="'L12.L23.L33'">sort d6</span></p>
+    <p><span v-sort:[7]="'L12.L23.L34'">sort d7</span></p>
+    <p><span v-sort:[7]="'L12.L23.L35'">sort d8</span></p>
+    <p><span v-sort:[7]="'L12.L23.L36'">sort d9</span></p>
+
+    <p><label>Sort component (TODO):</label> <SortComponent :id="7" /></p>
     <br />
     <FilterComponent :id="7" />
     <br />
@@ -677,7 +717,18 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
   </div>
   <div class="wrapper">
     <h2>List 5</h2>
-    <SortComponentV2 :id="9" />
+    <SingleSelectSort9 />
+    <DoubleSelectSort9 />
+    <p><span v-sort:[9]="'L11'">sort d1</span></p>
+    <p><span v-sort:[9]="'L12.L21'">sort d2</span></p>
+    <p><span v-sort:[9]="'L12.L22'">sort d3</span></p>
+    <p><span v-sort:[9]="'L12.L23.L31'">sort d4</span></p>
+    <p><span v-sort:[9]="'L12.L23.L32'">sort d5</span></p>
+    <p><span v-sort:[9]="'L12.L23.L33'">sort d6</span></p>
+    <p><span v-sort:[9]="'L12.L23.L34'">sort d7</span></p>
+    <p><span v-sort:[9]="'L12.L23.L35'">sort d8</span></p>
+    <p><span v-sort:[9]="'L12.L23.L36'">sort d9</span></p>
+    <p><label>Sort component (TODO):</label> <SortComponentV2 :id="9" /></p>
     <br />
     <FilterComponent :id="9" />
     <br />
@@ -854,3 +905,4 @@ table {
   background-color: yellow;
 }
 </style>
+// buddy ignore:end
