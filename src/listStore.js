@@ -60,6 +60,16 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
         this.currentPage = Number(page);
       },
       addFilter(comparator, filterKey) {
+        console.log("Add filter:", comparator, filterKey);
+        // console.log("Index of same filter:", this.appliedFilters.findIndex(
+        //   (el) => el.comparator.toString() === comparator.toString() && el.filterKey === filterKey,
+        // ));
+        // const existingFilterIndex = this.appliedFilters.findIndex(
+        //   (el) => el.comparator.toString() === comparator.toString() && el.filterKey === filterKey,
+        // );
+        // if (existingFilterIndex !== -1) {
+        //   this.appliedFilters.splice(existingFilterIndex, 1);
+        // }
         this.appliedFilters.push({ comparator: comparator, filterKey: filterKey });
         console.log("Applied filters:", this.appliedFilters);
       },
@@ -97,17 +107,32 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
         }
       },
       applyFilter(comparator, filterKey) {
-        const items = this.getFilteredItems;
-        const filteredItems = filter(
-          items.map((el) => get(el, filterKey)),
-          comparator,
+        console.log(
+          "Index of same filter:",
+          this.appliedFilters.findIndex(
+            (el) => el.comparator.toString() === comparator.toString() && el.filterKey === filterKey,
+          ),
         );
-        const updatedItems = items.filter((item) => filteredItems.includes(get(item, filterKey)));
+        const existingFilterIndex = this.appliedFilters.findIndex(
+          (el) => el.comparator.toString() === comparator.toString() && el.filterKey === filterKey,
+        );
+        if (existingFilterIndex !== -1) {
+          this.appliedFilters.splice(existingFilterIndex, 1);
+          this.addFilter(comparator, filterKey);
+          this.applyFilters();
+        } else {
+          const items = this.getFilteredItems;
+          const filteredItems = filter(
+            items.map((el) => get(el, filterKey)),
+            comparator,
+          );
+          const updatedItems = items.filter((item) => filteredItems.includes(get(item, filterKey)));
 
-        console.log("Filtered items:", updatedItems);
-        this.setFilteredItems(updatedItems);
-        this.setCurrentPage(1);
-        this.addFilter(comparator, filterKey);
+          console.log("Filtered items:", updatedItems);
+          this.setFilteredItems(updatedItems);
+          this.setCurrentPage(1);
+          this.addFilter(comparator, filterKey);
+        }
       },
     },
     getters: {
@@ -116,6 +141,7 @@ export const ListStore = (storeId, itemsPerPage, isScrollable = false) =>
       getFilteredItems: (state) =>
         state.filteredItems.length === 0 && state.appliedFilters.length === 0 ? state.allItems : state.filteredItems,
       getItemsForList() {
+        // Rename getCurrPageItems
         const pageItems = this.getFilteredItems.slice(
           (this.currentPage - 1) * this.getItemsPerPage,
           this.currentPage * this.getItemsPerPage,

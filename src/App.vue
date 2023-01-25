@@ -125,33 +125,37 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
       <button @click="listTools1.paginationUtils.setItemsPerPage(itemsPerPage1)">Set items per page</button>
     </p>
 
-    <p><label>Input filter by number:</label> <InputFilter1 filterKey="L11" compare="num" /></p>
-    <p><label>Input filter by day of the month:</label> <InputFilter1 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Input filter by month:</label> <InputFilter1 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Input filter by year:</label> <InputFilter1 filterKey="L12.L22" compare="year" /></p>
+    <p><label>Input filter by number: (Number)</label> <InputFilter1 filterKey="L11" compare="num" /></p>
     <p>
-      <label>Input filter by number of elements in array:</label>
+      <label>Input filter by day of the month: (Recent Date)</label> <InputFilter1 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month: (Recent Date)</label> <InputFilter1 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year: (Recent Date)</label> <InputFilter1 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array: (Arr-string)</label>
       <InputFilter1 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Input filter by having an exact string in array of strings:</label>
+      <label>Input filter by having an exact string in array of strings: (Arr-string)</label>
       <InputFilter1 filterKey="L12.L23.L33" compare="stringInArr" />
     </p>
     <p>
-      <label>Input filter by string in string:</label>
+      <label>Input filter by string in string: (Country)</label>
       <InputFilter1 filterKey="L12.L21" compare="stringInString" />
     </p>
-    <p><label>Input filter by exact string:</label> <InputFilter1 filterKey="L12.L21" compare="string" /></p>
-    <p><label>Range filter by number:</label> <RangeFilter1 filterKey="L11" compare="num" /></p>
-    <p><label>Range filter by day of the month:</label> <RangeFilter1 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Range filter by month:</label> <RangeFilter1 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Range filter by year:</label> <RangeFilter1 filterKey="L12.L22" compare="year" /></p>
+    <p><label>Input filter by exact string: (Country)</label> <InputFilter1 filterKey="L12.L21" compare="string" /></p>
+    <p><label>Range filter by number: (Number)</label> <RangeFilter1 filterKey="L11" compare="num" /></p>
     <p>
-      <label>Range filter by number of elements in array:</label>
+      <label>Range filter by day of the month: (Recent Date)</label> <RangeFilter1 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month: (Recent Date)</label> <RangeFilter1 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year: (Recent Date)</label> <RangeFilter1 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array: (Arr-string)</label>
       <RangeFilter1 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Range filter by having a number in array of numbers:</label>
+      <label>Range filter by having a number in array of numbers: (Arr-nums)</label>
       <RangeFilter1 filterKey="L12.L23.L36" compare="numInArr" />
     </p>
 
@@ -186,31 +190,37 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <br />
     <input type="text" name="" id="" v-model="itemsPerPage2" />
     <button @click="listTools2.paginationUtils.setItemsPerPage(itemsPerPage2)">Set items per page</button>
-    <p><label>Input filter by number:</label> <InputFilter2 filterKey="L11" compare="Number" /></p>
-    <p><label>Input filter by day of the month:</label> <InputFilter2 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Input filter by month:</label> <InputFilter2 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Input filter by year:</label> <InputFilter2 filterKey="L12.L22" compare="year" /></p>
+    <p><label>Input filter by number: (Number)</label> <InputFilter2 filterKey="L11" compare="num" /></p>
     <p>
-      <label>Input filter by number of elements in array:</label>
+      <label>Input filter by day of the month: (Recent Date)</label> <InputFilter2 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month: (Recent Date)</label> <InputFilter2 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year: (Recent Date)</label> <InputFilter2 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array: (Arr-string)</label>
       <InputFilter2 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Input filter by having an exact string in array of strings:</label>
-      <InputFilter2 filterKey="L12.L23.L33" compare="numEl" />
+      <label>Input filter by having an exact string in array of strings: (Arr-string)</label>
+      <InputFilter2 filterKey="L12.L23.L33" compare="stringInArr" />
     </p>
-    <p><label>Input filter by string in string:</label> <InputFilter2 filterKey="L12.L21" compare="num" /></p>
-    <p><label>Input filter by exact string:</label> <InputFilter2 filterKey="L12.L21" compare="num" /></p>
-
-    <p><label>Range filter by number:</label> <RangeFilter2 filterKey="L11" compare="num" /></p>
-    <p><label>Range filter by day of the month:</label> <RangeFilter2 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Range filter by month:</label> <RangeFilter2 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Range filter by year:</label> <RangeFilter2 filterKey="L12.L22" compare="year" /></p>
     <p>
-      <label>Range filter by number of elements in array:</label>
+      <label>Input filter by string in string: (Country)</label>
+      <InputFilter2 filterKey="L12.L21" compare="stringInString" />
+    </p>
+    <p><label>Input filter by exact string: (Country)</label> <InputFilter2 filterKey="L12.L21" compare="string" /></p>
+    <p><label>Range filter by number: (Number)</label> <RangeFilter2 filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month: (Recent Date)</label> <RangeFilter2 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month: (Recent Date)</label> <RangeFilter2 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year: (Recent Date)</label> <RangeFilter2 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array: (Arr-string)</label>
       <RangeFilter2 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Range filter by having a number in array of numbers:</label>
+      <label>Range filter by having a number in array of numbers: (Arr-nums)</label>
       <RangeFilter2 filterKey="L12.L23.L36" compare="numInArr" />
     </p>
 
@@ -264,31 +274,37 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <button @click="listTools3.setItemsPerPage(itemsPerPage3)">Set items per page</button>
     <br />
     <span @click="listTools3.sortUtils.sortBy({ key: `L12.L21`, event: $event })">Sort by Country</span>
-    <p><label>Input filter by number:</label> <InputFilter3 filterKey="L11" compare="Number" /></p>
-    <p><label>Input filter by day of the month:</label> <InputFilter3 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Input filter by month:</label> <InputFilter3 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Input filter by year:</label> <InputFilter3 filterKey="L12.L22" compare="year" /></p>
+    <p><label>Input filter by number: (Number)</label> <InputFilter3 filterKey="L11" compare="num" /></p>
     <p>
-      <label>Input filter by number of elements in array:</label>
+      <label>Input filter by day of the month: (Recent Date)</label> <InputFilter3 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month: (Recent Date)</label> <InputFilter3 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year: (Recent Date)</label> <InputFilter3 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array: (Arr-string)</label>
       <InputFilter3 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Input filter by having an exact string in array of strings:</label>
-      <InputFilter3 filterKey="L12.L23.L33" compare="numEl" />
+      <label>Input filter by having an exact string in array of strings: (Arr-string)</label>
+      <InputFilter3 filterKey="L12.L23.L33" compare="stringInArr" />
     </p>
-    <p><label>Input filter by string in string:</label> <InputFilter3 filterKey="L12.L21" compare="num" /></p>
-    <p><label>Input filter by exact string:</label> <InputFilter3 filterKey="L12.L21" compare="num" /></p>
-
-    <p><label>Range filter by number:</label> <RangeFilter3 filterKey="L11" compare="num" /></p>
-    <p><label>Range filter by day of the month:</label> <RangeFilter3 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Range filter by month:</label> <RangeFilter3 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Range filter by year:</label> <RangeFilter3 filterKey="L12.L22" compare="year" /></p>
     <p>
-      <label>Range filter by number of elements in array:</label>
+      <label>Input filter by string in string: (Country)</label>
+      <InputFilter3 filterKey="L12.L21" compare="stringInString" />
+    </p>
+    <p><label>Input filter by exact string: (Country)</label> <InputFilter3 filterKey="L12.L21" compare="string" /></p>
+    <p><label>Range filter by number: (Number)</label> <RangeFilter3 filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month: (Recent Date)</label> <RangeFilter3 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month: (Recent Date)</label> <RangeFilter3 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year: (Recent Date)</label> <RangeFilter3 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array: (Arr-string)</label>
       <RangeFilter3 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Range filter by having a number in array of numbers:</label>
+      <label>Range filter by having a number in array of numbers: (Arr-nums)</label>
       <RangeFilter3 filterKey="L12.L23.L36" compare="numInArr" />
     </p>
 
@@ -322,31 +338,37 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <br />
     <input type="text" name="" id="" v-model="itemsPerPage4" />
     <button @click="listTools4.paginationUtils.setItemsPerPage(itemsPerPage4)">Set items per page</button>
-    <p><label>Input filter by number:</label> <InputFilter4 filterKey="L11" compare="Number" /></p>
-    <p><label>Input filter by day of the month:</label> <InputFilter4 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Input filter by month:</label> <InputFilter4 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Input filter by year:</label> <InputFilter4 filterKey="L12.L22" compare="year" /></p>
+    <p><label>Input filter by number: (Number)</label> <InputFilter4 filterKey="L11" compare="num" /></p>
     <p>
-      <label>Input filter by number of elements in array:</label>
+      <label>Input filter by day of the month: (Recent Date)</label> <InputFilter4 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month: (Recent Date)</label> <InputFilter4 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year: (Recent Date)</label> <InputFilter4 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array: (Arr-string)</label>
       <InputFilter4 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Input filter by having an exact string in array of strings:</label>
-      <InputFilter4 filterKey="L12.L23.L33" compare="numEl" />
+      <label>Input filter by having an exact string in array of strings: (Arr-string)</label>
+      <InputFilter4 filterKey="L12.L23.L33" compare="stringInArr" />
     </p>
-    <p><label>Input filter by string in string:</label> <InputFilter4 filterKey="L12.L21" compare="num" /></p>
-    <p><label>Input filter by exact string:</label> <InputFilter4 filterKey="L12.L21" compare="num" /></p>
-
-    <p><label>Range filter by number:</label> <RangeFilter4 filterKey="L11" compare="num" /></p>
-    <p><label>Range filter by day of the month:</label> <RangeFilter4 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Range filter by month:</label> <RangeFilter4 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Range filter by year:</label> <RangeFilter4 filterKey="L12.L22" compare="year" /></p>
     <p>
-      <label>Range filter by number of elements in array:</label>
+      <label>Input filter by string in string: (Country)</label>
+      <InputFilter4 filterKey="L12.L21" compare="stringInString" />
+    </p>
+    <p><label>Input filter by exact string: (Country)</label> <InputFilter4 filterKey="L12.L21" compare="string" /></p>
+    <p><label>Range filter by number: (Number)</label> <RangeFilter4 filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month: (Recent Date)</label> <RangeFilter4 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month: (Recent Date)</label> <RangeFilter4 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year: (Recent Date)</label> <RangeFilter4 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array: (Arr-string)</label>
       <RangeFilter4 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Range filter by having a number in array of numbers:</label>
+      <label>Range filter by having a number in array of numbers: (Arr-nums)</label>
       <RangeFilter4 filterKey="L12.L23.L36" compare="numInArr" />
     </p>
 
@@ -400,31 +422,37 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <button @click="listTools5.paginationUtils.setItemsPerPage(itemsPerPage5)">Set items per page</button>
     <br />
     <span @click="listTools5.sortUtils.sortBy({ key: `L12.L22`, event: $event })">Sort by Recent Date</span>
-    <p><label>Input filter by number:</label> <InputFilter4 filterKey="L11" compare="Number" /></p>
-    <p><label>Input filter by day of the month:</label> <InputFilter4 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Input filter by month:</label> <InputFilter5 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Input filter by year:</label> <InputFilter5 filterKey="L12.L22" compare="year" /></p>
+    <p><label>Input filter by number: (Number)</label> <InputFilter5 filterKey="L11" compare="num" /></p>
     <p>
-      <label>Input filter by number of elements in array:</label>
+      <label>Input filter by day of the month: (Recent Date)</label> <InputFilter5 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month: (Recent Date)</label> <InputFilter5 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year: (Recent Date)</label> <InputFilter5 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array: (Arr-string)</label>
       <InputFilter5 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Input filter by having an exact string in array of strings:</label>
-      <InputFilter5 filterKey="L12.L23.L33" compare="numEl" />
+      <label>Input filter by having an exact string in array of strings: (Arr-string)</label>
+      <InputFilter5 filterKey="L12.L23.L33" compare="stringInArr" />
     </p>
-    <p><label>Input filter by string in string:</label> <InputFilter5 filterKey="L12.L21" compare="num" /></p>
-    <p><label>Input filter by exact string:</label> <InputFilter5 filterKey="L12.L21" compare="num" /></p>
-
-    <p><label>Range filter by number:</label> <RangeFilter5 filterKey="L11" compare="num" /></p>
-    <p><label>Range filter by day of the month:</label> <RangeFilter5 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Range filter by month:</label> <RangeFilter5 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Range filter by year:</label> <RangeFilter5 filterKey="L12.L22" compare="year" /></p>
     <p>
-      <label>Range filter by number of elements in array:</label>
+      <label>Input filter by string in string: (Country)</label>
+      <InputFilter5 filterKey="L12.L21" compare="stringInString" />
+    </p>
+    <p><label>Input filter by exact string: (Country)</label> <InputFilter5 filterKey="L12.L21" compare="string" /></p>
+    <p><label>Range filter by number: (Number)</label> <RangeFilter5 filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month: (Recent Date)</label> <RangeFilter5 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month: (Recent Date)</label> <RangeFilter5 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year: (Recent Date)</label> <RangeFilter5 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array: (Arr-string)</label>
       <RangeFilter5 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Range filter by having a number in array of numbers:</label>
+      <label>Range filter by having a number in array of numbers: (Arr-nums)</label>
       <RangeFilter5 filterKey="L12.L23.L36" compare="numInArr" />
     </p>
 
@@ -459,31 +487,37 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <br />
     <input type="text" name="" id="" v-model="itemsPerPage6" />
     <button @click="listTools6.paginationUtils.setItemsPerPage(itemsPerPage6)">Set items per page</button>
-    <p><label>Input filter by number:</label> <InputFilter6 filterKey="L11" compare="Number" /></p>
-    <p><label>Input filter by day of the month:</label> <InputFilter6 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Input filter by month:</label> <InputFilter6 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Input filter by year:</label> <InputFilter6 filterKey="L12.L22" compare="year" /></p>
+    <p><label>Input filter by number: (Number)</label> <InputFilter6 filterKey="L11" compare="num" /></p>
     <p>
-      <label>Input filter by number of elements in array:</label>
+      <label>Input filter by day of the month: (Recent Date)</label> <InputFilter6 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month: (Recent Date)</label> <InputFilter6 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year: (Recent Date)</label> <InputFilter6 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array: (Arr-string)</label>
       <InputFilter6 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Input filter by having an exact string in array of strings:</label>
-      <InputFilter6 filterKey="L12.L23.L33" compare="numEl" />
+      <label>Input filter by having an exact string in array of strings: (Arr-string)</label>
+      <InputFilter6 filterKey="L12.L23.L33" compare="stringInArr" />
     </p>
-    <p><label>Input filter by string in string:</label> <InputFilter6 filterKey="L12.L21" compare="num" /></p>
-    <p><label>Input filter by exact string:</label> <InputFilter6 filterKey="L12.L21" compare="num" /></p>
-
-    <p><label>Range filter by number:</label> <RangeFilter10 filterKey="L11" compare="num" /></p>
-    <p><label>Range filter by day of the month:</label> <RangeFilter6 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Range filter by month:</label> <RangeFilter6 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Range filter by year:</label> <RangeFilter6 filterKey="L12.L22" compare="year" /></p>
     <p>
-      <label>Range filter by number of elements in array:</label>
+      <label>Input filter by string in string: (Country)</label>
+      <InputFilter6 filterKey="L12.L21" compare="stringInString" />
+    </p>
+    <p><label>Input filter by exact string: (Country)</label> <InputFilter6 filterKey="L12.L21" compare="string" /></p>
+    <p><label>Range filter by number: (Number)</label> <RangeFilter6 filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month: (Recent Date)</label> <RangeFilter6 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month: (Recent Date)</label> <RangeFilter6 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year: (Recent Date)</label> <RangeFilter6 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array: (Arr-string)</label>
       <RangeFilter6 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Range filter by having a number in array of numbers:</label>
+      <label>Range filter by having a number in array of numbers: (Arr-nums)</label>
       <RangeFilter6 filterKey="L12.L23.L36" compare="numInArr" />
     </p>
 
@@ -537,31 +571,37 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <button @click="listTools7.setItemsPerPage(itemsPerPage7)">Set items per page</button>
     <br />
     <span @click="listTools7.sortUtils.sortBy({ key: `L12.L23.L31`, event: $event })">Sort by City</span>
-    <p><label>Input filter by number:</label> <InputFilter7 filterKey="L11" compare="Number" /></p>
-    <p><label>Input filter by day of the month:</label> <InputFilter7 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Input filter by month:</label> <InputFilter7 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Input filter by year:</label> <InputFilter7 filterKey="L12.L22" compare="year" /></p>
+    <p><label>Input filter by number: (Number)</label> <InputFilter7 filterKey="L11" compare="num" /></p>
     <p>
-      <label>Input filter by number of elements in array:</label>
+      <label>Input filter by day of the month: (Recent Date)</label> <InputFilter7 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month: (Recent Date)</label> <InputFilter7 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year: (Recent Date)</label> <InputFilter7 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array: (Arr-string)</label>
       <InputFilter7 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Input filter by having an exact string in array of strings:</label>
-      <InputFilter7 filterKey="L12.L23.L33" compare="numEl" />
+      <label>Input filter by having an exact string in array of strings: (Arr-string)</label>
+      <InputFilter7 filterKey="L12.L23.L33" compare="stringInArr" />
     </p>
-    <p><label>Input filter by string in string:</label> <InputFilter7 filterKey="L12.L21" compare="num" /></p>
-    <p><label>Input filter by exact string:</label> <InputFilter7 filterKey="L12.L21" compare="num" /></p>
-
-    <p><label>Range filter by number:</label> <RangeFilter7 filterKey="L11" compare="num" /></p>
-    <p><label>Range filter by day of the month:</label> <RangeFilter7 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Range filter by month:</label> <RangeFilter7 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Range filter by year:</label> <RangeFilter7 filterKey="L12.L22" compare="year" /></p>
     <p>
-      <label>Range filter by number of elements in array:</label>
+      <label>Input filter by string in string: (Country)</label>
+      <InputFilter7 filterKey="L12.L21" compare="stringInString" />
+    </p>
+    <p><label>Input filter by exact string: (Country)</label> <InputFilter7 filterKey="L12.L21" compare="string" /></p>
+    <p><label>Range filter by number: (Number)</label> <RangeFilter7 filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month: (Recent Date)</label> <RangeFilter7 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month: (Recent Date)</label> <RangeFilter7 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year: (Recent Date)</label> <RangeFilter7 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array: (Arr-string)</label>
       <RangeFilter7 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Range filter by having a number in array of numbers:</label>
+      <label>Range filter by having a number in array of numbers: (Arr-nums)</label>
       <RangeFilter7 filterKey="L12.L23.L36" compare="numInArr" />
     </p>
 
@@ -595,31 +635,37 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <br />
     <input type="text" name="" id="" v-model="itemsPerPage8" />
     <button @click="listTools8.paginationUtils.setItemsPerPage(itemsPerPage8)">Set items per page</button>
-    <p><label>Input filter by number:</label> <InputFilter7 filterKey="L11" compare="Number" /></p>
-    <p><label>Input filter by day of the month:</label> <InputFilter8 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Input filter by month:</label> <InputFilter8 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Input filter by year:</label> <InputFilter8 filterKey="L12.L22" compare="year" /></p>
+    <p><label>Input filter by number: (Number)</label> <InputFilter8 filterKey="L11" compare="num" /></p>
     <p>
-      <label>Input filter by number of elements in array:</label>
+      <label>Input filter by day of the month: (Recent Date)</label> <InputFilter8 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month: (Recent Date)</label> <InputFilter8 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year: (Recent Date)</label> <InputFilter8 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array: (Arr-string)</label>
       <InputFilter8 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Input filter by having an exact string in array of strings:</label>
-      <InputFilter8 filterKey="L12.L23.L33" compare="numEl" />
+      <label>Input filter by having an exact string in array of strings: (Arr-string)</label>
+      <InputFilter8 filterKey="L12.L23.L33" compare="stringInArr" />
     </p>
-    <p><label>Input filter by string in string:</label> <InputFilter8 filterKey="L12.L21" compare="num" /></p>
-    <p><label>Input filter by exact string:</label> <InputFilter8 filterKey="L12.L21" compare="num" /></p>
-
-    <p><label>Range filter by number:</label> <RangeFilter8 filterKey="L11" compare="num" /></p>
-    <p><label>Range filter by day of the month:</label> <RangeFilter8 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Range filter by month:</label> <RangeFilter8 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Range filter by year:</label> <RangeFilter8 filterKey="L12.L22" compare="year" /></p>
     <p>
-      <label>Range filter by number of elements in array:</label>
+      <label>Input filter by string in string: (Country)</label>
+      <InputFilter8 filterKey="L12.L21" compare="stringInString" />
+    </p>
+    <p><label>Input filter by exact string: (Country)</label> <InputFilter8 filterKey="L12.L21" compare="string" /></p>
+    <p><label>Range filter by number: (Number)</label> <RangeFilter8 filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month: (Recent Date)</label> <RangeFilter8 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month: (Recent Date)</label> <RangeFilter8 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year: (Recent Date)</label> <RangeFilter8 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array: (Arr-string)</label>
       <RangeFilter8 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Range filter by having a number in array of numbers:</label>
+      <label>Range filter by having a number in array of numbers: (Arr-nums)</label>
       <RangeFilter8 filterKey="L12.L23.L36" compare="numInArr" />
     </p>
 
@@ -673,31 +719,37 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <button @click="listTools9.setItemsPerPage(itemsPerPage9)">Set items per page</button>
     <br />
     <span @click="listTools9.sortUtils.sortBy({ key: `L12.L23.L32`, event: $event })">Sort by Boolean</span>
-    <p><label>Input filter by number:</label> <InputFilter9 filterKey="L11" compare="Number" /></p>
-    <p><label>Input filter by day of the month:</label> <InputFilter9 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Input filter by month:</label> <InputFilter9 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Input filter by year:</label> <InputFilter9 filterKey="L12.L22" compare="year" /></p>
+    <p><label>Input filter by number: (Number)</label> <InputFilter9 filterKey="L11" compare="num" /></p>
     <p>
-      <label>Input filter by number of elements in array:</label>
+      <label>Input filter by day of the month: (Recent Date)</label> <InputFilter9 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month: (Recent Date)</label> <InputFilter9 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year: (Recent Date)</label> <InputFilter9 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array: (Arr-string)</label>
       <InputFilter9 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Input filter by having an exact string in array of strings:</label>
-      <InputFilter9 filterKey="L12.L23.L33" compare="numEl" />
+      <label>Input filter by having an exact string in array of strings: (Arr-string)</label>
+      <InputFilter9 filterKey="L12.L23.L33" compare="stringInArr" />
     </p>
-    <p><label>Input filter by string in string:</label> <InputFilter9 filterKey="L12.L21" compare="num" /></p>
-    <p><label>Input filter by exact string:</label> <InputFilter9 filterKey="L12.L21" compare="num" /></p>
-
-    <p><label>Range filter by number:</label> <RangeFilter9 filterKey="L11" compare="num" /></p>
-    <p><label>Range filter by day of the month:</label> <RangeFilter9 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Range filter by month:</label> <RangeFilter9 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Range filter by year:</label> <RangeFilter9 filterKey="L12.L22" compare="year" /></p>
     <p>
-      <label>Range filter by number of elements in array:</label>
+      <label>Input filter by string in string: (Country)</label>
+      <InputFilter9 filterKey="L12.L21" compare="stringInString" />
+    </p>
+    <p><label>Input filter by exact string: (Country)</label> <InputFilter9 filterKey="L12.L21" compare="string" /></p>
+    <p><label>Range filter by number: (Number)</label> <RangeFilter9 filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month: (Recent Date)</label> <RangeFilter9 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month: (Recent Date)</label> <RangeFilter9 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year: (Recent Date)</label> <RangeFilter9 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array: (Arr-string)</label>
       <RangeFilter9 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Range filter by having a number in array of numbers:</label>
+      <label>Range filter by having a number in array of numbers: (Arr-nums)</label>
       <RangeFilter9 filterKey="L12.L23.L36" compare="numInArr" />
     </p>
 
@@ -731,31 +783,37 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
     <br />
     <input type="text" name="" id="" v-model="itemsPerPage10" />
     <button @click="listTools10.paginationUtils.setItemsPerPage(itemsPerPage10)">Set items per page</button>
-    <p><label>Input filter by number:</label> <InputFilter10 filterKey="L11" compare="Number" /></p>
-    <p><label>Input filter by day of the month:</label> <InputFilter10 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Input filter by month:</label> <InputFilter10 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Input filter by year:</label> <InputFilter10 filterKey="L12.L22" compare="year" /></p>
+    <p><label>Input filter by number: (Number)</label> <InputFilter10 filterKey="L11" compare="num" /></p>
     <p>
-      <label>Input filter by number of elements in array:</label>
+      <label>Input filter by day of the month: (Recent Date)</label> <InputFilter10 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Input filter by month: (Recent Date)</label> <InputFilter10 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Input filter by year: (Recent Date)</label> <InputFilter10 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Input filter by number of elements in array: (Arr-string)</label>
       <InputFilter10 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Input filter by having an exact string in array of strings:</label>
-      <InputFilter10 filterKey="L12.L23.L33" compare="numEl" />
+      <label>Input filter by having an exact string in array of strings: (Arr-string)</label>
+      <InputFilter10 filterKey="L12.L23.L33" compare="stringInArr" />
     </p>
-    <p><label>Input filter by string in string:</label> <InputFilter10 filterKey="L12.L21" compare="num" /></p>
-    <p><label>Input filter by exact string:</label> <InputFilter10 filterKey="L12.L21" compare="num" /></p>
-
-    <p><label>Range filter by number:</label> <RangeFilter10 filterKey="L11" compare="num" /></p>
-    <p><label>Range filter by day of the month:</label> <RangeFilter10 filterKey="L12.L22" compare="day" /></p>
-    <p><label>Range filter by month:</label> <RangeFilter10 filterKey="L12.L22" compare="month" /></p>
-    <p><label>Range filter by year:</label> <RangeFilter10 filterKey="L12.L22" compare="year" /></p>
     <p>
-      <label>Range filter by number of elements in array:</label>
+      <label>Input filter by string in string: (Country)</label>
+      <InputFilter10 filterKey="L12.L21" compare="stringInString" />
+    </p>
+    <p><label>Input filter by exact string: (Country)</label> <InputFilter10 filterKey="L12.L21" compare="string" /></p>
+    <p><label>Range filter by number: (Number)</label> <RangeFilter10 filterKey="L11" compare="num" /></p>
+    <p>
+      <label>Range filter by day of the month: (Recent Date)</label> <RangeFilter10 filterKey="L12.L22" compare="day" />
+    </p>
+    <p><label>Range filter by month: (Recent Date)</label> <RangeFilter10 filterKey="L12.L22" compare="month" /></p>
+    <p><label>Range filter by year: (Recent Date)</label> <RangeFilter10 filterKey="L12.L22" compare="year" /></p>
+    <p>
+      <label>Range filter by number of elements in array: (Arr-string)</label>
       <RangeFilter10 filterKey="L12.L23.L33" compare="numEl" />
     </p>
     <p>
-      <label>Range filter by having a number in array of numbers:</label>
+      <label>Range filter by having a number in array of numbers: (Arr-nums)</label>
       <RangeFilter10 filterKey="L12.L23.L36" compare="numInArr" />
     </p>
 

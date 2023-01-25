@@ -1,8 +1,6 @@
 <template>
   <paginate
     :page-count="totalPages"
-    :page-range="3"
-    :margin-pages="2"
     :click-handler="clickCallback"
     :prev-text="'Prev'"
     :next-text="'Next'"

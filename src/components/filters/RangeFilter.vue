@@ -28,6 +28,6 @@ const getComparator = (comparatorFn) => {
 <template>
   <input type="number" v-model="minRange" />
   <input type="number" v-model="maxRange" />
-  <button v-if="!isApplied" @click="applyFilter(getComparator)">Filter</button>
+  <button @click="applyFilter(getComparator)">Filter</button>
   <button v-if="isApplied" @click="removeFilter(getComparator)">X</button>
 </template>
