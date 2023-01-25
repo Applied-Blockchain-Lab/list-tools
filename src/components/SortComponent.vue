@@ -1,16 +1,10 @@
 <script setup>
 import { ref } from "vue";
 import useGlobalComposable from "../composables/globalComposable";
-
-const props = defineProps({
-  id: {
-    type: Number,
-    required: true,
-  },
-});
+const listId = new URL(import.meta.url).searchParams.get("listId");
 
 const emit = defineEmits(["sortOrder"]);
-const { sortUtils, keyify } = useGlobalComposable(props.id);
+const { sortUtils, keyify } = useGlobalComposable(listId);
 
 const selectedSortKey = ref("");
 const selectedSortOrder = ref("");
