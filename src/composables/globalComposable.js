@@ -8,6 +8,10 @@ export default function useGlobalComposable(storeId, itemsPerPage, singleSort) {
     listStore.init(allItems, itemsPerPage, singleSort);
   };
 
+  const setAllItems = (data) => {
+    listStore.setAllItems(data);
+  };
+
   const sortUtils = useSortUtils(listStore);
   const paginationUtils = usePaginationUtils(listStore);
   const filterUtils = useFilterUtils(listStore);
@@ -36,6 +40,7 @@ export default function useGlobalComposable(storeId, itemsPerPage, singleSort) {
 
   return {
     init,
+    setAllItems,
     keyify,
     keyifyExcludedArr,
     sortUtils,
