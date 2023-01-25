@@ -1,15 +1,9 @@
 <script setup>
 import { ref, computed } from "vue";
 import useGlobalComposable from "../composables/globalComposable";
+const listId = new URL(import.meta.url).searchParams.get("listId");
 
-const props = defineProps({
-  id: {
-    type: Number,
-    required: true,
-  },
-});
-
-const { paginationUtils } = useGlobalComposable(props.id);
+const { paginationUtils } = useGlobalComposable(listId);
 
 const eachSide = ref(1);
 
@@ -23,7 +17,9 @@ const onLastPage = computed(() => paginationUtils.getCurrentPage() === total.val
 const paginators = computed(() => {
   const paginators = [];
 
+  // buddy ignore:start
   if (total.value < eachSide.value * 2 + 4) {
+    // buddy ignore:end
     for (let i = firstPage.value; i < total.value + 1; ++i) {
       paginators.push({
         value: i,
