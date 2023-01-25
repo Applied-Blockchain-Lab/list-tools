@@ -146,8 +146,9 @@ export const ListStore = (storeId, itemsPerPage, singleSort = true, isScrollable
           this.setFilteredItems(updatedItems);
           this.setCurrentPage(1);
           this.addFilter(comparator, filterKey);
-          
+
           this.applySorters();
+        }
       },
       removeSorter(componentId) {
         for (let i = 0; i < this.appliedSorters.length; i++) {
@@ -180,7 +181,7 @@ export const ListStore = (storeId, itemsPerPage, singleSort = true, isScrollable
         );
         console.log("Page items: ", pageItems);
         return pageItems;
-       },
+      },
       getSorterIndex: (state) => {
         return (componentId) => {
           for (let i = 0; i < state.appliedSorters.length; i++) {

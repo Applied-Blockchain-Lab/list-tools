@@ -12,16 +12,7 @@ import DoubleSelectSort3 from "./components/sorters/DoubleSelectSort.vue?listId=
 import DoubleSelectSort5 from "./components/sorters/DoubleSelectSort.vue?listId=5";
 import DoubleSelectSort7 from "./components/sorters/DoubleSelectSort.vue?listId=7";
 import DoubleSelectSort9 from "./components/sorters/DoubleSelectSort.vue?listId=9";
-import SortComponent from "./components/SortComponent.vue";
 import SortComponentV2 from "./components/SortComponentV2.vue";
-import InputFilter from "./components/filters/InputFilter.vue";
-import RangeFilter from "./components/filters/RangeFilter.vue";
-import SelectionFilter from "./components/filters/SelectionFilter.vue";
-import ValuesFilter from "./components/filters/ValuesFilter.vue";
-import VueSelectFilter from "./components/filters/VueSelectFilter.vue";
-import ItemSelector from "./components/selectors/ItemSelector.vue";
-import BulkItemsSelector from "./components/selectors/BulkItemsSelector.vue";
-import NumberOfSelectedItems from "./components/selectors/NumberOfSelectedItems.vue";
 
 import RangeFilter1 from "./components/filters/RangeFilter.vue?listId=1";
 import RangeFilter2 from "./components/filters/RangeFilter.vue?listId=2";
