@@ -26,7 +26,8 @@ import RangeFilter1 from "./components/filters/RangeFilter.vue?listId=1";
 import InputFilter1 from "./components/filters/InputFilter.vue?listId=1";
 
 import TestPaginationComponent from "./demos/TestPaginationComponent.vue";
-import demoData from "../demo-data/demoData2.json";
+import demoData from "../demo-data/demoData1.json";
+import demoData2 from "../demo-data/demoData2.json";
 import useGlobalComposable from "./composables/globalComposable";
 
 const listTools1 = useGlobalComposable(1, 5, true);
@@ -72,23 +73,28 @@ const itemsPerPage7 = ref(listTools7.paginationUtils.getItemsPerPage());
 const itemsPerPage8 = ref(listTools8.paginationUtils.getItemsPerPage());
 const itemsPerPage9 = ref(listTools9.paginationUtils.getItemsPerPage());
 const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
+
+function changeData(listTools) {
+  listTools.setAllItems(demoData2);
+}
 </script>
 
 <template>
   <div class="wrapper">
     <h2>List 1</h2>
+    <button @click="changeData(listTools1)">Change data</button>
     <p><label>Single select sort:</label> <SingleSelectSort1 /></p>
     <p><label>Double select sort:</label> <DoubleSelectSort1 /></p>
 
-    <p><span v-sort:[1]="'L11'">sort d1</span></p>
-    <p><span v-sort:[1]="'L12.L21'">sort d2</span></p>
-    <p><span v-sort:[1]="'L12.L22'">sort d3</span></p>
-    <p><span v-sort:[1]="'L12.L23.L31'">sort d4</span></p>
-    <p><span v-sort:[1]="'L12.L23.L32'">sort d5</span></p>
-    <p><span v-sort:[1]="'L12.L23.L33'">sort d6</span></p>
-    <p><span v-sort:[1]="'L12.L23.L34'">sort d7</span></p>
-    <p><span v-sort:[1]="'L12.L23.L35'">sort d8</span></p>
-    <p><span v-sort:[1]="'L12.L23.L36'">sort d9</span></p>
+    <p><span v-sort:[1]="'L11'">sort d1 (Number)</span></p>
+    <p><span v-sort:[1]="'L12.L21'">sort d2 (Country)</span></p>
+    <p><span v-sort:[1]="'L12.L22'">sort d3 (Date)</span></p>
+    <p><span v-sort:[1]="'L12.L23.L31'">sort d4 (Place)</span></p>
+    <p><span v-sort:[1]="'L12.L23.L32'">sort d5 (Boolean)</span></p>
+    <p><span v-sort:[1]="'L12.L23.L33'">sort d6 (Array strings)</span></p>
+    <p><span v-sort:[1]="'L12.L23.L34'">sort d7 (Array dates)</span></p>
+    <p><span v-sort:[1]="'L12.L23.L35'">sort d8 (Array boolean)</span></p>
+    <p><span v-sort:[1]="'L12.L23.L36'">sort d9 (Array numbers)</span></p>
 
     <p><label>Sort component 2 (TODO):</label> <SortComponentV2 :id="1" /></p>
     <p>
@@ -153,6 +159,8 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
 
   <div class="wrapper">
     <h1>Table 1</h1>
+    <button @click="changeData(listTools2)">Change data</button>
+    <br />
     <SortComponent :id="2" />
     <br />
     <FilterComponent :id="2" />
@@ -235,18 +243,19 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
   </div>
   <div class="wrapper">
     <h2>List 2</h2>
+    <button @click="changeData(listTools3)">Change data</button>
     <SingleSelectSort3 />
     <DoubleSelectSort3 />
 
-    <p><span v-sort:[3]="'L11'">sort d1</span></p>
-    <p><span v-sort:[3]="'L12.L21'">sort d2</span></p>
-    <p><span v-sort:[3]="'L12.L22'">sort d3</span></p>
-    <p><span v-sort:[3]="'L12.L23.L31'">sort d4</span></p>
-    <p><span v-sort:[3]="'L12.L23.L32'">sort d5</span></p>
-    <p><span v-sort:[3]="'L12.L23.L33'">sort d6</span></p>
-    <p><span v-sort:[3]="'L12.L23.L34'">sort d7</span></p>
-    <p><span v-sort:[3]="'L12.L23.L35'">sort d8</span></p>
-    <p><span v-sort:[3]="'L12.L23.L36'">sort d9</span></p>
+    <p><span v-sort:[3]="'L11'">sort d1 (Number)</span></p>
+    <p><span v-sort:[3]="'L12.L21'">sort d2 (Country)</span></p>
+    <p><span v-sort:[3]="'L12.L22'">sort d3 (Date)</span></p>
+    <p><span v-sort:[3]="'L12.L23.L31'">sort d4 (Place)</span></p>
+    <p><span v-sort:[3]="'L12.L23.L32'">sort d5 (Boolean)</span></p>
+    <p><span v-sort:[3]="'L12.L23.L33'">sort d6 (Array strings)</span></p>
+    <p><span v-sort:[3]="'L12.L23.L34'">sort d7 (Array dates)</span></p>
+    <p><span v-sort:[3]="'L12.L23.L35'">sort d8 (Array boolean)</span></p>
+    <p><span v-sort:[3]="'L12.L23.L36'">sort d9 (Array numbers)</span></p>
 
     <p><label>Sort component (TODO):</label> <SortComponent :id="3" /></p>
     <br />
@@ -314,6 +323,8 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
   </div>
   <div class="wrapper">
     <h1>Table 2</h1>
+    <button @click="changeData(listTools4)">Change data</button>
+    <br />
     <SortComponentV2 :id="4" />
     <br />
     <FilterComponent :id="4" />
@@ -396,17 +407,18 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
   </div>
   <div class="wrapper">
     <h2>List 3</h2>
+    <button @click="changeData(listTools5)">Change data</button>
     <SingleSelectSort5 />
     <DoubleSelectSort5 />
-    <p><span v-sort:[5]="'L11'">sort d1</span></p>
-    <p><span v-sort:[5]="'L12.L21'">sort d2</span></p>
-    <p><span v-sort:[5]="'L12.L22'">sort d3</span></p>
-    <p><span v-sort:[5]="'L12.L23.L31'">sort d4</span></p>
-    <p><span v-sort:[5]="'L12.L23.L32'">sort d5</span></p>
-    <p><span v-sort:[5]="'L12.L23.L33'">sort d6</span></p>
-    <p><span v-sort:[5]="'L12.L23.L34'">sort d7</span></p>
-    <p><span v-sort:[5]="'L12.L23.L35'">sort d8</span></p>
-    <p><span v-sort:[5]="'L12.L23.L36'">sort d9</span></p>
+    <p><span v-sort:[5]="'L11'">sort d1 (Number)</span></p>
+    <p><span v-sort:[5]="'L12.L21'">sort d2 (Country)</span></p>
+    <p><span v-sort:[5]="'L12.L22'">sort d3 (Date)</span></p>
+    <p><span v-sort:[5]="'L12.L23.L31'">sort d4 (Place)</span></p>
+    <p><span v-sort:[5]="'L12.L23.L32'">sort d5 (Boolean)</span></p>
+    <p><span v-sort:[5]="'L12.L23.L33'">sort d6 (Array strings)</span></p>
+    <p><span v-sort:[5]="'L12.L23.L34'">sort d7 (Array dates)</span></p>
+    <p><span v-sort:[5]="'L12.L23.L35'">sort d8 (Array boolean)</span></p>
+    <p><span v-sort:[5]="'L12.L23.L36'">sort d9 (Array numbers)</span></p>
 
     <p><label>Sort component (TODO):</label> <SortComponentV2 :id="5" /></p>
     <br />
@@ -475,6 +487,8 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
 
   <div class="wrapper">
     <h1>Table 3</h1>
+    <button @click="changeData(listTools6)">Change data</button>
+    <br />
     <SortComponent :id="6" />
     <br />
     <FilterComponent :id="6" />
@@ -557,17 +571,18 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
   </div>
   <div class="wrapper">
     <h2>List 4</h2>
+    <button @click="changeData(listTools7)">Change data</button>
     <SingleSelectSort7 />
     <DoubleSelectSort7 />
-    <p><span v-sort:[7]="'L11'">sort d1</span></p>
-    <p><span v-sort:[7]="'L12.L21'">sort d2</span></p>
-    <p><span v-sort:[7]="'L12.L22'">sort d3</span></p>
-    <p><span v-sort:[7]="'L12.L23.L31'">sort d4</span></p>
-    <p><span v-sort:[7]="'L12.L23.L32'">sort d5</span></p>
-    <p><span v-sort:[7]="'L12.L23.L33'">sort d6</span></p>
-    <p><span v-sort:[7]="'L12.L23.L34'">sort d7</span></p>
-    <p><span v-sort:[7]="'L12.L23.L35'">sort d8</span></p>
-    <p><span v-sort:[7]="'L12.L23.L36'">sort d9</span></p>
+    <p><span v-sort:[7]="'L11'">sort d1 (Number)</span></p>
+    <p><span v-sort:[7]="'L12.L21'">sort d2 (Country)</span></p>
+    <p><span v-sort:[7]="'L12.L22'">sort d3 (Date)</span></p>
+    <p><span v-sort:[7]="'L12.L23.L31'">sort d4 (Place)</span></p>
+    <p><span v-sort:[7]="'L12.L23.L32'">sort d5 (Boolean)</span></p>
+    <p><span v-sort:[7]="'L12.L23.L33'">sort d6 (Array strings)</span></p>
+    <p><span v-sort:[7]="'L12.L23.L34'">sort d7 (Array dates)</span></p>
+    <p><span v-sort:[7]="'L12.L23.L35'">sort d8 (Array boolean)</span></p>
+    <p><span v-sort:[7]="'L12.L23.L36'">sort d9 (Array numbers)</span></p>
 
     <p><label>Sort component (TODO):</label> <SortComponent :id="7" /></p>
     <br />
@@ -635,6 +650,8 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
   </div>
   <div class="wrapper">
     <h1>Table 4</h1>
+    <button @click="changeData(listTools8)">Change data</button>
+    <br />
     <SortComponentV2 :id="8" />
     <br />
     <FilterComponent :id="8" />
@@ -717,17 +734,18 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
   </div>
   <div class="wrapper">
     <h2>List 5</h2>
+    <button @click="changeData(listTools9)">Change data</button>
     <SingleSelectSort9 />
     <DoubleSelectSort9 />
-    <p><span v-sort:[9]="'L11'">sort d1</span></p>
-    <p><span v-sort:[9]="'L12.L21'">sort d2</span></p>
-    <p><span v-sort:[9]="'L12.L22'">sort d3</span></p>
-    <p><span v-sort:[9]="'L12.L23.L31'">sort d4</span></p>
-    <p><span v-sort:[9]="'L12.L23.L32'">sort d5</span></p>
-    <p><span v-sort:[9]="'L12.L23.L33'">sort d6</span></p>
-    <p><span v-sort:[9]="'L12.L23.L34'">sort d7</span></p>
-    <p><span v-sort:[9]="'L12.L23.L35'">sort d8</span></p>
-    <p><span v-sort:[9]="'L12.L23.L36'">sort d9</span></p>
+    <p><span v-sort:[9]="'L11'">sort d1 (Number)</span></p>
+    <p><span v-sort:[9]="'L12.L21'">sort d2 (Country)</span></p>
+    <p><span v-sort:[9]="'L12.L22'">sort d3 (Date)</span></p>
+    <p><span v-sort:[9]="'L12.L23.L31'">sort d4 (Place)</span></p>
+    <p><span v-sort:[9]="'L12.L23.L32'">sort d5 (Boolean)</span></p>
+    <p><span v-sort:[9]="'L12.L23.L33'">sort d6 (Array strings)</span></p>
+    <p><span v-sort:[9]="'L12.L23.L34'">sort d7 (Array dates)</span></p>
+    <p><span v-sort:[9]="'L12.L23.L35'">sort d8 (Array boolean)</span></p>
+    <p><span v-sort:[9]="'L12.L23.L36'">sort d9 (Array numbers)</span></p>
     <p><label>Sort component (TODO):</label> <SortComponentV2 :id="9" /></p>
     <br />
     <FilterComponent :id="9" />
@@ -794,6 +812,8 @@ const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
   </div>
   <div class="wrapper">
     <h1>Table 5</h1>
+    <button @click="changeData(listTools10)">Change data</button>
+    <br />
     <SortComponent :id="10" />
     <br />
     <InputFilterComponent :id="10" />

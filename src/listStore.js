@@ -44,6 +44,7 @@ export const ListStore = (storeId, itemsPerPage, singleSort = true, isScrollable
       },
       setAllItems(allItems) {
         this.allItems = allItems;
+        this.applySorters();
       },
       setFilteredItems(filteredItems) {
         this.filteredItems = filteredItems;
@@ -88,7 +89,6 @@ export const ListStore = (storeId, itemsPerPage, singleSort = true, isScrollable
           this.setFilteredItems(this.allItems);
         } else {
           this.applyFilters();
-          this.appliedSorters();
         }
       },
       applyFilters() {
@@ -114,6 +114,7 @@ export const ListStore = (storeId, itemsPerPage, singleSort = true, isScrollable
           this.setItemsPerPage(allItemsLength < itemsPerPage ? allItemsLength : itemsPerPage);
           this.setPageItems({ startIndex: 0, endIndex: this.getItemsPerPage - 1 });
           //
+          this.applySorters();
         }
       },
       applyFilter(comparator, filterKey) {
@@ -133,9 +134,7 @@ export const ListStore = (storeId, itemsPerPage, singleSort = true, isScrollable
         this.setItemsPerPage(allItemsLength < itemsPerPage ? allItemsLength : itemsPerPage);
         this.setPageItems({ startIndex: 0, endIndex: this.getItemsPerPage - 1 });
         this.addFilter(comparator, filterKey);
-      },
-      setSorters(sorters) {
-        this.appliedSorters = sorters;
+
         this.applySorters();
       },
       removeSorter(componentId) {
