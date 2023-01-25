@@ -1,15 +1,9 @@
 <script setup>
 import { computed } from "vue";
 import { ListStore } from "../../listStore";
+const listId = new URL(import.meta.url).searchParams.get("listId");
 
-const props = defineProps({
-  id: {
-    type: Number,
-    required: true,
-  },
-});
-
-const listStore = ListStore(props.id);
+const listStore = ListStore(listId);
 
 const itemCountMsg = computed(() => {
   return listStore.selectedItems.length > 1

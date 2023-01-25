@@ -2,6 +2,10 @@ function useComparators() {
   const compareByRangeNumber = (el, min, max) => {
     console.log("here", el);
     console.log("el", el);
+    console.log("max", max);
+    if (max === 0) {
+      return min <= el;
+    }
     return min <= el && el <= max;
   };
 
@@ -11,12 +15,18 @@ function useComparators() {
     const date = new Date(el);
     const day = date.getDate();
     console.log("day", day);
+    if (max === 0) {
+      return day >= min;
+    }
     return min <= day && day <= max;
   };
 
   const compareByRangeMonth = (el, min, max) => {
     const date = new Date(el);
     const month = date.getMonth();
+    if (max === 0) {
+      return month >= min;
+    }
     return min <= month && month <= max;
   };
 
@@ -24,16 +34,26 @@ function useComparators() {
     console.log("here", el);
     const date = new Date(el);
     const year = date.getFullYear();
+    if (max === 0) {
+      return year >= min;
+    }
     return min <= year && year <= max;
   };
 
   const compareByRangeNumberElInArr = (el, min, max) => {
     const elCount = el.length;
+    if (max === 0) {
+      return elCount >= min;
+    }
     return min <= elCount && elCount <= max;
   };
 
   const compareByRangeNumberInArr = (el, min, max) => {
     const elArr = el;
+    if (max === 0) {
+      const filteredArr = elArr.filter((el) => el >= min);
+      return filteredArr.length > 0;
+    }
     const filteredArr = elArr.filter((el) => min <= el && el <= max);
     return filteredArr.length > 0;
   };
