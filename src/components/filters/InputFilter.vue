@@ -20,10 +20,21 @@ const filterValue = ref("");
 const getComparator = (comparatorFn) => {
   return (el) => comparatorFn(el, filterValue.value);
 };
+
+const clearValue = () => {
+  filterValue.value = "";
+};
 </script>
 
 <template>
   <input type="text" v-model="filterValue" />
-  <button @click="applyFilter(getComparator)">Filter</button>
+  <button
+    @click="
+      applyFilter(getComparator);
+      clearValue();
+    "
+  >
+    Filter
+  </button>
   <button v-if="isApplied" @click="removeFilter(getComparator)">X</button>
 </template>

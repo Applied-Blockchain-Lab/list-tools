@@ -23,11 +23,23 @@ const maxRange = ref("");
 const getComparator = (comparatorFn) => {
   return (el) => comparatorFn(el, +minRange.value, +maxRange.value);
 };
+
+const clearValues = () => {
+  minRange.value = "";
+  maxRange.value = "";
+};
 </script>
 
 <template>
   <input type="number" v-model="minRange" />
   <input type="number" v-model="maxRange" />
-  <button @click="applyFilter(getComparator)">Filter</button>
+  <button
+    @click="
+      applyFilter(getComparator);
+      clearValues();
+    "
+  >
+    Filter
+  </button>
   <button v-if="isApplied" @click="removeFilter(getComparator)">X</button>
 </template>

@@ -4,10 +4,6 @@ import { useFilterUtils, usePaginationUtils, useSortUtils } from "../utils";
 export default function useGlobalComposable(storeId, itemsPerPage, singleSort) {
   const listStore = ListStore(storeId, itemsPerPage, singleSort);
 
-  const init = (allItems) => {
-    listStore.init(allItems, itemsPerPage, singleSort);
-  };
-
   const setAllItems = (data) => {
     listStore.setAllItems(data);
   };
@@ -16,7 +12,7 @@ export default function useGlobalComposable(storeId, itemsPerPage, singleSort) {
   const paginationUtils = usePaginationUtils(listStore);
   const filterUtils = useFilterUtils(listStore);
 
-  const keyify = (obj = listStore.getFilteredItems[0], prefix = "") => {
+  const keyify = (obj = listStore.getAllItems[0], prefix = "") => {
     return Object.keys(obj).reduce((res, el) => {
       if (Array.isArray(obj[el])) {
         return [...res, prefix + el];
@@ -27,7 +23,7 @@ export default function useGlobalComposable(storeId, itemsPerPage, singleSort) {
     }, []);
   };
 
-  const keyifyExcludedArr = (obj = listStore.getFilteredItems[0], prefix = "") => {
+  const keyifyExcludedArr = (obj = listStore.getAllItems[0], prefix = "") => {
     return Object.keys(obj).reduce((res, el) => {
       if (Array.isArray(obj[el])) {
         return res;
@@ -39,7 +35,6 @@ export default function useGlobalComposable(storeId, itemsPerPage, singleSort) {
   };
 
   return {
-    init,
     setAllItems,
     keyify,
     keyifyExcludedArr,

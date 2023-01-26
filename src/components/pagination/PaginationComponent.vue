@@ -7,8 +7,7 @@
     :container-class="'pagination'"
     :page-class="'page-item'"
     :force-page="currentPage"
-  >
-  </paginate>
+  />
 </template>
 
 <script setup>
