@@ -95,16 +95,16 @@ const listTools8 = useGlobalComposable(8, 7, false);
 const listTools9 = useGlobalComposable(9, 7, true);
 const listTools10 = useGlobalComposable(10, 7, true);
 
-listTools1.init(demoData);
-listTools2.init(demoData);
-listTools3.init(demoData);
-listTools4.init(demoData);
-listTools5.init(demoData);
-listTools6.init(demoData);
-listTools7.init(demoData);
-listTools8.init(demoData);
-listTools9.init(demoData);
-listTools10.init(demoData);
+listTools1.setAllItems(demoData);
+listTools2.setAllItems(demoData);
+listTools3.setAllItems(demoData);
+listTools4.setAllItems(demoData);
+listTools5.setAllItems(demoData);
+listTools6.setAllItems(demoData);
+listTools7.setAllItems(demoData);
+listTools8.setAllItems(demoData);
+listTools9.setAllItems(demoData);
+listTools10.setAllItems(demoData);
 
 const items1 = computed(() => listTools1.paginationUtils.getItems());
 const items2 = computed(() => listTools2.paginationUtils.getItems());
@@ -138,7 +138,9 @@ function changeData(listTools) {
     <h2>List 1</h2>
     <p><label>Text:</label> <SortComponentV21 /></p>
     <button @click="changeData(listTools1)">Change data</button>
-    <p><label>Single select sort:</label> <SingleSelectSort1 /></p>
+    <p>
+      <label>Single select sort:</label> <SingleSelectSort1 :compare="{ 'L12.L23.L33': { type: 'arrayLength' } }" />
+    </p>
     <p><label>Double select sort:</label> <DoubleSelectSort1 /></p>
 
     <p><span v-sort:[1]="'L11'">sort d1 (Number)</span></p>
@@ -146,7 +148,7 @@ function changeData(listTools) {
     <p><span v-sort:[1]="'L12.L22'">sort d3 (Date)</span></p>
     <p><span v-sort:[1]="'L12.L23.L31'">sort d4 (Place)</span></p>
     <p><span v-sort:[1]="'L12.L23.L32'">sort d5 (Boolean)</span></p>
-    <p><span v-sort:[1]="'L12.L23.L33'">sort d6 (Array strings)</span></p>
+    <p><span v-sort:[1]="{ key: 'L12.L23.L33', compare: { type: 'arrayLength' } }">sort d6 (Array strings)</span></p>
     <p><span v-sort:[1]="'L12.L23.L34'">sort d7 (Array dates)</span></p>
     <p><span v-sort:[1]="'L12.L23.L35'">sort d8 (Array boolean)</span></p>
     <p><span v-sort:[1]="'L12.L23.L36'">sort d9 (Array numbers)</span></p>

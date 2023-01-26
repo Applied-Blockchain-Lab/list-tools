@@ -9,10 +9,10 @@ export const ListStore = (storeId, itemsPerPage, singleSort = true, isScrollable
   defineStore(`${storeId}`, {
     state: () => ({
       allItems: [],
-      sortedItems: [],
       filteredItems: [],
+      filteredAndSortedItems: [],
       selectedItems: [],
-      currentPage: 0,
+      currentPage: 1,
       itemsPerPage: itemsPerPage,
       pageItems: {
         startIndex: 0,
@@ -24,30 +24,18 @@ export const ListStore = (storeId, itemsPerPage, singleSort = true, isScrollable
       singleSort: singleSort,
     }),
     actions: {
-      init(allItems, itemsPerPage, singleSort) {
-        this.setSingleSort(singleSort);
-        this.setAllItems(allItems);
-        this.setCurrentPage(1);
-
-        const _itemsPerPage = this.allItems.length < itemsPerPage ? this.allItems.length : itemsPerPage;
-
-        this.setItemsPerPage(_itemsPerPage);
-        this.setPageItems({ startIndex: 0, endIndex: this.pageItems.startIndex + this.itemsPerPage - 1 });
-        if (singleSort) {
-          this.addSorter = addSorterSingle;
-        } else {
-          this.addSorter = addSorterMultiple;
-        }
-      },
       insertRow(item) {
         this.allItems.push(item);
       },
       setAllItems(allItems) {
         this.allItems = allItems;
-        this.applySorters();
+        this.applyFiltersAndSorters();
       },
       setFilteredItems(filteredItems) {
         this.filteredItems = filteredItems;
+      },
+      setFilteredAndSortedItems(filteredAndSortedItems) {
+        this.filteredAndSortedItems = filteredAndSortedItems;
       },
       setSelectedItems(selectedItems) {
         this.selectedItems = selectedItems;
@@ -73,17 +61,12 @@ export const ListStore = (storeId, itemsPerPage, singleSort = true, isScrollable
       setCurrentPage(page) {
         this.currentPage = Number(page);
       },
+      applyFiltersAndSorters() {
+        this.applyFilters();
+        this.applySorters();
+      },
       addFilter(comparator, filterKey) {
         console.log("Add filter:", comparator, filterKey);
-        // console.log("Index of same filter:", this.appliedFilters.findIndex(
-        //   (el) => el.comparator.toString() === comparator.toString() && el.filterKey === filterKey,
-        // ));
-        // const existingFilterIndex = this.appliedFilters.findIndex(
-        //   (el) => el.comparator.toString() === comparator.toString() && el.filterKey === filterKey,
-        // );
-        // if (existingFilterIndex !== -1) {
-        //   this.appliedFilters.splice(existingFilterIndex, 1);
-        // }
         this.appliedFilters.push({ comparator: comparator, filterKey: filterKey });
         console.log("Applied filters:", this.appliedFilters);
       },
@@ -134,13 +117,15 @@ export const ListStore = (storeId, itemsPerPage, singleSort = true, isScrollable
         if (existingFilterIndex !== -1) {
           this.appliedFilters.splice(existingFilterIndex, 1);
           this.addFilter(comparator, filterKey);
-          this.applyFilters();
+          this.applyFiltersAndSorters();
         } else {
           const items = this.getFilteredItems;
+          console.log(items);
           const filteredItems = filter(
             items.map((el) => get(el, filterKey)),
             comparator,
           );
+          console.log(filteredItems);
           const updatedItems = items.filter((item) => filteredItems.includes(get(item, filterKey)));
           console.log("Filtered items:", updatedItems);
           this.setFilteredItems(updatedItems);
@@ -150,6 +135,7 @@ export const ListStore = (storeId, itemsPerPage, singleSort = true, isScrollable
           // this.applySorters();
         }
       },
+      addSorter: singleSort ? addSorterSingle : addSorterMultiple,
       removeSorter(componentId) {
         for (let i = 0; i < this.appliedSorters.length; i++) {
           if (this.appliedSorters[i].id === componentId) {
@@ -161,11 +147,16 @@ export const ListStore = (storeId, itemsPerPage, singleSort = true, isScrollable
         this.applySorters();
       },
       applySorters() {
-        const keys = this.appliedSorters.map((sorter) => sorter.key);
+        const fns = this.appliedSorters.map((sorter) => sorter.fn);
         const orders = this.appliedSorters.map((sorter) => sorter.order);
 
-        const sortedItems = orderBy(this.allItems, keys, orders);
-        this.setFilteredItems(sortedItems);
+        let sortedItems;
+        if (this.appliedFilters.length !== 0) {
+          sortedItems = orderBy(this.filteredItems, fns, orders);
+        } else {
+          sortedItems = orderBy(this.allItems, fns, orders);
+        }
+        this.setFilteredAndSortedItems(sortedItems);
       },
     },
     getters: {
@@ -174,13 +165,19 @@ export const ListStore = (storeId, itemsPerPage, singleSort = true, isScrollable
       getAllItems: (state) => state.allItems,
       getFilteredItems: (state) =>
         state.filteredItems.length === 0 && state.appliedFilters.length === 0 ? state.allItems : state.filteredItems,
+      getFilteredAndSorteredItems: (state) =>
+        state.filteredAndSortedItems.length === 0 &&
+        state.appliedFilters.length === 0 &&
+        state.appliedSorters.length === 0
+          ? state.allItems
+          : state.filteredAndSortedItems,
       getItemsForList() {
         // Rename getCurrPageItems
-        const pageItems = this.getFilteredItems.slice(
+        const pageItems = this.getFilteredAndSorteredItems.slice(
           (this.currentPage - 1) * this.getItemsPerPage,
           this.currentPage * this.getItemsPerPage,
         );
-        console.log("Page items: ", pageItems);
+        //  console.log("Page items: ", pageItems);
         return pageItems;
       },
       getSorterIndex: (state) => {
