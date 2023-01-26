@@ -75,6 +75,7 @@ import Pagination10 from "./components/pagination/PaginationComponent.vue?listId
 import demoData from "../demo-data/demoData1.json";
 import demoData2 from "../demo-data/demoData2.json";
 import useGlobalComposable from "./composables/globalComposable";
+
 const listTools1 = useGlobalComposable(1, 5, true);
 const listTools2 = useGlobalComposable(2, 10, true);
 const listTools3 = useGlobalComposable(3, 7, false);
@@ -85,6 +86,7 @@ const listTools7 = useGlobalComposable(7, 7, false);
 const listTools8 = useGlobalComposable(8, 7, false);
 const listTools9 = useGlobalComposable(9, 7, true);
 const listTools10 = useGlobalComposable(10, 7, true);
+
 listTools1.setAllItems(demoData);
 listTools2.setAllItems(demoData);
 listTools3.setAllItems(demoData);
@@ -95,6 +97,7 @@ listTools7.setAllItems(demoData);
 listTools8.setAllItems(demoData);
 listTools9.setAllItems(demoData);
 listTools10.setAllItems(demoData);
+
 const items1 = computed(() => listTools1.paginationUtils.getItems());
 const items2 = computed(() => listTools2.paginationUtils.getItems());
 const items3 = computed(() => listTools3.paginationUtils.getItems());
@@ -105,6 +108,7 @@ const items7 = computed(() => listTools7.paginationUtils.getItems());
 const items8 = computed(() => listTools8.paginationUtils.getItems());
 const items9 = computed(() => listTools9.paginationUtils.getItems());
 const items10 = computed(() => listTools10.paginationUtils.getItems());
+
 const itemsPerPage1 = ref(listTools1.paginationUtils.getItemsPerPage());
 const itemsPerPage2 = ref(listTools2.paginationUtils.getItemsPerPage());
 const itemsPerPage3 = ref(listTools3.paginationUtils.getItemsPerPage());
@@ -115,9 +119,21 @@ const itemsPerPage7 = ref(listTools7.paginationUtils.getItemsPerPage());
 const itemsPerPage8 = ref(listTools8.paginationUtils.getItemsPerPage());
 const itemsPerPage9 = ref(listTools9.paginationUtils.getItemsPerPage());
 const itemsPerPage10 = ref(listTools10.paginationUtils.getItemsPerPage());
+
 function changeData(listTools) {
   listTools.setAllItems(demoData2);
 }
+
+const comparators = {
+  "L12.L21": { type: "string" },
+  "L12.L22": { type: "date" },
+  "L12.L23.L31": { type: "string" },
+  "L12.L23.L32": { type: "bool" },
+  "L12.L23.L33": { type: "elementInArray", value: "blue" },
+  "L12.L23.L34": { type: "arrayLength" },
+  "L12.L23.L35": { type: "arrayLength" },
+  "L12.L23.L36": { type: "arrayLength" },
+};
 </script>
 
 <template>
@@ -125,20 +141,22 @@ function changeData(listTools) {
     <h2>List 1</h2>
     <p><label>Text:</label> <SortComponentV21 /></p>
     <button @click="changeData(listTools1)">Change data</button>
-    <p>
-      <label>Single select sort:</label> <SingleSelectSort1 :compare="{ 'L12.L23.L33': { type: 'arrayLength' } }" />
-    </p>
+    <p><label>Single select sort:</label> <SingleSelectSort1 :compare="comparators" /></p>
     <p><label>Double select sort:</label> <DoubleSelectSort1 /></p>
 
-    <p><span v-sort:[1]="'L11'">sort d1 (Number)</span></p>
-    <p><span v-sort:[1]="'L12.L21'">sort d2 (Country)</span></p>
-    <p><span v-sort:[1]="'L12.L22'">sort d3 (Date)</span></p>
-    <p><span v-sort:[1]="'L12.L23.L31'">sort d4 (Place)</span></p>
-    <p><span v-sort:[1]="'L12.L23.L32'">sort d5 (Boolean)</span></p>
-    <p><span v-sort:[1]="{ key: 'L12.L23.L33', compare: { type: 'arrayLength' } }">sort d6 (Array strings)</span></p>
-    <p><span v-sort:[1]="'L12.L23.L34'">sort d7 (Array dates)</span></p>
-    <p><span v-sort:[1]="'L12.L23.L35'">sort d8 (Array boolean)</span></p>
-    <p><span v-sort:[1]="'L12.L23.L36'">sort d9 (Array numbers)</span></p>
+    <p><span v-sort:[1]="{ key: 'L11', compare: { type: 'number' } }">sort d1 (Number)</span></p>
+    <p><span v-sort:[1]="{ key: 'L12.L21', compare: { type: 'string' } }">sort d2 (Country)</span></p>
+    <p><span v-sort:[1]="{ key: 'L12.L22', compare: { type: 'date' } }">sort d3 (Date)</span></p>
+    <p><span v-sort:[1]="{ key: 'L12.L23.L31', compare: { type: 'string' } }">sort d4 (Place)</span></p>
+    <p><span v-sort:[1]="{ key: 'L12.L23.L32', compare: { type: 'bool' } }">sort d5 (Boolean)</span></p>
+    <p>
+      <span v-sort:[1]="{ key: 'L12.L23.L33', compare: { type: 'elementInArray', value: 'blue' } }"
+        >sort d6 (Array strings)</span
+      >
+    </p>
+    <p><span v-sort:[1]="{ key: 'L12.L23.L34', compare: { type: 'arrayLength' } }">sort d7 (Array dates)</span></p>
+    <p><span v-sort:[1]="{ key: 'L12.L23.L35', compare: { type: 'arrayLength' } }">sort d8 (Array boolean)</span></p>
+    <p><span v-sort:[1]="{ key: 'L12.L23.L36', compare: { type: 'arrayLength' } }">sort d9 (Array numbers)</span></p>
 
     <p><label>Sort component 2 (TODO):</label> <SortComponentV2 :id="1" /></p>
     <p>
@@ -262,15 +280,17 @@ function changeData(listTools) {
     <table>
       <thead>
         <th></th>
-        <th v-sort:[2]="'L11'">Number</th>
-        <th v-sort:[2]="'L12.L21'">Country</th>
-        <th v-sort:[2]="'L12.L22'">Recent Date</th>
-        <th v-sort:[2]="'L12.L23.L31'">City</th>
-        <th v-sort:[2]="'L12.L23.L32'">Boolean</th>
-        <th v-sort:[2]="'L12.L23.L33'">Array of strings</th>
-        <th v-sort:[2]="'L12.L23.L34'">Array of dates</th>
-        <th v-sort:[2]="'L12.L23.L35'">Array of booleans</th>
-        <th v-sort:[2]="'L12.L23.L36'">Array of numbers</th>
+        <th v-sort:[2]="{ key: 'L11', compare: { type: 'number' } }">Number</th>
+        <th v-sort:[2]="{ key: 'L12.L21', compare: { type: 'string' } }">Country</th>
+        <th v-sort:[2]="{ key: 'L12.L22', compare: { type: 'date' } }">Recent Date</th>
+        <th v-sort:[2]="{ key: 'L12.L23.L31', compare: { type: 'string' } }">City</th>
+        <th v-sort:[2]="{ key: 'L12.L23.L32', compare: { type: 'bool' } }">Boolean</th>
+        <th v-sort:[2]="{ key: 'L12.L23.L33', compare: { type: 'elementInArray', value: 'blue' } }">
+          Array of strings
+        </th>
+        <th v-sort:[2]="{ key: 'L12.L23.L34', compare: { type: 'arrayLength' } }">Array of dates</th>
+        <th v-sort:[2]="{ key: 'L12.L23.L35', compare: { type: 'arrayLength' } }">Array of booleans</th>
+        <th v-sort:[2]="{ key: 'L12.L23.L36', compare: { type: 'arrayLength' } }">Array of numbers</th>
       </thead>
       <tbody>
         <tr v-for="(row, rowIndex) in items2" :key="rowIndex">

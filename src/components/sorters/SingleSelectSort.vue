@@ -4,7 +4,7 @@ import { watch } from "vue";
 import { ListStore } from "../../listStore.js";
 import { addIndex } from "../../utils/sorterIndex.js";
 import useGlobalComposable from "../../composables/globalComposable";
-import { useSortComparators, sortComparatorObj } from "../../utils/sortComparators.js";
+import { getSortComparator } from "../../utils/sortComparators.js";
 
 const listId = new URL(import.meta.url).searchParams.get("listId");
 const listStore = ListStore(listId);
@@ -43,11 +43,13 @@ const sortableKeys = () => {
 
 const sortBy = () => {
   if (selectedSorter.value !== "") {
-    let comparatorType = "default";
+    let comparatorType = undefined;
     if (props.compare !== undefined && props.compare[selectedSorter.value.key] !== undefined) {
-      comparatorType = props.compare[selectedSorter.value.key].type;
+      comparatorType = props.compare[selectedSorter.value.key];
     }
-    const compareFn = useSortComparators(selectedSorter.value.key)[sortComparatorObj[comparatorType]];
+
+    const compareFn = getSortComparator(selectedSorter.value.key, comparatorType);
+
     listStore.addSorter({
       key: selectedSorter.value.key,
       order: selectedSorter.value.order,
