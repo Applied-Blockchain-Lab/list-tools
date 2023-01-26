@@ -1,8 +1,8 @@
 function useComparators() {
   const compareByRangeNumber = (el, min, max) => {
-    console.log("here", el);
-    console.log("el", el);
-    console.log("max", max);
+    // console.log("here", el);
+    // console.log("el", el);
+    // console.log("max", max);
     if (max === 0) {
       return min <= el;
     }
