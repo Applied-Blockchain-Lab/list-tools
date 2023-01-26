@@ -101,7 +101,6 @@ export const ListStore = (storeId, itemsPerPage, singleSort = true, isScrollable
           }
           console.log("Apply filters/Items:", items);
           this.setFilteredItems(items);
-          // this.applySorters();
         }
       },
       applyFilter(comparator, filterKey) {
@@ -131,8 +130,7 @@ export const ListStore = (storeId, itemsPerPage, singleSort = true, isScrollable
           this.setFilteredItems(updatedItems);
           this.setCurrentPage(1);
           this.addFilter(comparator, filterKey);
-
-          // this.applySorters();
+          this.applySorters();
         }
       },
       addSorter: singleSort ? addSorterSingle : addSorterMultiple,
