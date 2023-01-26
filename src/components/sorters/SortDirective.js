@@ -1,7 +1,7 @@
 import { ListStore } from "../../listStore.js";
 import { watch } from "vue";
 import { addIndex } from "../../utils/sorterIndex.js";
-import { useSortComparators, sortComparatorObj } from "../../utils/sortComparators.js";
+import { getSortComparator } from "../../utils/sortComparators.js";
 
 const digits = 1000000;
 
@@ -11,10 +11,10 @@ export const sort = {
     let compareFn;
     if (typeof binding.value === "object") {
       key = binding.value.key;
-      compareFn = useSortComparators(key)[sortComparatorObj[binding.value.compare.type]];
+      compareFn = getSortComparator(key, binding.value.compare);
     } else {
       key = binding.value;
-      compareFn = useSortComparators(key)[sortComparatorObj["default"]];
+      compareFn = getSortComparator(key, binding.value.compare);
     }
 
     const componentId = Math.ceil(Math.random() * digits);
